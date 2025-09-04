@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 90 10% 95%; /* GMvision White */
+    --foreground: 210 38% 25%; /* GMvision Blue */
+
+    --card: 90 10% 95%; /* GMvision White */
+    --card-foreground: 210 38% 25%; /* GMvision Blue */
+
+    --popover: 224 25% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 38% 25%; /* GMvision Blue */
+    --primary-foreground: 90 10% 95%; /* GMvision White */
+
+    --secondary: 210 8% 51%; /* GMvision Gray */
+    --secondary-foreground: 90 10% 95%; /* GMvision White */
+
+    --muted: 210 8% 51%; /* GMvision Gray */
+    --muted-foreground: 90 10% 95%; /* GMvision White */
+
+    --accent: 75 81% 55%; /* GMvision Lime */
+    --accent-foreground: 210 38% 25%; /* GMvision Blue */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 19% 20%;
+    --input: 217 19% 15%;
+    --ring: 207 89% 54%;
+
+    --radius: 0.75rem;
+
+    /* LED Tech Design System */
+    --tech-blue: 210 38% 25%; /* #204760 - GMvision Blue */
+    --tech-cyan: 188 95% 68%;
+    --tech-purple: 258 90% 66%;
+    --tech-dark: 220 15% 7%;
+    --tech-dark-lighter: 217 19% 15%;
+    --tech-gray: 210 8% 51%; /* #808489 - GMvision Gray */
+    --tech-lime: 75 81% 55%; /* #bbe405 - GMvision Lime */
+    --tech-white: 90 10% 95%; /* #f3f4f3 - GMvision White */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--tech-blue)), hsl(var(--tech-lime)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--tech-gray)), hsl(var(--tech-blue)));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--tech-dark)), hsl(var(--tech-dark-lighter)));
+    
+    /* Effects */
+    --glow-blue: 0 0 30px hsl(var(--tech-blue) / 0.3);
+    --glow-cyan: 0 0 30px hsl(var(--tech-cyan) / 0.3);
+    --shadow-tech: 0 10px 40px hsl(var(--tech-blue) / 0.2);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 220 15% 7%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 207 89% 54%;
+    --sidebar-primary-foreground: 220 15% 7%;
+    --sidebar-accent: 217 19% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 19% 20%;
+    --sidebar-ring: 207 89% 54%;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 7%;
+
+    --primary: 207 89% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 220 15% 7%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 188 95% 68%;
+    --accent-foreground: 220 15% 7%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 207 89% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+  
+  .glow-blue {
+    box-shadow: var(--glow-blue);
+  }
+  
+  .glow-cyan {
+    box-shadow: var(--glow-cyan);
+  }
+  
+  .shadow-tech {
+    box-shadow: var(--shadow-tech);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

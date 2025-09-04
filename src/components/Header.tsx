@@ -1,0 +1,179 @@
+import { useState, useEffect } from "react";
+import { Menu, X, Zap } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  
+  const isHomePage = location.pathname === "/";
+
+  // Detecta o scroll da página
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: "#sobre", label: "Sobre", isSection: true },
+    { href: "#cases", label: "Casos", isSection: true },
+    { href: "#beneficios", label: "Benefícios", isSection: true },
+    { href: "#faq", label: "FAQ", isSection: true },
+  ];
+
+  const pageLinks = [
+    { href: "/anunciantes", label: "Para Anunciantes" },
+    { href: "/estabelecimentos", label: "Para Estabelecimentos" },
+  ];
+
+  const handleSectionClick = (href: string) => {
+    if (href.startsWith('#')) {
+      // Se estamos em uma página que não é a home, primeiro navegue para home
+      if (location.pathname !== '/') {
+        window.location.href = '/' + href;
+      } else {
+        // Se já estamos na home, faça scroll suave para a seção
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
+  return (
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isHomePage 
+        ? isScrolled 
+          ? "backdrop-blur-lg bg-black/60 border-b border-white/20" 
+          : "bg-transparent border-b border-transparent"
+        : "backdrop-blur-lg bg-white/95 border-b border-gray-200"
+    }`}>
+      <div className="container mx-auto pl-4 pr-0 h-20 flex items-center relative">
+        {/* Logo à esquerda */}
+        <Link to="/" className="flex items-center space-x-2 group">
+          <div className="w-10 h-10 rounded-lg bg-gmv-blue flex items-center justify-center">
+            <Zap className="w-6 h-6 text-white" />
+          </div>
+          <span className={`font-medium text-xl ${
+            isHomePage ? "text-white" : "text-gmv-blue"
+          }`}>
+            GMvision
+          </span>
+        </Link>
+
+        {/* Navigation Centralizada */}
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <nav className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => handleSectionClick(link.href)}
+                className={cn(
+                  "text-base font-normal transition-colors duration-200 cursor-pointer",
+                  isHomePage
+                    ? "text-white/90 hover:text-white"
+                    : "text-gmv-gray hover:text-gmv-blue"
+                )}
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
+        </div>
+
+        {/* Botões de ação à direita */}
+        <div className="hidden md:flex items-center space-x-3 ml-auto -mr-40">
+          <Link to="/anunciantes">
+            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+              isHomePage 
+                ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
+                : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
+            }`}>
+              Quero Anunciar
+            </button>
+          </Link>
+          <Link to="/estabelecimentos">
+            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+              isHomePage
+                ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
+                : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
+            }`}>
+              Quero Instalar
+            </button>
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className={cn("md:hidden p-2", isHomePage ? "text-white" : "text-gmv-blue")}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className={`md:hidden absolute top-20 left-0 right-0 ${
+          isHomePage 
+            ? isScrolled
+              ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
+              : "bg-black/50 backdrop-blur-md border-b border-white/10"
+            : "bg-gmv-white backdrop-blur-lg border-b border-gmv-gray/20"
+        }`}>
+          <div className="container mx-auto px-4 py-6 space-y-4">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => {
+                  handleSectionClick(link.href);
+                  setIsMenuOpen(false);
+                }}
+                className={cn(
+                  "block w-full text-left text-base font-normal transition-colors duration-200",
+                  isHomePage
+                    ? "text-white/90 hover:text-white"
+                    : "text-gmv-gray hover:text-gmv-blue"
+                )}
+              >
+                {link.label}
+              </button>
+            ))}
+            <div className={`pt-4 space-y-3 ${
+              isHomePage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
+            }`}>
+              <Link to="/anunciantes">
+                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+                  isHomePage 
+                    ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
+                    : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
+                }`}>
+                  Quero Anunciar
+                </button>
+              </Link>
+              <Link to="/estabelecimentos">
+                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+                  isHomePage
+                    ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
+                    : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
+                }`}>
+                  Quero Instalar
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
