@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-led-business.jpg";
 
-const HorizonSection = () => {
+const TextHorizonSection = () => {
   return (
     <section className="py-32 bg-gmv-white overflow-hidden">
       <div className="container mx-auto px-4">
@@ -45,4 +45,4 @@ const HorizonSection = () => {
   );
 };
 
-export default HorizonSection;
+export default TextHorizonSection;

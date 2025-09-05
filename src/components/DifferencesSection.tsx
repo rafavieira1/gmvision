@@ -1,6 +1,6 @@
 import { Shield, Users, Wifi, ArrowRight } from "lucide-react";
 
-const BenefitsSection = () => {
+const DifferencesSection = () => {
   const benefits = [
     {
       icon: Shield,
@@ -65,4 +65,4 @@ const BenefitsSection = () => {
   );
 };
 
-export default BenefitsSection;
+export default DifferencesSection;

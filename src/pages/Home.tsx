@@ -2,11 +2,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import ImpactSection from "@/components/ImpactSection";
+import TextRevealSection from "@/components/TextRevealSection";
 import NumbersSection from "@/components/NumbersSection";
-import PlatformSection from "@/components/PlatformSection";
-import BenefitsSection from "@/components/BenefitsSection";
-import HorizonSection from "@/components/HorizonSection";
+import TipoClienteSection from "@/components/TipoClienteSection";
+import DifferencesSection from "@/components/DifferencesSection";
+import TextHorizonSection from "@/components/TextHorizonSection";
 import CasesSection from "@/components/CasesSection";
 import FaqSection from "@/components/FaqSection";
 import CtaSection from "@/components/CtaSection";
@@ -17,12 +17,12 @@ const Home = () => {
     <div className="min-h-screen">
       <Header />
       <HeroSection />
-      <ImpactSection />
+      <TextRevealSection />
       <AboutSection />
       <NumbersSection />
-      <PlatformSection />
-      <BenefitsSection />
-      <HorizonSection />
+      <TipoClienteSection />
+      <DifferencesSection />
+      <TextHorizonSection />
       <CasesSection />
       <FaqSection />
       <CtaSection />

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const ImpactSection = () => {
+const TextRevealSection = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -76,4 +76,4 @@ const ImpactSection = () => {
   );
 };
 
-export default ImpactSection;
+export default TextRevealSection;

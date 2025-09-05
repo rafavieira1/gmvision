@@ -191,7 +191,7 @@ function PlatformCard({
   );
 }
 
-const PlatformSection = () => {
+const TipoClienteSection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -304,4 +304,4 @@ const PlatformSection = () => {
   );
 };
 
-export default PlatformSection;
+export default TipoClienteSection;

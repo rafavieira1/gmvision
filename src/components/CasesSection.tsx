@@ -131,11 +131,6 @@ const CasesSection = () => {
                       <p className="text-xl text-white/90 leading-relaxed mb-6 max-w-lg">
                         {caseItem.description}
                       </p>
-                      
-                      {/* Stats */}
-                      <div className="inline-block bg-gmv-lime/90 backdrop-blur-sm text-gmv-blue px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider">
-                        {caseItem.stats}
-                      </div>
                     </div>
                   </div>
                 </div>
