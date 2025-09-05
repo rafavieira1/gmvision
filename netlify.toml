@@ -1,9 +1,21 @@
 [build]
   publish = "dist"
-  command = "npm ci && npm run build"
+  command = "npm ci --include=dev && npm run build"
 
 [build.environment]
   NODE_VERSION = "20"
+  NPM_CONFIG_PRODUCTION = "false"
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
 
 [[redirects]]
   from = "/*"
