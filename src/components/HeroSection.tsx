@@ -8,21 +8,13 @@ const HeroSection = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
       ></div>
-      <div className="relative h-full flex items-end pb-44">
-        <div className="container mx-auto px-0 pb-0">
-          <div className="max-w-4xl space-y-8 animate-slide-up">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
-              Atenção Que Vira Conexão
-            </h1>
-            <p className="text-xl md:text-1xl text-white/80 leading-relaxed max-w-2xl">
-              A GMvision revoluciona a publicidade digital com painéis LED inteligentes que conectam anunciantes e estabelecimentos.
-            </p>
-            <div className="pt-4">
-              <button className="bg-gmv-lime text-gmv-blue px-8 py-4 rounded-full text-lg font-medium hover:bg-gmv-lime/90 transition-colors duration-200">
-                Descobrir Soluções
-              </button>
-            </div>
-          </div>
+
+      {/* Large GMVISION text at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+        <div className="w-full px-0">
+          <h2 className="text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[17rem] font-bold text-black leading-none tracking-tighter opacity-90 text-center whitespace-nowrap overflow-hidden" style={{ fontFamily: 'Pavelt, sans-serif' }}>
+            GMVISION
+          </h2>
         </div>
       </div>
     </section>

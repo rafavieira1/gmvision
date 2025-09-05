@@ -71,12 +71,13 @@ const CasesSection = () => {
       <div className="bg-gmv-white py-0 pb-0 relative z-30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-sm font-medium text-gmv-lime uppercase tracking-wider mb-4">
+            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
               CASOS DE SUCESSO
             </div>
-            <h2 className="text-3xl md:text-4xl font-normal text-gmv-blue leading-relaxed max-w-4xl mb-8">
-              Veja como nossos parceiros estão transformando seus negócios 
-              com nossa tecnologia LED avançada
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+              Resultados que
+              <br />
+              <span className="font-normal">impressionam</span>
             </h2>
           </div>
         </div>

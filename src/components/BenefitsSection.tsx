@@ -24,12 +24,13 @@ const BenefitsSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
-            <div className="text-sm font-medium text-gmv-lime uppercase tracking-wider mb-4">
+            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
               NOSSOS DIFERENCIAIS
             </div>
-            <h2 className="text-3xl md:text-4xl font-normal text-gmv-blue leading-relaxed max-w-4xl mb-16">
-              A Vantagem GMvision - Tecnologia de ponta, resultados comprovados 
-              e parceria transparente para o sucesso do seu negócio
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+              Tecnologia que
+              <br />
+              <span className="font-normal">transforma</span>
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">

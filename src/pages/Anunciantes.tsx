@@ -1,19 +1,15 @@
 import { useState } from "react";
+import { ArrowRight, Target, BarChart3, Users, Zap, TrendingUp, CheckCircle, Play, Calendar, MessageCircle } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  TrendingUp, Target, BarChart3, Clock, FileImage, 
-  MapPin, Users, Zap, CheckCircle, ArrowRight 
-} from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { toast } from "@/hooks/use-toast";
 import heroImage from "@/assets/hero-led-business.jpg";
-import gymImage from "@/assets/led-panel-gym.jpg";
 
 const Anunciantes = () => {
   const [formData, setFormData] = useState({
@@ -23,99 +19,47 @@ const Anunciantes = () => {
     empresa: "",
     segmento: "",
     orcamento: "",
-    campanha: "",
     mensagem: ""
   });
 
-  const benefits = [
+  const stepProcess = [
     {
-      icon: Target,
-      title: "Segmentação Inteligente",
-      description: "Direcione seus anúncios por localização, horário e perfil do público para máxima efetividade."
+      number: "01",
+      title: "Envie sua Proposta",
+      description: "Preencha o formulário com seus dados e objetivos de campanha"
     },
     {
-      icon: BarChart3,
-      title: "Relatórios Detalhados",
-      description: "Métricas em tempo real: impressões, tempo de visualização, engagement e ROI da campanha."
+      number: "02", 
+      title: "Análise Personalizada",
+      description: "Nossa equipe analisa seu perfil e sugere os melhores locais"
     },
     {
-      icon: Users,
-      title: "Alcance Qualificado",
-      description: "Atinja milhares de pessoas em locais estratégicos como academias, clínicas e elevadores."
+      number: "03",
+      title: "Aprovação e Criação",
+      description: "Você aprova a proposta e criamos o material da campanha"
     },
     {
-      icon: Zap,
-      title: "Gestão Simplificada",
-      description: "Plataforma intuitiva para criar, editar e monitorar campanhas em todos os painéis."
+      number: "04",
+      title: "Veiculação e Relatórios",
+      description: "Sua campanha entra no ar com relatórios em tempo real"
     }
   ];
 
   const specs = [
-    { label: "Tempo de Exibição", value: "15-30 segundos por ciclo" },
-    { label: "Formatos Aceitos", value: "MP4, JPG, PNG até 10MB" },
-    { label: "Resolução", value: "Full HD 1920x1080" },
-    { label: "Horários", value: "6h às 22h (personalizável)" }
-  ];
-
-  const planos = [
     {
-      nome: "Inicial",
-      preco: "R$ 299",
-      periodo: "/mês",
-      descricao: "Ideal para pequenas empresas",
-      features: [
-        "Até 5 painéis",
-        "Relatórios básicos",
-        "Suporte via chat",
-        "Até 10 campanhas/mês"
-      ],
-      destaque: false
+      icon: Play,
+      title: "Formatos Aceitos",
+      items: ["Vídeo MP4 até 30s", "Imagens JPG/PNG", "Resolução Full HD", "Tamanho máximo 10MB"]
     },
     {
-      nome: "Crescimento",
-      preco: "R$ 599",
-      periodo: "/mês",
-      descricao: "Para empresas em crescimento",
-      features: [
-        "Até 15 painéis",
-        "Relatórios avançados",
-        "Suporte prioritário",
-        "Campanhas ilimitadas",
-        "Segmentação avançada"
-      ],
-      destaque: true
+      icon: Calendar,
+      title: "Horários de Exibição", 
+      items: ["6h às 22h diariamente", "Ciclos de 15-30 segundos", "Personalização por local", "Agendamento flexível"]
     },
     {
-      nome: "Corporativo",
-      preco: "Sob consulta",
-      periodo: "",
-      descricao: "Para grandes corporações",
-      features: [
-        "Painéis ilimitados",
-        "Dashboard personalizado",
-        "Gerente de conta dedicado",
-        "API personalizada",
-        "SLA garantido"
-      ],
-      destaque: false
-    }
-  ];
-
-  const cases = [
-    {
-      empresa: "Suplementos Pro",
-      resultado: "+85% de reconhecimento de marca",
-      detalhes: "Campanha em 25 academias por 3 meses gerou aumento significativo nas vendas online."
-    },
-    {
-      empresa: "Clínica Dental Care",
-      resultado: "+120 novos pacientes",
-      detalhes: "Anúncios em elevadores de prédios comerciais trouxeram 40% mais consultas."
-    },
-    {
-      empresa: "App Fitness Tech",
-      resultado: "+2.500 downloads",
-      detalhes: "Promoção do app em academias resultou em alta taxa de conversão e retenção."
+      icon: MessageCircle,
+      title: "Negociação Personalizada",
+      items: ["Consulta via WhatsApp", "Proposta sob medida", "Suporte especializado", "Flexibilidade total"]
     }
   ];
 
@@ -123,7 +67,7 @@ const Anunciantes = () => {
     e.preventDefault();
     toast({
       title: "Proposta Enviada!",
-      description: "Entraremos em contato em até 24 horas para apresentar sua solução personalizada.",
+      description: "Nossa equipe entrará em contato em até 24 horas.",
     });
   };
 
@@ -132,259 +76,214 @@ const Anunciantes = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gmv-white">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-20 overflow-hidden">
-        <div className="absolute inset-0 gradient-dark opacity-60"></div>
+      {/* Hero Section Simplificado */}
+      <section className="relative h-screen overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         ></div>
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-slide-up">
-            <h1 className="text-display font-bold text-white leading-tight">
-              Amplifique sua Marca com 
-              <span className="text-gradient-primary"> Publicidade LED</span>
+        
+        <div className="relative h-full flex items-center justify-center">
+          <div className="text-center max-w-4xl mx-auto px-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-tight mb-8">
+              Anuncie onde
+              <br />
+              <span className="font-normal text-gmv-lime">sua marca</span>
+              <br />
+              <span className="font-normal">importa</span>
             </h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Alcance seu público-alvo nos momentos certos, nos locais ideais. 
-              Resultados mensuráveis e campanhas que realmente convertem.
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-8">
+              Painéis LED inteligentes em locais estratégicos para maximizar o impacto da sua campanha
             </p>
-            <Button variant="hero" size="xl" className="animate-pulse-glow">
+            <Button className="bg-gmv-lime text-gmv-blue px-8 py-4 rounded-full text-lg font-medium hover:bg-gmv-lime/90 transition-colors duration-200">
               <TrendingUp className="w-5 h-5 mr-2" />
-              Solicitar Proposta Gratuita
+              Criar Minha Campanha
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
         </div>
-      </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-section font-bold mb-6 text-gradient-primary">
-              Por que Anunciar Conosco?
+        {/* Large ANUNCIANTES text at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+          <div className="w-full px-0">
+            <h2 className="text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[18rem] font-bold text-black/60 leading-none tracking-tighter opacity-90 text-center whitespace-nowrap overflow-hidden" style={{ fontFamily: 'Pavelt, sans-serif' }}>
+              ANUNCIANTES
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Tecnologia avançada e estratégia inteligente para maximizar o ROI das suas campanhas.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="group hover:shadow-tech transition-smooth border-border/50 hover:border-primary/50">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full gradient-primary flex items-center justify-center">
-                    <benefit.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {benefit.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* Specifications Section */}
-      <section className="py-20 bg-card">
+      {/* Como Funciona Section */}
+      <section className="py-32 bg-gmv-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-section font-bold mb-6">
-                Especificações dos Anúncios
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-20">
+              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+                PROCESSO SIMPLES
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+                Como
+                <br />
+                <span className="font-normal">funciona</span>
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Formatos otimizados para máximo impacto visual e técnico.
-              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="border-border/50">
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <FileImage className="w-5 h-5 mr-2 text-primary" />
-                    Especificações Técnicas
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {specs.map((spec, index) => (
-                    <div key={index} className="flex justify-between items-center py-2 border-b border-border/30 last:border-0">
-                      <span className="font-medium text-foreground">{spec.label}</span>
-                      <span className="text-muted-foreground">{spec.value}</span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              <Card className="border-border/50 overflow-hidden">
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <MapPin className="w-5 h-5 mr-2 text-primary" />
-                    Locais Disponíveis
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span>Academias e Studios</span>
-                      <span className="text-primary font-medium">45+ locais</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span>Clínicas e Consultórios</span>
-                      <span className="text-primary font-medium">32+ locais</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span>Elevadores Comerciais</span>
-                      <span className="text-primary font-medium">28+ locais</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span>Condomínios</span>
-                      <span className="text-primary font-medium">18+ locais</span>
-                    </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {stepProcess.map((step, index) => (
+                <div key={index} className="text-center relative">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gmv-blue flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">{step.number}</span>
                   </div>
-                  <div className="mt-4 p-3 bg-primary/10 rounded-lg">
-                    <p className="text-sm text-primary font-medium">
-                      <Clock className="w-4 h-4 inline mr-1" />
-                      Novos locais adicionados semanalmente
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Planos Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-section font-bold mb-6 text-gradient-primary">
-              Planos e Investimento
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Escolha o plano ideal para seu negócio. Sem taxas ocultas, máxima transparência.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {planos.map((plano, index) => (
-              <Card key={index} className={`relative hover:shadow-tech transition-smooth ${plano.destaque ? 'border-primary shadow-tech scale-105' : 'border-border/50'}`}>
-                {plano.destaque && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="gradient-primary text-white text-sm font-medium px-4 py-2 rounded-full">
-                      Mais Popular
-                    </div>
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-xl">{plano.nome}</CardTitle>
-                  <div className="space-y-2">
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-3xl font-bold text-foreground">{plano.preco}</span>
-                      <span className="text-muted-foreground ml-1">{plano.periodo}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{plano.descricao}</p>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plano.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    variant={plano.destaque ? "gradient" : "outline"} 
-                    className="w-full"
-                  >
-                    {plano.nome === "Enterprise" ? "Falar com Consultor" : "Começar Agora"}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Cases Section */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-section font-bold mb-6">
-              Campanhas que Geraram Resultados
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Cases reais de clientes que alcançaram seus objetivos com nossa plataforma.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {cases.map((case_, index) => (
-              <Card key={index} className="hover:shadow-tech transition-smooth border-border/50 hover:border-primary/50">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full gradient-secondary flex items-center justify-center">
-                    <TrendingUp className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2 text-foreground">
-                    {case_.empresa}
+                  <h3 className="text-xl font-semibold text-gmv-blue mb-4">
+                    {step.title}
                   </h3>
-                  <div className="text-primary font-bold text-xl mb-3">
-                    {case_.resultado}
-                  </div>
-                  <p className="text-muted-foreground text-sm">
-                    {case_.detalhes}
+                  <p className="text-gmv-gray leading-relaxed">
+                    {step.description}
                   </p>
-                </CardContent>
-              </Card>
-            ))}
+                  {index < stepProcess.length - 1 && (
+                    <div className="hidden lg:block absolute top-10 left-full w-full">
+                      <ArrowRight className="w-6 h-6 text-gmv-lime mx-auto" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Especificações Section */}
+      <section className="py-32 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-20">
+              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+                ESPECIFICAÇÕES
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+                Formatos e
+                <br />
+                <span className="font-normal">configurações</span>
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {specs.map((spec, index) => (
+                <Card key={index} className="border-2 border-gray-200 hover:border-gmv-blue hover:shadow-lg transition-all duration-300">
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gmv-blue flex items-center justify-center">
+                      <spec.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-xl text-gmv-blue">{spec.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {spec.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start text-sm">
+                          <CheckCircle className="w-4 h-4 text-gmv-lime mr-3 flex-shrink-0 mt-0.5" />
+                          <span className="text-gmv-gray">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WhatsApp Contact Section */}
+      <section className="py-32 bg-gmv-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              FALE CONOSCO
+            </div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+              Vamos conversar
+              <br />
+              <span className="font-normal">sobre valores</span>
+            </h2>
+            <p className="text-xl text-gmv-gray max-w-2xl mx-auto mb-12">
+              Cada projeto é único. Vamos conversar no WhatsApp para criar uma proposta personalizada para sua marca.
+            </p>
+            
+            <div className="flex flex-col items-center space-y-8">
+              <a
+                href="https://wa.me/5511999999999?text=Olá! Tenho interesse em criar uma campanha publicitária com a GMvision. Gostaria de saber mais sobre valores e condições."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-8 py-4 bg-gmv-lime text-gmv-blue rounded-full text-lg font-medium hover:bg-gmv-lime/90 transition-colors duration-200 shadow-lg hover:shadow-xl"
+              >
+                <MessageCircle className="w-6 h-6 mr-3" />
+                Conversar no WhatsApp
+                <ArrowRight className="w-5 h-5 ml-3" />
+              </a>
+              
+              <div className="flex items-center space-x-8 text-gmv-gray">
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-gmv-lime mr-2" />
+                  <span>Resposta em até 1 hora</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-gmv-lime mr-2" />
+                  <span>Proposta personalizada</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-gmv-lime mr-2" />
+                  <span>Sem compromisso</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 bg-background">
+      <section className="py-32 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-section font-bold mb-6 text-gradient-primary">
-                Solicite sua Proposta Personalizada
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+                VAMOS COMEÇAR
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+                Solicite sua
+                <br />
+                <span className="font-normal">proposta</span>
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Preencha o formulário e receba uma proposta sob medida para sua empresa em até 24h.
+              <p className="text-xl text-gmv-gray max-w-2xl mx-auto">
+                Preencha o formulário e receba uma proposta personalizada em até 24 horas
               </p>
             </div>
 
-            <Card className="border-border/50">
+            <Card className="border-2 border-gray-200">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="nome">Nome Completo*</Label>
+                      <Label htmlFor="nome" className="text-gmv-blue font-medium">Nome Completo*</Label>
                       <Input 
                         id="nome" 
                         value={formData.nome}
                         onChange={(e) => handleInputChange('nome', e.target.value)}
+                        className="border-gray-300 focus:border-gmv-blue"
                         required 
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">E-mail Corporativo*</Label>
+                      <Label htmlFor="email" className="text-gmv-blue font-medium">E-mail Corporativo*</Label>
                       <Input 
                         id="email" 
                         type="email" 
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
+                        className="border-gray-300 focus:border-gmv-blue"
                         required 
                       />
                     </div>
@@ -392,20 +291,22 @@ const Anunciantes = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="telefone">Telefone*</Label>
+                      <Label htmlFor="telefone" className="text-gmv-blue font-medium">Telefone*</Label>
                       <Input 
                         id="telefone" 
                         value={formData.telefone}
                         onChange={(e) => handleInputChange('telefone', e.target.value)}
+                        className="border-gray-300 focus:border-gmv-blue"
                         required 
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="empresa">Empresa*</Label>
+                      <Label htmlFor="empresa" className="text-gmv-blue font-medium">Empresa*</Label>
                       <Input 
                         id="empresa" 
                         value={formData.empresa}
                         onChange={(e) => handleInputChange('empresa', e.target.value)}
+                        className="border-gray-300 focus:border-gmv-blue"
                         required 
                       />
                     </div>
@@ -413,9 +314,9 @@ const Anunciantes = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="segmento">Segmento</Label>
+                      <Label htmlFor="segmento" className="text-gmv-blue font-medium">Segmento</Label>
                       <Select onValueChange={(value) => handleInputChange('segmento', value)}>
-                        <SelectTrigger>
+                        <SelectTrigger className="border-gray-300 focus:border-gmv-blue">
                           <SelectValue placeholder="Selecione seu segmento" />
                         </SelectTrigger>
                         <SelectContent>
@@ -431,9 +332,9 @@ const Anunciantes = () => {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="orcamento">Orçamento Mensal</Label>
+                      <Label htmlFor="orcamento" className="text-gmv-blue font-medium">Orçamento Mensal</Label>
                       <Select onValueChange={(value) => handleInputChange('orcamento', value)}>
-                        <SelectTrigger>
+                        <SelectTrigger className="border-gray-300 focus:border-gmv-blue">
                           <SelectValue placeholder="Faixa de investimento" />
                         </SelectTrigger>
                         <SelectContent>
@@ -448,27 +349,21 @@ const Anunciantes = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="campanha">Descreva sua Campanha</Label>
-                    <Textarea 
-                      id="campanha" 
-                      placeholder="Conte-nos sobre seus objetivos, público-alvo e tipo de campanha..."
-                      value={formData.campanha}
-                      onChange={(e) => handleInputChange('campanha', e.target.value)}
-                      className="min-h-[100px]"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="mensagem">Mensagem Adicional (Opcional)</Label>
+                    <Label htmlFor="mensagem" className="text-gmv-blue font-medium">Objetivos da Campanha</Label>
                     <Textarea 
                       id="mensagem" 
-                      placeholder="Informações adicionais, dúvidas ou pedidos especiais..."
+                      placeholder="Conte-nos sobre seus objetivos, público-alvo e como podemos ajudar..."
                       value={formData.mensagem}
                       onChange={(e) => handleInputChange('mensagem', e.target.value)}
+                      className="min-h-[120px] border-gray-300 focus:border-gmv-blue"
                     />
                   </div>
 
-                  <Button type="submit" variant="gradient" size="lg" className="w-full">
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90 py-4 text-lg font-medium"
+                    size="lg"
+                  >
                     <Zap className="w-5 h-5 mr-2" />
                     Enviar Proposta Gratuita
                   </Button>

@@ -7,8 +7,8 @@ const HorizonSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Texto GMvision com imagens em uma linha */}
-          <div className="relative mb-16">
-            <h2 className="text-[6rem] md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black leading-none text-left select-none tracking-tight">
+          <div className="relative mb-16 text-center">
+            <h2 className="text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[14rem] font-black leading-none select-none tracking-tight" style={{ fontFamily: 'Pavelt, sans-serif' }}>
               <span 
                 className="inline-block bg-clip-text text-transparent bg-cover bg-center bg-no-repeat"
                 style={{ 
@@ -38,11 +38,6 @@ const HorizonSection = () => {
               {/* Seta para a direita alinhada à direita */}
               <ArrowRight className="w-6 h-6 text-white relative z-10" />
             </div>
-          </div>
-
-          {/* Linha decorativa - também alinhada à esquerda */}
-          <div className="mt-16 flex justify-start">
-            <div className="w-24 h-1 bg-gmv-lime rounded-full"></div>
           </div>
         </div>
       </div>

@@ -245,12 +245,13 @@ const PlatformSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-16"
           >
-            <div className="text-sm font-medium text-gmv-lime uppercase tracking-wider mb-4">
+            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
               NOSSA PLATAFORMA
             </div>
-            <h2 className="text-3xl md:text-4xl font-normal text-gmv-blue leading-relaxed max-w-4xl">
-              Conectamos empresas que querem anunciar com estabelecimentos 
-              que querem modernizar sua comunicação visual
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+              Conexões que
+              <br />
+              <span className="font-normal">geram valor</span>
             </h2>
           </motion.div>
 
