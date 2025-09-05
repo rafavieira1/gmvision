@@ -92,11 +92,8 @@ const AboutSection = () => {
       label: "NOSSA HISTÓRIA",
       title: (
         <>
-          Construindo o
-          <br />
-          <span className="font-normal">futuro desde</span>
-          <br />
-          <span className="font-normal">2020</span>
+          Construindo um novo
+          <span className="font-normal"> futuro</span>
         </>
       ),
       description: "Fundada em 2020, a GMvision nasceu da visão de revolucionar a publicidade digital no Brasil. Começamos com um pequeno time apaixonado por tecnologia e hoje somos líderes em soluções LED inteligentes, presente em mais de 22 estados e impactando milhões de pessoas todos os dias com nossa inovação.",
