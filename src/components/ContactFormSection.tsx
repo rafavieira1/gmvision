@@ -57,19 +57,7 @@ const ContactFormSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const segments = [
-    'Academias e Fitness',
-    'Clínicas e Consultórios',
-    'Elevadores',
-    'Condomínios',
-    'Centros Comerciais',
-    'Restaurantes',
-    'Hotéis',
-    'Escritórios',
-    'Outro'
-  ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -259,20 +247,15 @@ const ContactFormSection = () => {
 
                     <div className="grid w-full items-center gap-1.5">
                       <Label htmlFor="segment" className="text-sm font-medium text-gmv-blue">Segmento</Label>
-                      <select
+                      <Input
+                        type="text"
                         id="segment"
                         name="segment"
                         value={formData.segment}
                         onChange={handleInputChange}
-                        className="flex h-12 w-full rounded-md border border-gmv-gray/20 bg-gray-50 px-3 py-2 text-sm text-gmv-blue focus:outline-none focus:ring-2 focus:ring-gmv-lime focus:border-transparent transition-all duration-300"
-                      >
-                        <option value="" className="text-gmv-gray">Selecione seu segmento</option>
-                        {segments.map(segment => (
-                          <option key={segment} value={segment} className="text-gmv-blue">
-                            {segment}
-                          </option>
-                        ))}
-                      </select>
+                        placeholder="Ex: Academias, Clínicas, Elevadores, Condomínios, Restaurantes..."
+                        className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12"
+                      />
                     </div>
 
                     <div className="grid w-full gap-1.5">

@@ -33,7 +33,7 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 97%; /* GMvision White */
 
     --muted: 204 9% 25%; /* GMvision Gray */
-    --muted-foreground: 0 0% 97%; /* GMvision White */
+    --muted-foreground: 215 16% 47%; /* Gray for placeholders and muted text */
 
     --accent: 75 100% 45%; /* GMvision Lime */
     --accent-foreground: 210 95% 26%; /* GMvision Blue */
