@@ -1,11 +1,10 @@
 import { ArrowRight, Users, Building, TrendingUp, Zap, Target, MapPin, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useExpandable } from "@/hooks/use-expandable";
 import heroImage from "@/assets/hero-led-business.jpg";
 import clinicImage from "@/assets/led-panel-clinic.jpg";
 
@@ -20,6 +19,8 @@ interface PlatformCardProps {
   badgeText: string;
   image: string;
   imageAlt: string;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
 }
 
 function PlatformCard({
@@ -33,21 +34,30 @@ function PlatformCard({
   badgeText,
   image,
   imageAlt,
+  isExpanded,
+  onToggleExpand,
 }: PlatformCardProps) {
-  const { isExpanded, toggleExpand, animatedHeight } = useExpandable();
   const contentRef = useRef<HTMLDivElement>(null);
+  const [animatedHeight, setAnimatedHeight] = useState(0);
 
   useEffect(() => {
     if (contentRef.current) {
-      animatedHeight.set(isExpanded ? contentRef.current.scrollHeight : 0);
+      setAnimatedHeight(isExpanded ? contentRef.current.scrollHeight : 0);
     }
-  }, [isExpanded, animatedHeight]);
+  }, [isExpanded]);
 
   return (
-    <Card
-      className={`cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.02] rounded-3xl overflow-hidden ${bgColor} shadow-lg flex flex-col h-full`}
-      onClick={toggleExpand}
+    <motion.div
+      initial={{ scale: 0.9, opacity: 0, y: 50 }}
+      whileInView={{ scale: 1, opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="h-full"
     >
+      <Card
+        className={`cursor-pointer transition-all duration-500 hover:shadow-2xl hover:scale-[1.03] rounded-3xl overflow-hidden ${bgColor} shadow-lg flex flex-col h-full`}
+        onClick={onToggleExpand}
+      >
       <CardHeader className="p-8 flex-1 flex flex-col">
         <div className="flex justify-between items-start w-full">
           <div className="space-y-2 flex-1">
@@ -82,45 +92,67 @@ function PlatformCard({
 
       <CardContent className="p-8 pt-0">
         <motion.div
-          style={{ height: animatedHeight }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          animate={{ height: animatedHeight }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 300, 
+            damping: 30,
+            duration: 0.6 
+          }}
           className="overflow-hidden"
         >
           <div ref={contentRef}>
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               {isExpanded && (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   className="space-y-6 pt-4"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Image */}
-                  <div className="rounded-xl overflow-hidden">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
+                    className="rounded-xl overflow-hidden"
+                  >
                     <img 
                       src={image} 
                       alt={imageAlt}
                       className="w-full h-48 object-cover"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Features */}
-                  <div className="space-y-3">
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                    className="space-y-3"
+                  >
                     <h4 className="font-medium text-white flex items-center">
                       <Target className="h-4 w-4 mr-2 text-gmv-lime" />
                       Principais Benefícios
                     </h4>
                     {features.map((feature, index) => (
-                      <div key={index} className="flex items-start space-x-3 bg-white/10 rounded-lg p-3 border border-white/10">
+                      <motion.div 
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + index * 0.1, duration: 0.3 }}
+                        className="flex items-start space-x-3 bg-white/10 rounded-lg p-3 border border-white/10"
+                      >
                         <feature.icon className="h-5 w-5 text-gmv-lime mt-0.5 flex-shrink-0" />
                         <div>
                           <div className="text-white font-medium text-sm">{feature.title}</div>
                           <div className="text-white/80 text-xs leading-relaxed">{feature.description}</div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -134,7 +166,7 @@ function PlatformCard({
               className="w-full h-12 border-2 border-gmv-lime bg-transparent text-gmv-lime hover:bg-gmv-lime hover:text-gmv-blue transition-all duration-200 font-medium"
               onClick={(e) => {
                 e.stopPropagation();
-                toggleExpand();
+                onToggleExpand();
               }}
             >
               <span className="text-sm font-medium">Ver mais</span>
@@ -155,10 +187,17 @@ function PlatformCard({
         </div>
       </CardContent>
     </Card>
+    </motion.div>
   );
 }
 
 const PlatformSection = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const anunciantesFeatures = [
     {
       title: "Segmentação Avançada",
@@ -199,7 +238,13 @@ const PlatformSection = () => {
     <section className="py-24 bg-gmv-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mb-16"
+          >
             <div className="text-sm font-medium text-gmv-lime uppercase tracking-wider mb-4">
               NOSSA PLATAFORMA
             </div>
@@ -207,9 +252,15 @@ const PlatformSection = () => {
               Conectamos empresas que querem anunciar com estabelecimentos 
               que querem modernizar sua comunicação visual
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 md:items-stretch">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid md:grid-cols-2 gap-8 md:items-stretch"
+          >
             {/* Card para Anunciantes */}
             <div className="flex">
               <PlatformCard
@@ -223,6 +274,8 @@ const PlatformSection = () => {
                 badgeText="Para Empresas"
                 image={heroImage}
                 imageAlt="Anunciantes GMvision - Maximize o alcance da sua marca"
+                isExpanded={isExpanded}
+                onToggleExpand={toggleExpand}
               />
             </div>
 
@@ -239,9 +292,11 @@ const PlatformSection = () => {
                 badgeText="Para Locais"
                 image={clinicImage}
                 imageAlt="Estabelecimentos GMvision - Modernize seu espaço"
+                isExpanded={isExpanded}
+                onToggleExpand={toggleExpand}
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

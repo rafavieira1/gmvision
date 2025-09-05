@@ -21,10 +21,10 @@ export default {
 			colors: {
 				// Cores da identidade visual GMvision
 				gmv: {
-					blue: '#204760',      // Azul Profundo - confiança, estabilidade
-					gray: '#808489',      // Cinza Chumbo - modernidade, sofisticação  
-					lime: '#bbe405',      // Verde Limão - inovação, energia
-					white: '#f3f4f3',     // Branco Neve - clareza, transparência
+					blue: '#05487f',      // Azul
+					gray: '#384145',      // Cinza grafite
+					lime: '#b8e600',      // Verde
+					white: '#f7f7f7',     // Branco off-white
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

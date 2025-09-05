@@ -7,7 +7,6 @@ import heroImage from "@/assets/hero-led-business.jpg";
 
 interface AccordionItemType {
   id: number;
-  title: string;
   imageUrl: string;
 }
 
@@ -31,7 +30,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
       {/* Background Image */}
       <img
         src={item.imageUrl}
-        alt={item.title}
+        alt={`Painel LED ${item.id}`}
         className="absolute inset-0 w-full h-full object-cover"
         onError={(e) => { 
           const target = e.target as HTMLImageElement;
@@ -41,22 +40,6 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
       />
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
-      {/* Caption Text */}
-      <span
-        className={`
-          absolute text-white text-sm font-semibold whitespace-nowrap
-          transition-all duration-300 ease-in-out
-          ${
-            isActive
-              ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0' // Active state: horizontal, bottom-center
-              // Inactive state: vertical, positioned at the bottom, for all screen sizes
-              : 'w-auto text-left bottom-24 left-1/2 -translate-x-1/2 rotate-90'
-          }
-        `}
-      >
-        {item.title}
-      </span>
     </div>
   );
 };
@@ -70,22 +53,18 @@ const AboutSection = () => {
   const accordionItems = [
     {
       id: 1,
-      title: 'Clínicas e Hospitais',
       imageUrl: clinicImage,
     },
     {
       id: 2,
-      title: 'Academias e Esportes',
       imageUrl: gymImage,
     },
     {
       id: 3,
-      title: 'Elevadores',
       imageUrl: elevatorImage,
     },
     {
       id: 4,
-      title: 'Empresas e Corporativo',
       imageUrl: heroImage,
     },
   ];

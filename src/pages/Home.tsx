@@ -6,6 +6,7 @@ import ImpactSection from "@/components/ImpactSection";
 import NumbersSection from "@/components/NumbersSection";
 import PlatformSection from "@/components/PlatformSection";
 import BenefitsSection from "@/components/BenefitsSection";
+import HorizonSection from "@/components/HorizonSection";
 import CasesSection from "@/components/CasesSection";
 import FaqSection from "@/components/FaqSection";
 import CtaSection from "@/components/CtaSection";
@@ -21,6 +22,7 @@ const Home = () => {
       <NumbersSection />
       <PlatformSection />
       <BenefitsSection />
+      <HorizonSection />
       <CasesSection />
       <FaqSection />
       <CtaSection />

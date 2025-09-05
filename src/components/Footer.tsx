@@ -1,8 +1,9 @@
-import { Zap, Mail, Phone, MapPin, Linkedin, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import footerLogo from "@/assets/footer.png";
 
 interface FooterLink {
   title: string;
@@ -85,13 +86,8 @@ const Footer = () => {
 
       <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
         <AnimatedContainer className="space-y-4">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-lg bg-gmv-blue flex items-center justify-center">
-              <Zap className="w-5 h-5 text-gmv-white" />
-            </div>
-            <span className="font-medium text-lg text-gmv-blue">
-              GMvision
-            </span>
+          <Link to="/" className="flex items-center">
+            <img src={footerLogo} alt="GMvision" className="w-16 h-16 object-contain" />
           </Link>
           <p className="text-gmv-gray text-sm leading-relaxed max-w-xs mt-4">
             Conectando anunciantes e estabelecimentos através de tecnologia LED inovadora.

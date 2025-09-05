@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logobranca.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,15 +59,8 @@ const Header = () => {
     }`}>
       <div className="container mx-auto pl-4 pr-0 h-20 flex items-center relative">
         {/* Logo à esquerda */}
-        <Link to="/" className="flex items-center space-x-2 group">
-          <div className="w-10 h-10 rounded-lg bg-gmv-blue flex items-center justify-center">
-            <Zap className="w-6 h-6 text-white" />
-          </div>
-          <span className={`font-medium text-xl ${
-            isHomePage ? "text-white" : "text-gmv-blue"
-          }`}>
-            GMvision
-          </span>
+        <Link to="/" className="flex items-center group">
+          <img src={logo} alt="GMvision" className="w-24 h-24 object-contain" />
         </Link>
 
         {/* Navigation Centralizada */}
