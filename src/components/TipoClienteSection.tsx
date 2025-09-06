@@ -112,13 +112,13 @@ const TipoClienteSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-16"
           >
-            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
               NOSSA PLATAFORMA
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Conexões que
               <br />
-              <span className="font-normal">geram valor</span>
+              <span className="font-normal font-garamond">geram valor</span>
             </h2>
           </motion.div>
 
@@ -137,7 +137,7 @@ const TipoClienteSection = () => {
               link="/anunciantes"
               linkText="Saiba Mais"
               features={anunciantesFeatures}
-              bgColor="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900"
+              bgColor="bg-neutral-700"
               image={heroImage}
               imageAlt="Anunciantes GMvision - Maximize o alcance da sua marca"
             />
@@ -150,7 +150,7 @@ const TipoClienteSection = () => {
               link="/estabelecimentos"
               linkText="Saiba Mais"
               features={estabelecimentosFeatures}
-              bgColor="bg-gradient-to-br from-gmv-blue via-blue-600 to-blue-800"
+              bgColor="bg-neutral-700"
               image={clinicImage}
               imageAlt="Estabelecimentos GMvision - Modernize seu espaço"
             />

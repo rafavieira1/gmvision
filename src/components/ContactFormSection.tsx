@@ -103,7 +103,7 @@ const ContactFormSection = () => {
               <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-gmv-lime flex items-center justify-center">
                 <Send className="w-10 h-10 text-gmv-blue" />
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
                 Mensagem 
                 <br />
                 <span className="font-normal">Enviada!</span>
@@ -131,13 +131,13 @@ const ContactFormSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Conteúdo à esquerda */}
             <AnimatedContainer className="">
-              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
                 FALE CONOSCO
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
                 Vamos conversar
                 <br />
-                <span className="font-normal">sobre resultados</span>
+                <span className="font-normal font-garamond">sobre resultados</span>
               </h2>
 
               {/* Informações de Contato */}

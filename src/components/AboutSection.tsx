@@ -80,7 +80,7 @@ const AboutSection = () => {
         <>
           O futuro da
           <br />
-          <span className="font-normal"> publicidade</span>
+          <span className="font-normal font-garamond"> publicidade</span>
           <br />
           <span className="font-normal"></span>
         </>
@@ -141,11 +141,11 @@ const AboutSection = () => {
               <div className={`transition-all duration-300 ${
                 isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
               }`}>
-                <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+                <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
                   {currentContent.label}
                 </div>
                 
-                <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
                   {currentContent.title}
                 </h2>
                 

@@ -24,13 +24,13 @@ const DifferencesSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
-            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
               NOSSOS DIFERENCIAIS
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Tecnologia que
               <br />
-              <span className="font-normal">transforma</span>
+              <span className="font-normal font-garamond">transforma</span>
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">

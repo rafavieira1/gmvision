@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-led-business.jpg";
+import heroImage from "/public/chat.png";
 
 const TextHorizonSection = () => {
   return (

@@ -80,6 +80,12 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
+				garamond: ['ITC Garamond', 'serif'],
+				neiko: ['Neiko', 'sans-serif'],
+				halenoir: ['Halenoir Compact', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif'],
+				fontspring: ['Fontspring Apparel Display', 'sans-serif'],
+				apparel: ['Apparel Regular', 'serif'],
 			},
 			fontSize: {
 				'display': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],

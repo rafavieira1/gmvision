@@ -11,6 +11,54 @@
   font-display: swap;
 }
 
+/* Custom Font - ITC Garamond */
+@font-face {
+  font-family: 'ITC Garamond';
+  src: url('./assets/itc-garamond-std.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom Font - Neiko */
+@font-face {
+  font-family: 'Neiko';
+  src: url('./assets/NeikoRegular-XGMP2.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom Font - Halenoir Compact */
+@font-face {
+  font-family: 'Halenoir Compact';
+  src: url('./assets/HalenoirCompact-MediumObl.otf') format('opentype');
+  font-weight: 500;
+  font-style: oblique;
+  font-display: swap;
+}
+
+/* Google Font - Montserrat SemiBold Italic */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap');
+
+/* Custom Font - Fontspring Apparel Display */
+@font-face {
+  font-family: 'Fontspring Apparel Display';
+  src: url('./assets/Fontspring-DEMO-appareldisplay-blackit.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Custom Font - Apparel Regular */
+@font-face {
+  font-family: 'Apparel Regular';
+  src: url('./assets/Apparel-regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */

@@ -71,13 +71,13 @@ const CasesSection = () => {
       <div className="bg-gmv-white py-0 pb-0 relative z-30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
               CASOS DE SUCESSO
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Resultados que
               <br />
-              <span className="font-normal">impressionam</span>
+              <span className="font-normal font-garamond">impressionam</span>
             </h2>
           </div>
         </div>
