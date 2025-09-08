@@ -20,7 +20,7 @@ const DifferencesSection = () => {
   ];
 
   return (
-    <section id="beneficios" className="py-24 bg-gmv-white">
+    <section id="beneficios" className="py-24 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/cortada.png)'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
@@ -53,7 +53,7 @@ const DifferencesSection = () => {
             
             {/* Botão CTA centralizado */}
             <div className="flex justify-center">
-              <button className="inline-flex items-center px-6 py-3 border border-blue-500 text-blue-500 rounded-full hover:bg-blue-50 transition-colors duration-200">
+              <button className="inline-flex items-center px-6 py-3 bg-gmv-lime border border-gmv-lime text-gmv-blue rounded-full hover:bg-gmv-lime/90 hover:border-gmv-lime/90 transition-colors duration-200 font-medium shadow-lg">
                 <span className="text-sm font-medium">Solicitar Proposta</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
               </button>

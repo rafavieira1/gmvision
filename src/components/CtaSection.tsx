@@ -8,7 +8,7 @@ const CtaSection = () => {
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: `url('/public/chat.png')`,
+          backgroundImage: `url('/chat.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}

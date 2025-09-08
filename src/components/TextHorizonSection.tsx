@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import heroImage from "/public/chat.png";
 
 const TextHorizonSection = () => {
   return (
@@ -12,7 +11,7 @@ const TextHorizonSection = () => {
               <span 
                 className="inline-block bg-clip-text text-transparent bg-cover bg-center bg-no-repeat"
                 style={{ 
-                  backgroundImage: `url(${heroImage})`,
+                  backgroundImage: `url(/chat.png)`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent'
                 }}
@@ -27,7 +26,7 @@ const TextHorizonSection = () => {
             <div 
               className="relative flex items-center justify-end w-40 h-12 rounded-full bg-cover bg-center shadow-lg border border-gray-200 group cursor-pointer transition-all duration-300 hover:scale-105 overflow-hidden pr-4"
               style={{
-                backgroundImage: `url(${heroImage})`,
+                backgroundImage: `url(/chat.png)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}

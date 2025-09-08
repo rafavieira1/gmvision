@@ -20,13 +20,13 @@ const Home = () => {
       <TextRevealSection />
       <AboutSection />
       <NumbersSection />
-      <TipoClienteSection />
       <DifferencesSection />
       <TextHorizonSection />
       <CasesSection />
+      <TipoClienteSection />
       <FaqSection />
-      <CtaSection />
       <ContactFormSection />
+      <CtaSection />
       <Footer />
     </div>
   );

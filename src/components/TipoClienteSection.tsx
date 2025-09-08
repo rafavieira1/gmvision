@@ -37,7 +37,7 @@ function PlatformCard({
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="h-full"
     >
-      <Card className={`overflow-hidden rounded-2xl ${bgColor} shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full`}>
+      <Card className={`overflow-hidden rounded-2xl ${bgColor} shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full border-0`}>
         {/* Image at top */}
         <div className="relative h-48 overflow-hidden">
           <img 
@@ -50,10 +50,10 @@ function PlatformCard({
         <CardContent className="p-6 flex-1 flex flex-col">
           {/* Title and Description */}
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">
+            <h3 className="text-xl font-bold text-gmv-blue mb-2 uppercase tracking-wide">
               {title}
             </h3>
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-gmv-gray text-sm leading-relaxed">
               {description}
             </p>
           </div>
@@ -63,7 +63,7 @@ function PlatformCard({
             {features.map((feature, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <Check className="h-4 w-4 text-green-400 flex-shrink-0" />
-                <span className="text-white/90 text-sm">{feature}</span>
+                <span className="text-gmv-gray text-sm">{feature}</span>
               </div>
             ))}
           </div>
@@ -72,7 +72,7 @@ function PlatformCard({
           <Link to={link} className="mt-auto">
             <Button 
               variant="outline" 
-              className="w-full h-11 border-2 border-white/20 bg-white/10 text-white hover:bg-white hover:text-gray-800 transition-all duration-200 font-medium backdrop-blur-sm"
+              className="w-full h-11 border-2 border-gmv-blue bg-gmv-blue text-white hover:bg-gmv-blue/90 hover:text-white transition-all duration-200 font-medium"
             >
               <span className="text-sm font-medium">{linkText}</span>
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -102,7 +102,7 @@ const TipoClienteSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-gmv-white">
+    <section className="py-24 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/invertida.png)'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div 
@@ -110,15 +110,15 @@ const TipoClienteSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mb-16"
+            className="mb-16 text-center"
           >
             <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
-              NOSSA PLATAFORMA
+              DIFERENTES PÚBLICOS
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
-              Conexões que
+              Conexões geram
               <br />
-              <span className="font-normal font-garamond">geram valor</span>
+              <span className="font-normal font-garamond"> valor</span>
             </h2>
           </motion.div>
 
@@ -137,7 +137,7 @@ const TipoClienteSection = () => {
               link="/anunciantes"
               linkText="Saiba Mais"
               features={anunciantesFeatures}
-              bgColor="bg-neutral-700"
+              bgColor="bg-[#f7f7f7]"
               image={heroImage}
               imageAlt="Anunciantes GMvision - Maximize o alcance da sua marca"
             />
@@ -150,7 +150,7 @@ const TipoClienteSection = () => {
               link="/estabelecimentos"
               linkText="Saiba Mais"
               features={estabelecimentosFeatures}
-              bgColor="bg-neutral-700"
+              bgColor="bg-[#f7f7f7]"
               image={clinicImage}
               imageAlt="Estabelecimentos GMvision - Modernize seu espaço"
             />
