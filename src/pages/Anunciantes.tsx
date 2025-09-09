@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { ArrowRight, Target, BarChart3, Users, Zap, TrendingUp, CheckCircle, Play, Calendar, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowDown, Target, BarChart3, Users, Zap, TrendingUp, CheckCircle, Play, Calendar, MessageCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import heroImage from "@/assets/hero-led-business.jpg";
+import heroImage from "@/assets/invert.png";
 
 const Anunciantes = () => {
   const [formData, setFormData] = useState({
@@ -76,10 +77,10 @@ const Anunciantes = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gmv-white">
+  <div className="min-h-screen" style={{backgroundColor: '#f7f7f7'}}>
       <Header />
       
-      {/* Hero Section Simplificado */}
+      {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
         <div 
@@ -87,48 +88,49 @@ const Anunciantes = () => {
           style={{ backgroundImage: `url(${heroImage})` }}
         ></div>
         
-        <div className="relative h-full flex items-center justify-center">
-          <div className="text-center max-w-4xl mx-auto px-4">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-tight mb-8">
-              Anuncie onde
-              <br />
-              <span className="font-normal text-gmv-lime">sua marca</span>
-              <br />
-              <span className="font-normal">importa</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-8">
-              Painéis LED inteligentes em locais estratégicos para maximizar o impacto da sua campanha
-            </p>
-            <Button className="bg-gmv-lime text-gmv-blue px-8 py-4 rounded-full text-lg font-medium hover:bg-gmv-lime/90 transition-colors duration-200">
-              <TrendingUp className="w-5 h-5 mr-2" />
-              Criar Minha Campanha
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+        {/* Título Anunciantes centralizado logo abaixo da navbar */}
+        <div className="relative pt-48 text-center">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gmv-gray leading-none tracking-tighter mb-16" style={{ fontFamily: 'Pavelt, sans-serif' }}>
+            ANUNCIANTES
+          </h1>
+          
+          {/* Subtítulo */}
+          <p className="text-xl md:text-2xl lg:text-3xl text-gmv-gray leading-relaxed max-w-4xl mx-auto mb-20 px-4">
+            Transforme sua marca em destaque.<br />
+            Painéis LED inteligentes nos locais certos.
+          </p>
+          
+          {/* Botão Liquid Glass */}
+          <div className="flex justify-center">
+            <LiquidButton 
+              variant="default" 
+              size="xxl"
+              className="text-gmv-blue font-semibold"
+            >
+              <div className="flex items-center">
+                Confira Abaixo
+                <ArrowDown className="w-6 h-6 ml-3" />
+              </div>
+            </LiquidButton>
           </div>
         </div>
-
-        {/* Large ANUNCIANTES text at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
-          <div className="w-full px-0">
-            <h2 className="text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[18rem] font-bold text-black/60 leading-none tracking-tighter opacity-90 text-center whitespace-nowrap overflow-hidden" style={{ fontFamily: 'Pavelt, sans-serif' }}>
-              ANUNCIANTES
-            </h2>
-          </div>
+        
+        <div className="relative h-full flex items-center justify-center">
         </div>
       </section>
 
       {/* Como Funciona Section */}
-      <section className="py-32 bg-gmv-white">
+  <section className="py-32" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
                 PROCESSO SIMPLES
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Como
                 <br />
-                <span className="font-normal">funciona</span>
+                <span className="font-normal font-garamond">funciona</span>
               </h2>
             </div>
 
@@ -161,13 +163,13 @@ const Anunciantes = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
                 ESPECIFICAÇÕES
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Formatos e
                 <br />
-                <span className="font-normal">configurações</span>
+                <span className="font-normal font-garamond">configurações</span>
               </h2>
             </div>
 
@@ -198,16 +200,16 @@ const Anunciantes = () => {
       </section>
 
       {/* WhatsApp Contact Section */}
-      <section className="py-32 bg-gmv-white">
+  <section className="py-32" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
               FALE CONOSCO
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Vamos conversar
               <br />
-              <span className="font-normal">sobre valores</span>
+              <span className="font-normal font-garamond">sobre valores</span>
             </h2>
             <p className="text-xl text-gmv-gray max-w-2xl mx-auto mb-12">
               Cada projeto é único. Vamos conversar no WhatsApp para criar uma proposta personalizada para sua marca.
@@ -218,11 +220,18 @@ const Anunciantes = () => {
                 href="https://wa.me/5511999999999?text=Olá! Tenho interesse em criar uma campanha publicitária com a GMvision. Gostaria de saber mais sobre valores e condições."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-gmv-lime text-gmv-blue rounded-full text-lg font-medium hover:bg-gmv-lime/90 transition-colors duration-200 shadow-lg hover:shadow-xl"
               >
-                <MessageCircle className="w-6 h-6 mr-3" />
-                Conversar no WhatsApp
-                <ArrowRight className="w-5 h-5 ml-3" />
+                <LiquidButton 
+                  variant="default" 
+                  size="xxl"
+                  className="text-gmv-blue font-medium"
+                >
+                  <div className="flex items-center">
+                    <MessageCircle className="w-6 h-6 mr-3" />
+                    Conversar no WhatsApp
+                    <ArrowRight className="w-5 h-5 ml-3" />
+                  </div>
+                </LiquidButton>
               </a>
               
               <div className="flex items-center space-x-8 text-gmv-gray">
@@ -249,13 +258,13 @@ const Anunciantes = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
                 VAMOS COMEÇAR
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Solicite sua
                 <br />
-                <span className="font-normal">proposta</span>
+                <span className="font-normal font-garamond">proposta</span>
               </h2>
               <p className="text-xl text-gmv-gray max-w-2xl mx-auto">
                 Preencha o formulário e receba uma proposta personalizada em até 24 horas

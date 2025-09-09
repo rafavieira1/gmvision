@@ -102,7 +102,7 @@ const TipoClienteSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/invertida.png)'}}>
+    <section className="py-24" style={{backgroundColor: '#f7f7f7'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div 

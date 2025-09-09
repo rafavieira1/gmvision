@@ -68,7 +68,7 @@ const CasesSection = () => {
   return (
     <section id="cases">
       {/* Header da seção */}
-      <div className="bg-gmv-white py-0 pb-0 relative z-30">
+  <div className="py-0 pb-0 relative z-30" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">

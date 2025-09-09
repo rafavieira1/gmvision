@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 const TextHorizonSection = () => {
   return (
-    <section className="py-32 bg-gmv-white overflow-hidden">
+  <section className="py-32" style={{backgroundColor: '#f7f7f7'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Texto GMvision com imagens em uma linha */}

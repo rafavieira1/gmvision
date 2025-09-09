@@ -10,6 +10,7 @@ const Header = () => {
   const location = useLocation();
   
   const isHomePage = location.pathname === "/";
+  const isSubPage = location.pathname === "/anunciantes" || location.pathname === "/estabelecimentos";
 
   // Detecta o scroll da página
   useEffect(() => {
@@ -55,7 +56,7 @@ const Header = () => {
         ? isScrolled 
           ? "backdrop-blur-lg bg-black/60 border-b border-white/20" 
           : "bg-transparent border-b border-transparent"
-        : "backdrop-blur-lg bg-white/95 border-b border-gray-200"
+        : "backdrop-blur-lg bg-black/60 border-b border-white/20"
     }`}>
       <div className="container mx-auto pl-4 pr-0 h-20 flex items-center relative">
         {/* Logo à esquerda */}
@@ -72,7 +73,7 @@ const Header = () => {
                 onClick={() => handleSectionClick(link.href)}
                 className={cn(
                   "text-base font-normal transition-colors duration-200 cursor-pointer",
-                  isHomePage
+                  isHomePage || isSubPage
                     ? "text-white/90 hover:text-white"
                     : "text-gmv-gray hover:text-gmv-blue"
                 )}
@@ -87,7 +88,7 @@ const Header = () => {
         <div className="hidden md:flex items-center space-x-3 ml-auto -mr-40">
           <Link to="/anunciantes">
             <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
-              isHomePage 
+              isHomePage || isSubPage 
                 ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
                 : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
             }`}>
@@ -96,7 +97,7 @@ const Header = () => {
           </Link>
           <Link to="/estabelecimentos">
             <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
-              isHomePage
+              isHomePage || isSubPage
                 ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                 : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
             }`}>
@@ -107,7 +108,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className={cn("md:hidden p-2", isHomePage ? "text-white" : "text-gmv-blue")}
+          className={cn("md:hidden p-2", isHomePage || isSubPage ? "text-white" : "text-gmv-blue")}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -121,7 +122,9 @@ const Header = () => {
             ? isScrolled
               ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
               : "bg-black/50 backdrop-blur-md border-b border-white/10"
-            : "bg-gmv-white backdrop-blur-lg border-b border-gmv-gray/20"
+            : isSubPage
+              ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
+              : "bg-gmv-white backdrop-blur-lg border-b border-gmv-gray/20"
         }`}>
           <div className="container mx-auto px-4 py-6 space-y-4">
             {navLinks.map((link) => (
@@ -133,7 +136,7 @@ const Header = () => {
                 }}
                 className={cn(
                   "block w-full text-left text-base font-normal transition-colors duration-200",
-                  isHomePage
+                  isHomePage || isSubPage
                     ? "text-white/90 hover:text-white"
                     : "text-gmv-gray hover:text-gmv-blue"
                 )}
@@ -142,11 +145,11 @@ const Header = () => {
               </button>
             ))}
             <div className={`pt-4 space-y-3 ${
-              isHomePage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
+              isHomePage || isSubPage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
             }`}>
               <Link to="/anunciantes">
                 <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
-                  isHomePage 
+                  isHomePage || isSubPage 
                     ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
                     : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
                 }`}>
@@ -155,7 +158,7 @@ const Header = () => {
               </Link>
               <Link to="/estabelecimentos">
                 <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
-                  isHomePage
+                  isHomePage || isSubPage
                     ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                     : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                 }`}>

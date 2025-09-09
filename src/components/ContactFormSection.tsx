@@ -96,7 +96,7 @@ const ContactFormSection = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contato" className="py-32 bg-gmv-white">
+  <section id="contato" className="py-32" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <AnimatedContainer>
@@ -125,7 +125,7 @@ const ContactFormSection = () => {
   }
 
   return (
-    <section id="contato" className="py-32 bg-gmv-white">
+  <section id="contato" className="py-32" style={{backgroundColor: '#f7f7f7'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-start">

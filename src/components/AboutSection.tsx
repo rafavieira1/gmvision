@@ -118,7 +118,7 @@ const AboutSection = () => {
   const currentContent = showHistory ? content.history : content.about;
 
   return (
-    <section id="sobre" className="py-32 bg-gmv-white">
+  <section id="sobre" className="py-32" style={{backgroundColor: '#f7f7f7'}}>
       <div className="container mx-auto px-2">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">

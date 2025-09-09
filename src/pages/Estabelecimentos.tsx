@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { ArrowRight, Monitor, Users, Zap, Settings, CheckCircle, MapPin, MessageCircle, TrendingUp } from "lucide-react";
+import { ArrowRight, ArrowDown, Monitor, Users, Zap, Settings, CheckCircle, MapPin, MessageCircle, TrendingUp } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import heroImage from "@/assets/hero-led-business.jpg";
+import heroImage from "@/assets/invert.png";
 
 const Estabelecimentos = () => {
   const [formData, setFormData] = useState({
@@ -90,7 +91,7 @@ const Estabelecimentos = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gmv-white">
+  <div className="min-h-screen" style={{backgroundColor: '#f7f7f7'}}>
       <Header />
       
       {/* Hero Section */}
@@ -101,48 +102,49 @@ const Estabelecimentos = () => {
           style={{ backgroundImage: `url(${heroImage})` }}
         ></div>
         
-        <div className="relative h-full flex items-center justify-center">
-          <div className="text-center max-w-4xl mx-auto px-4">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-tight mb-8">
-              Transforme seu
-              <br />
-              <span className="font-normal text-gmv-lime">espaço</span>
-              <br />
-              <span className="font-normal">em receita</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-8">
-              Instale painéis LED gratuitos em seu estabelecimento e ganhe renda extra todo mês
-            </p>
-            <Button className="bg-gmv-lime text-gmv-blue px-8 py-4 rounded-full text-lg font-medium hover:bg-gmv-lime/90 transition-colors duration-200">
-              <Monitor className="w-5 h-5 mr-2" />
-              Quero ser Parceiro
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+        {/* Título Estabelecimentos centralizado logo abaixo da navbar */}
+        <div className="relative pt-48 text-center">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gmv-gray leading-none tracking-tighter mb-16" style={{ fontFamily: 'Pavelt, sans-serif' }}>
+            ESTABELECIMENTOS
+          </h1>
+          
+          {/* Subtítulo */}
+          <p className="text-xl md:text-2xl lg:text-3xl text-gmv-gray leading-relaxed max-w-4xl mx-auto mb-20 px-4">
+            Transforme seu espaço em receita.<br />
+            Painéis LED gratuitos no seu estabelecimento.
+          </p>
+          
+          {/* Botão Liquid Glass */}
+          <div className="flex justify-center">
+            <LiquidButton 
+              variant="default" 
+              size="xxl"
+              className="text-gmv-blue font-semibold"
+            >
+              <div className="flex items-center">
+                Confira Abaixo
+                <ArrowDown className="w-6 h-6 ml-3" />
+              </div>
+            </LiquidButton>
           </div>
         </div>
-
-        {/* Large ESTABELECIMENTOS text at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
-          <div className="w-full px-0">
-            <h2 className="text-[6rem] md:text-[9rem] lg:text-[12rem] xl:text-[14rem] font-bold text-black/60 leading-none tracking-tighter opacity-90 text-center whitespace-nowrap overflow-hidden" style={{ fontFamily: 'Pavelt, sans-serif' }}>
-              ESTABELECIMENTOS
-            </h2>
-          </div>
+        
+        <div className="relative h-full flex items-center justify-center">
         </div>
       </section>
 
       {/* Como Funciona Section */}
-      <section className="py-32 bg-gmv-white">
+  <section className="py-32" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
                 PROCESSO SIMPLES
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Como se tornar
                 <br />
-                <span className="font-normal">nosso parceiro</span>
+                <span className="font-normal font-garamond">nosso parceiro</span>
               </h2>
             </div>
 
@@ -174,13 +176,13 @@ const Estabelecimentos = () => {
       <section className="py-32 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
               VAMOS NEGOCIAR
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-10">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Fale conosco sobre
               <br />
-              <span className="font-normal">valores</span>
+              <span className="font-normal font-garamond">valores</span>
             </h2>
             <p className="text-xl text-gmv-gray max-w-2xl mx-auto mb-12">
               Cada estabelecimento é único. Vamos conversar no WhatsApp para definir o melhor modelo de parceria para você.
@@ -191,11 +193,18 @@ const Estabelecimentos = () => {
                 href="https://wa.me/5511999999999?text=Olá! Tenho interesse em ser parceiro da GMvision instalando painéis LED no meu estabelecimento. Gostaria de saber mais sobre valores e modelos de parceria."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-gmv-lime text-gmv-blue rounded-full text-lg font-medium hover:bg-gmv-lime/90 transition-colors duration-200 shadow-lg hover:shadow-xl"
               >
-                <MessageCircle className="w-6 h-6 mr-3" />
-                Conversar sobre Parceria
-                <ArrowRight className="w-5 h-5 ml-3" />
+                <LiquidButton 
+                  variant="default" 
+                  size="xxl"
+                  className="text-gmv-blue font-medium"
+                >
+                  <div className="flex items-center">
+                    <MessageCircle className="w-6 h-6 mr-3" />
+                    Conversar sobre Parceria
+                    <ArrowRight className="w-5 h-5 ml-3" />
+                  </div>
+                </LiquidButton>
               </a>
               
               <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -221,17 +230,17 @@ const Estabelecimentos = () => {
       </section>
 
       {/* Requisitos Section */}
-      <section className="py-32 bg-gmv-white">
+  <section className="py-32" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
                 REQUISITOS
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 O que você
                 <br />
-                <span className="font-normal">precisa ter</span>
+                <span className="font-normal font-garamond">precisa ter</span>
               </h2>
             </div>
 
@@ -286,13 +295,13 @@ const Estabelecimentos = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <div className="text-base font-medium text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
                 VAMOS COMEÇAR
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gmv-blue leading-tight mb-8">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Registre seu
                 <br />
-                <span className="font-normal">interesse</span>
+                <span className="font-normal font-garamond">interesse</span>
               </h2>
               <p className="text-xl text-gmv-gray max-w-2xl mx-auto">
                 Preencha o formulário e agende uma avaliação gratuita do seu estabelecimento

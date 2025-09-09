@@ -25,8 +25,8 @@ const Home = () => {
       <CasesSection />
       <TipoClienteSection />
       <FaqSection />
-      <ContactFormSection />
-      <CtaSection />
+    <CtaSection />
+    <ContactFormSection />
       <Footer />
     </div>
   );
