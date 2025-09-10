@@ -1,21 +1,21 @@
-import { Shield, Users, Wifi, ArrowRight } from "lucide-react";
+import { Lightbulb, Network, TrendingUp, ArrowRight } from "lucide-react";
 
 const DifferencesSection = () => {
   const benefits = [
     {
-      icon: Shield,
-      title: "Segurança Garantida",
-      description: "Para garantir que seus dados e campanhas estejam sempre protegidos"
+      icon: Lightbulb,
+      title: "Inovação Constante",
+      description: "Buscamos constantemente novas formas de usar a tecnologia para conectar pessoas e marcas, mantendo-nos à frente do mercado de publicidade."
     },
     {
-      icon: Users,
-      title: "Suporte Dedicado",
-      description: "Para proteger e dar suporte aos nossos parceiros"
+      icon: Network,
+      title: "Conexões Estratégicas",
+      description: "Acreditamos que o sucesso está em construir pontes. Nosso modelo se baseia em criar uma rede de colaboração e confiança mútua."
     },
     {
-      icon: Wifi,
-      title: "Conectividade Total",
-      description: "4 níveis de proteção contra falhas de conectividade"
+      icon: TrendingUp,
+      title: "Prosperidade Compartilhada",
+      description: "O sucesso de nossos clientes e parceiros é o nosso sucesso. Trabalhamos para que todos os envolvidos cresçam e prosperem juntos."
     }
   ];
 
@@ -25,12 +25,12 @@ const DifferencesSection = () => {
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#384145' }}>
-              NOSSOS DIFERENCIAIS
+              NOSSOS VALORES
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
-              Tecnologia que
+              Construindo pontes
               <br />
-              <span className="font-normal font-garamond">transforma</span>
+              <span className="font-normal font-garamond">para o sucesso</span>
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -53,7 +53,7 @@ const DifferencesSection = () => {
             
             {/* Botão CTA centralizado */}
             <div className="flex justify-center">
-              <button className="inline-flex items-center px-6 py-3 bg-gmv-lime border border-gmv-lime text-gmv-blue rounded-full hover:bg-gmv-lime/90 hover:border-gmv-lime/90 transition-colors duration-200 font-medium shadow-lg">
+              <button className="inline-flex items-center px-6 py-3 bg-gmv-lime border border-gmv-lime text-gmv-blue rounded-full hover:bg-gmv-lime/90 hover:border-gmv-lime/90 transition-all duration-300 hover:scale-105 font-medium shadow-lg">
                 <span className="text-sm font-medium">Solicitar Proposta</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
               </button>

@@ -70,12 +70,12 @@ const Estabelecimentos = () => {
   ];
 
   const benefits = [
-    "Receita adicional sem esforço",
-    "Instalação 100% gratuita", 
-    "Manutenção incluída",
+    "Renda extra sem esforço",
+    "Instalação e manutenção gratuitas", 
     "Modernização do ambiente",
-    "Conteúdo relevante para clientes",
-    "Suporte técnico 24/7"
+    "Conteúdo próprio nos displays",
+    "Gestão completa de anunciantes",
+    "Aprovação de cada anúncio"
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -110,8 +110,8 @@ const Estabelecimentos = () => {
           
           {/* Subtítulo */}
           <p className="text-xl md:text-2xl lg:text-3xl text-gmv-gray leading-relaxed max-w-4xl mx-auto mb-20 px-4">
-            Transforme seu espaço em receita.<br />
-            Painéis LED gratuitos no seu estabelecimento.
+            Transforme seu espaço em um ponto de mídia rentável.<br />
+            Gere renda extra com displays LED modernos e gratuitos.
           </p>
           
           {/* Botão Liquid Glass */}

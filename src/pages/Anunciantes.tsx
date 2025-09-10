@@ -96,8 +96,8 @@ const Anunciantes = () => {
           
           {/* Subtítulo */}
           <p className="text-xl md:text-2xl lg:text-3xl text-gmv-gray leading-relaxed max-w-4xl mx-auto mb-20 px-4">
-            Transforme sua marca em destaque.<br />
-            Painéis LED inteligentes nos locais certos.
+            Abandone a publicidade em massa.<br />
+            Atinja seu público-alvo com visibilidade segmentada e estratégica.
           </p>
           
           {/* Botão Liquid Glass */}

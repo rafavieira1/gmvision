@@ -114,7 +114,7 @@ const Header = () => {
         {/* Botões de ação à direita */}
         <div className="hidden md:flex items-center space-x-3 ml-auto -mr-40">
           <Link to="/anunciantes" onClick={handleAnunciantesClick}>
-            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
               isHomePage || isSubPage 
                 ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
                 : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
@@ -123,7 +123,7 @@ const Header = () => {
             </button>
           </Link>
           <Link to="/estabelecimentos" onClick={handleEstabelecimentosClick}>
-            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
               isHomePage || isSubPage
                 ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                 : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
@@ -175,7 +175,7 @@ const Header = () => {
               isHomePage || isSubPage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
             }`}>
               <Link to="/anunciantes" onClick={() => { handleAnunciantesClick(); setIsMenuOpen(false); }}>
-                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
                   isHomePage || isSubPage 
                     ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
                     : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
@@ -184,7 +184,7 @@ const Header = () => {
                 </button>
               </Link>
               <Link to="/estabelecimentos" onClick={() => { handleEstabelecimentosClick(); setIsMenuOpen(false); }}>
-                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
+                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
                   isHomePage || isSubPage
                     ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                     : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"

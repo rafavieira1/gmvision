@@ -2,7 +2,6 @@ import { ArrowRight, Users, Building, TrendingUp, Zap, Target, MapPin, Check } f
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import heroImage from "@/assets/hero-led-business.jpg";
 import clinicImage from "@/assets/led-panel-clinic.jpg";
 
@@ -70,16 +69,10 @@ function PlatformCard({
 
           {/* Button */}
           <Link to={link} className="mt-auto">
-            <LiquidButton 
-              variant="default"
-              size="lg"
-              className="w-full text-gmv-blue font-medium [&>div:first-child]:shadow-[0_0_6px_rgba(0,0,0,0.03),0_2px_6px_rgba(0,0,0,0.08),inset_3px_3px_0.5px_-3px_rgba(5,72,127,0.9),inset_-3px_-3px_0.5px_-3px_rgba(5,72,127,0.85),inset_1px_1px_1px_-0.5px_rgba(5,72,127,0.6),inset_-1px_-1px_1px_-0.5px_rgba(5,72,127,0.6),inset_0_0_6px_6px_rgba(5,72,127,0.12),inset_0_0_2px_2px_rgba(5,72,127,0.06),0_0_12px_rgba(255,255,255,0.15)]"
-            >
-              <div className="flex items-center">
-                <span className="text-sm font-medium">{linkText}</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </div>
-            </LiquidButton>
+            <button className="inline-flex items-center px-6 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105 w-full justify-center">
+              <span className="text-sm font-medium">{linkText}</span>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </button>
           </Link>
         </CardContent>
       </Card>
@@ -89,19 +82,19 @@ function PlatformCard({
 
 const TipoClienteSection = () => {
   const anunciantesFeatures = [
-    "Segmentação Avançada",
-    "Relatórios em Tempo Real",
-    "Rede Nacional de Painéis",
-    "Campanhas Personalizadas",
-    "ROI Mensurado"
+    "Visibilidade Segmentada",
+    "Alcance Local Direcionado", 
+    "Custo-Benefício Otimizado",
+    "Consultoria Estratégica",
+    "Aprovação do Estabelecimento"
   ];
 
   const estabelecimentosFeatures = [
-    "Instalação Gratuita",
-    "Receita Adicional Garantida",
-    "Tecnologia LED Moderna", 
-    "Manutenção Inclusa",
-    "Suporte 24/7"
+    "Renda Extra Garantida",
+    "Modernização do Ambiente",
+    "Instalação e Manutenção Gratuitas",
+    "Conteúdo Próprio nos Displays",
+    "Gestão Completa de Anunciantes"
   ];
 
   return (
@@ -116,12 +109,12 @@ const TipoClienteSection = () => {
             className="mb-16 text-center"
           >
             <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
-              DIFERENTES PÚBLICOS
+              PROSPERIDADE COMPARTILHADA
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
-              Conexões geram
+              Conectamos negócios
               <br />
-              <span className="font-normal font-garamond"> valor</span>
+              <span className="font-normal font-garamond">e criamos valor</span>
             </h2>
           </motion.div>
 
@@ -136,26 +129,26 @@ const TipoClienteSection = () => {
             <PlatformCard
               title="ANUNCIANTES"
               subtitle="Anunciantes"
-              description="Maximize o alcance da sua marca com publicidade direcionada em locais estratégicos"
+              description="Abandone a publicidade em massa e atinja seu público-alvo de forma segmentada em estabelecimentos estratégicos, aumentando suas vendas com publicidade inteligente."
               link="/anunciantes"
               linkText="Saiba Mais"
               features={anunciantesFeatures}
               bgColor="bg-[#f7f7f7]"
               image={heroImage}
-              imageAlt="Anunciantes GMvision - Maximize o alcance da sua marca"
+              imageAlt="Anunciantes GMvision - Publicidade segmentada e estratégica"
             />
 
             {/* Card para Estabelecimentos */}
             <PlatformCard
               title="ESTABELECIMENTOS"
               subtitle="Estabelecimentos"
-              description="Modernize seu espaço e gere receita adicional com nossa tecnologia LED"
+              description="Transforme seu espaço em um ponto de mídia rentável. Cada display instalado gera renda extra enquanto moderniza seu ambiente com tecnologia LED de ponta."
               link="/estabelecimentos"
               linkText="Saiba Mais"
               features={estabelecimentosFeatures}
               bgColor="bg-[#f7f7f7]"
               image={clinicImage}
-              imageAlt="Estabelecimentos GMvision - Modernize seu espaço"
+              imageAlt="Estabelecimentos GMvision - Renda extra e modernização"
             />
           </motion.div>
         </div>

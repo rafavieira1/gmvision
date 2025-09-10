@@ -113,7 +113,7 @@ const ContactFormSection = () => {
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="inline-flex items-center px-8 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-colors duration-200"
+                className="inline-flex items-center px-8 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105"
               >
                 Enviar Outra Mensagem
               </button>
@@ -275,7 +275,7 @@ const ContactFormSection = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="inline-flex items-center px-6 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="inline-flex items-center px-6 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <>

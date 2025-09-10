@@ -8,37 +8,41 @@ const TextRevealSection = () => {
   });
 
   const textParts = [
-    { text: "A", highlighted: false },
-    { text: "GMvision", highlighted: false },
-    { text: "está", highlighted: false },
-    { text: "presente", highlighted: false },
+    { text: "Por", highlighted: false },
+    { text: "que", highlighted: false },
+    { text: "escolher", highlighted: false },
+    { text: "publicidade", highlighted: false },
     { text: "em", highlighted: false },
-    { text: "22", highlighted: true },
-    { text: "estados", highlighted: true },
-    { text: "e", highlighted: false },
-    { text: "87", highlighted: true },
-    { text: "cidades", highlighted: true },
-    { text: "brasileiras", highlighted: false },
-    { text: "impactando", highlighted: false },
-    { text: "mais", highlighted: false },
-    { text: "de", highlighted: false },
-    { text: "53", highlighted: true },
-    { text: "milhões", highlighted: true },
-    { text: "de", highlighted: false },
-    { text: "pessoas", highlighted: false },
-    { text: "todos", highlighted: false },
-    { text: "os", highlighted: false },
-    { text: "meses!", highlighted: false },
-    { text: "Temos", highlighted: false },
-    { text: "a", highlighted: false },
-    { text: "solução", highlighted: false },
-    { text: "de", highlighted: false },
-    { text: "comunicação", highlighted: false },
-    { text: "ideal", highlighted: false },
-    { text: "para", highlighted: false },
-    { text: "a", highlighted: false },
+    { text: "massa", highlighted: true },
+    { text: "quando", highlighted: false },
+    { text: "você", highlighted: false },
+    { text: "pode", highlighted: false },
+    { text: "atingir", highlighted: true },
+    { text: "exatamente", highlighted: true },
+    { text: "seu", highlighted: false },
+    { text: "público-alvo?", highlighted: true },
+    { text: "A", highlighted: false },
+    { text: "GMvision", highlighted: true },
+    { text: "revoluciona", highlighted: false },
+    { text: "o", highlighted: false },
+    { text: "marketing", highlighted: true },
+    { text: "OOH", highlighted: true },
+    { text: "conectando", highlighted: false },
     { text: "sua", highlighted: false },
-    { text: "marca.", highlighted: false },
+    { text: "marca", highlighted: true },
+    { text: "aos", highlighted: false },
+    { text: "locais", highlighted: true },
+    { text: "estratégicos", highlighted: true },
+    { text: "onde", highlighted: false },
+    { text: "seus", highlighted: false },
+    { text: "clientes", highlighted: true },
+    { text: "realmente", highlighted: false },
+    { text: "estão.", highlighted: false },
+    { text: "Transforme", highlighted: false },
+    { text: "investimento", highlighted: true },
+    { text: "em", highlighted: false },
+    { text: "resultados", highlighted: true },
+    { text: "mensuráveis.", highlighted: true },
   ];
 
   return (
@@ -54,17 +58,13 @@ const TextRevealSection = () => {
                   const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
                   
                   return (
-                    <span key={i} className="relative mx-0.5 lg:mx-1">
-                      <span className={`absolute opacity-30 ${part.highlighted ? 'text-gmv-lime' : 'text-gmv-blue'}`}>
-                        {part.text}
-                      </span>
-                      <motion.span
-                        style={{ opacity: opacity }}
-                        className={part.highlighted ? 'text-gmv-lime font-medium' : 'text-gmv-blue'}
-                      >
-                        {part.text}
-                      </motion.span>
-                    </span>
+                    <motion.span
+                      key={i}
+                      style={{ opacity: opacity }}
+                      className={`mx-0.5 lg:mx-1 ${part.highlighted ? 'text-gmv-lime font-medium' : 'text-gmv-blue'}`}
+                    >
+                      {part.text}
+                    </motion.span>
                   );
                 })}
               </p>

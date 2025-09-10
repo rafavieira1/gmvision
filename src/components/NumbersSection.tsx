@@ -64,7 +64,7 @@ const NumbersSection = () => {
 
           {/* Botão centralizado abaixo da primeira estatística */}
           <div className="text-center">
-            <button className="inline-flex items-center px-6 py-3 border border-gmv-lime text-gmv-blue bg-gmv-lime rounded-full hover:bg-gmv-lime/90 transition-colors duration-200">
+            <button className="inline-flex items-center px-6 py-3 border border-gmv-lime text-gmv-blue bg-gmv-lime rounded-full hover:bg-gmv-lime/90 transition-all duration-300 hover:scale-105">
               <span className="text-sm font-medium">Mais Sobre Nós</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </button>

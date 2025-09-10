@@ -78,25 +78,25 @@ const AboutSection = () => {
       label: "QUEM SOMOS",
       title: (
         <>
-          O futuro da
+          Conectando marcas
           <br />
-          <span className="font-normal font-garamond"> publicidade</span>
+          <span className="font-normal font-garamond">e estabelecimentos</span>
           <br />
-          <span className="font-normal"></span>
+
         </>
       ),
-      description: "A GMvision oferece uma experiência de publicidade digital perfeita que acelera o crescimento dos negócios. Ideal para lançar campanhas, showcases de produtos ou estabelecer presença corporativa, nossa plataforma permite ajustes diretos em layouts e funcionalidades, sem exigir conhecimento técnico.",
+      description: "A GMvision revoluciona o marketing OOH criando uma rede de networking que conecta anunciantes e estabelecimentos através de displays LED inteligentes. Oferecemos renda extra para parceiros, modernização de ambientes e publicidade segmentada para anunciantes, construindo um ecossistema de prosperidade compartilhada.",
       buttonText: "Ver nossa história"
     },
     history: {
       label: "NOSSA HISTÓRIA",
       title: (
         <>
-          Construindo um novo
-          <span className="font-normal"> futuro</span>
+          Iluminando o futuro
+          <span className="font-normal font-garamond"> dos negócios</span>
         </>
       ),
-      description: "Fundada em 2020, a GMvision nasceu da visão de revolucionar a publicidade digital no Brasil. Começamos com um pequeno time apaixonado por tecnologia e hoje somos líderes em soluções LED inteligentes, presente em mais de 22 estados e impactando milhões de pessoas todos os dias com nossa inovação.",
+      description: "Nascemos da vontade de revolucionar o marketing através das mídias OOH. Nossa visão é criar uma nova forma de fazer publicidade que seja inteligente, estratégica e conecte empresas, pessoas e histórias. Construímos uma rede onde cada display instalado gera renda extra para estabelecimentos e oferece publicidade segmentada para anunciantes.",
       buttonText: "Ver sobre nós"
     }
   };
@@ -157,7 +157,7 @@ const AboutSection = () => {
                   <button 
                     onClick={toggleContent}
                     disabled={isTransitioning}
-                    className="inline-flex items-center px-6 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-colors duration-200 disabled:opacity-50"
+                    className="inline-flex items-center px-6 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105 disabled:opacity-50"
                   >
                     <span className="text-sm font-medium">{currentContent.buttonText}</span>
                     <ArrowRight className="w-4 h-4 ml-2" />
