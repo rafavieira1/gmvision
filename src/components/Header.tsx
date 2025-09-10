@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import logo from "@/assets/logobranca.png";
 
 const Header = () => {
@@ -10,7 +17,7 @@ const Header = () => {
   const location = useLocation();
   
   const isHomePage = location.pathname === "/";
-  const isSubPage = location.pathname === "/anunciantes" || location.pathname === "/estabelecimentos";
+  const isSubPage = location.pathname === "/anunciantes" || location.pathname === "/estabelecimentos" || location.pathname === "/locais-parceiros";
 
   // Detecta o scroll da página
   useEffect(() => {
@@ -27,33 +34,6 @@ const Header = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
-
-  const navLinks = [
-    { href: "#sobre", label: "Sobre", isSection: true },
-    { href: "#cases", label: "Casos", isSection: true },
-    { href: "#beneficios", label: "Benefícios", isSection: true },
-    { href: "#faq", label: "FAQ", isSection: true },
-  ];
-
-  const pageLinks = [
-    { href: "/anunciantes", label: "Para Anunciantes" },
-    { href: "/estabelecimentos", label: "Para Estabelecimentos" },
-  ];
-
-  const handleSectionClick = (href: string) => {
-    if (href.startsWith('#')) {
-      // Se estamos em uma página que não é a home, primeiro navegue para home
-      if (location.pathname !== '/') {
-        window.location.href = '/' + href;
-      } else {
-        // Se já estamos na home, faça scroll suave para a seção
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }
-  };
 
   const handleLogoClick = () => {
     if (location.pathname === '/') {
@@ -93,22 +73,75 @@ const Header = () => {
 
         {/* Navigation Centralizada */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleSectionClick(link.href)}
-                className={cn(
-                  "text-base font-normal transition-colors duration-200 cursor-pointer",
-                  isHomePage || isSubPage
-                    ? "text-white/90 hover:text-white"
-                    : "text-gmv-gray hover:text-gmv-blue"
-                )}
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
+          <NavigationMenu className="hidden md:block">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link 
+                  to="/" 
+                  onClick={handleLogoClick}
+                  className={cn(
+                    "px-4 py-2 text-base font-normal transition-colors duration-200",
+                    isHomePage || isSubPage
+                      ? "text-white/90 hover:text-white"
+                      : "text-gmv-gray hover:text-gmv-blue"
+                  )}
+                >
+                  Início
+                </Link>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <Link 
+                  to="/anunciantes" 
+                  onClick={handleAnunciantesClick}
+                  className={cn(
+                    "px-4 py-2 text-base font-normal transition-colors duration-200",
+                    isHomePage || isSubPage
+                      ? "text-white/90 hover:text-white"
+                      : "text-gmv-gray hover:text-gmv-blue"
+                  )}
+                >
+                  Anunciantes
+                </Link>
+              </NavigationMenuItem>
+              
+              <NavigationMenuItem>
+                <NavigationMenuTrigger 
+                  className={cn(
+                    "px-4 py-2 text-base font-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent h-auto",
+                    isHomePage || isSubPage
+                      ? "text-white/90 hover:text-white"
+                      : "text-gmv-gray hover:text-gmv-blue"
+                  )}
+                >
+                  Parceiros
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[400px] gap-3 p-4 bg-white rounded-lg shadow-lg">
+                    <Link
+                      to="/estabelecimentos"
+                      onClick={handleEstabelecimentosClick}
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-50"
+                    >
+                      <div className="text-sm font-medium leading-none text-gmv-blue">Quero ser um parceiro</div>
+                      <p className="line-clamp-2 text-sm leading-snug text-gmv-gray mt-1">
+                        Transforme seu espaço em um ponto de mídia rentável
+                      </p>
+                    </Link>
+                    <Link
+                      to="/locais-parceiros"
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-50"
+                    >
+                      <div className="text-sm font-medium leading-none text-gmv-blue">Locais de parceiros</div>
+                      <p className="line-clamp-2 text-sm leading-snug text-gmv-gray mt-1">
+                        Conheça onde seus anúncios podem ser exibidos
+                      </p>
+                    </Link>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
 
         {/* Botões de ação à direita */}
@@ -154,23 +187,69 @@ const Header = () => {
               : "bg-gmv-white backdrop-blur-lg border-b border-gmv-gray/20"
         }`}>
           <div className="container mx-auto px-4 py-6 space-y-4">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => {
-                  handleSectionClick(link.href);
-                  setIsMenuOpen(false);
-                }}
-                className={cn(
-                  "block w-full text-left text-base font-normal transition-colors duration-200",
-                  isHomePage || isSubPage
-                    ? "text-white/90 hover:text-white"
-                    : "text-gmv-gray hover:text-gmv-blue"
-                )}
-              >
-                {link.label}
-              </button>
-            ))}
+            <Link
+              to="/"
+              onClick={() => { handleLogoClick(); setIsMenuOpen(false); }}
+              className={cn(
+                "block w-full text-left text-base font-normal transition-colors duration-200",
+                isHomePage || isSubPage
+                  ? "text-white/90 hover:text-white"
+                  : "text-gmv-gray hover:text-gmv-blue"
+              )}
+            >
+              Início
+            </Link>
+            
+            <Link
+              to="/anunciantes"
+              onClick={() => { handleAnunciantesClick(); setIsMenuOpen(false); }}
+              className={cn(
+                "block w-full text-left text-base font-normal transition-colors duration-200",
+                isHomePage || isSubPage
+                  ? "text-white/90 hover:text-white"
+                  : "text-gmv-gray hover:text-gmv-blue"
+              )}
+            >
+              Anunciantes
+            </Link>
+            
+            <div className="space-y-2">
+              <div className={cn(
+                "text-base font-normal",
+                isHomePage || isSubPage
+                  ? "text-white/90"
+                  : "text-gmv-gray"
+              )}>
+                Parceiros
+              </div>
+              <div className="pl-4 space-y-2">
+                <Link
+                  to="/estabelecimentos"
+                  onClick={() => { handleEstabelecimentosClick(); setIsMenuOpen(false); }}
+                  className={cn(
+                    "block text-sm transition-colors duration-200",
+                    isHomePage || isSubPage
+                      ? "text-white/70 hover:text-white"
+                      : "text-gmv-gray hover:text-gmv-blue"
+                  )}
+                >
+                  Quero ser um parceiro
+                </Link>
+                <Link
+                  to="/locais-parceiros"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={cn(
+                    "block text-sm transition-colors duration-200",
+                    isHomePage || isSubPage
+                      ? "text-white/70 hover:text-white"
+                      : "text-gmv-gray hover:text-gmv-blue"
+                  )}
+                >
+                  Locais de parceiros
+                </Link>
+              </div>
+            </div>
+            
             <div className={`pt-4 space-y-3 ${
               isHomePage || isSubPage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
             }`}>

@@ -107,17 +107,17 @@ All colors MUST be HSL.
     --tech-gray: 204 9% 25%; /* #384145 - GMvision Gray */
     --tech-lime: 75 100% 45%; /* #b8e600 - GMvision Lime */
     --tech-white: 0 0% 97%; /* #f7f7f7 - GMvision White */
-    
+
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--tech-blue)), hsl(var(--tech-lime)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--tech-gray)), hsl(var(--tech-blue)));
     --gradient-dark: linear-gradient(135deg, hsl(var(--tech-dark)), hsl(var(--tech-dark-lighter)));
-    
+
     /* Effects */
     --glow-blue: 0 0 30px hsl(var(--tech-blue) / 0.3);
     --glow-cyan: 0 0 30px hsl(var(--tech-cyan) / 0.3);
     --shadow-tech: 0 10px 40px hsl(var(--tech-blue) / 0.2);
-    
+
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -161,6 +161,10 @@ All colors MUST be HSL.
     --input: 214.3 31.8% 91.4%;
     --ring: 207 89% 54%;
   }
+  .theme {
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+  }
 }
 
 @layer base {
@@ -171,7 +175,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -181,39 +185,67 @@ All colors MUST be HSL.
   .gradient-primary {
     background: var(--gradient-primary);
   }
-  
+
   .gradient-secondary {
     background: var(--gradient-secondary);
   }
-  
+
   .gradient-dark {
     background: var(--gradient-dark);
   }
-  
+
   .glow-blue {
     box-shadow: var(--glow-blue);
   }
-  
+
   .glow-cyan {
     box-shadow: var(--glow-cyan);
   }
-  
+
   .shadow-tech {
     box-shadow: var(--shadow-tech);
   }
-  
+
   .transition-smooth {
     transition: var(--transition-smooth);
   }
-  
+
   .transition-bounce {
     transition: var(--transition-bounce);
   }
-  
+
   .text-gradient-primary {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@theme inline {
+  @keyframes accordion-down {
+  from {
+    height: 0;
+    }
+  to {
+    height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    }
+  to {
+    height: 0;
+    }
   }
 }
