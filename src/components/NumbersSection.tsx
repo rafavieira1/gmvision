@@ -34,7 +34,7 @@ const NumbersSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16 text-center">
-            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
+            <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
               NOSSOS NÚMEROS
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
@@ -47,11 +47,11 @@ const NumbersSection = () => {
           <div className="grid grid-cols-4 gap-8 mb-12 max-w-6xl mx-auto">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-light text-gmv-lime mb-2 leading-none">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-medium font-noto-jp text-gmv-lime mb-2 leading-none">
                   {stat.prefix && <span>{stat.prefix}</span>}
                   <NumberTicker 
                     value={stat.value} 
-                    className="text-gmv-lime" 
+                    className="text-gmv-lime font-medium font-noto-jp" 
                   />
                   {stat.suffix && <span>{stat.suffix}</span>}
                 </div>

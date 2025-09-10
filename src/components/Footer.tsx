@@ -88,9 +88,6 @@ const Footer = () => {
           <Link to="/" className="flex items-center">
             <img src={footerLogo} alt="GMvision" className="w-16 h-16 object-contain" />
           </Link>
-          <p className="text-gmv-gray text-sm leading-relaxed max-w-xs mt-4">
-            Conectando anunciantes e estabelecimentos através de tecnologia LED inovadora.
-          </p>
           
           {/* Informações de contato */}
           <div className="space-y-3 text-sm text-gmv-gray mt-6">
@@ -98,13 +95,13 @@ const Footer = () => {
               <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                 <Mail className="w-3 h-3 text-gmv-gray" />
               </div>
-              <span>contato@gmvision.com.br</span>
+              <span>adm@gmvisionco.com</span>
             </div>
             <div className="flex items-center space-x-3">
               <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                 <Phone className="w-3 h-3 text-gmv-gray" />
               </div>
-              <span>(11) 9999-0000</span>
+              <span>(11) 93620-8864</span>
             </div>
             <div className="flex items-center space-x-3">
               <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
@@ -119,9 +116,19 @@ const Footer = () => {
           </p>
         </AnimatedContainer>
 
-        <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
+        <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-5 xl:col-span-2 xl:mt-0">
+          {/* Coluna com texto descritivo */}
+          <AnimatedContainer delay={0.1}>
+            <div className="mb-10 md:mb-0 col-span-2 md:col-span-1">
+              <p className="text-gmv-gray text-sm leading-relaxed">
+                Conectando anunciantes e estabelecimentos através de tecnologia LED inovadora.
+              </p>
+            </div>
+          </AnimatedContainer>
+
+          {/* Seções de links */}
           {footerLinks.map((section, index) => (
-            <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
+            <AnimatedContainer key={section.label} delay={0.2 + index * 0.1}>
               <div className="mb-10 md:mb-0">
                 <h3 className="text-xs font-medium text-gmv-blue uppercase tracking-wider">{section.label}</h3>
                 <ul className="text-gmv-gray mt-4 space-y-2 text-sm">

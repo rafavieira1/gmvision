@@ -138,7 +138,7 @@ const Estabelecimentos = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
                 PROCESSO SIMPLES
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
@@ -176,7 +176,7 @@ const Estabelecimentos = () => {
       <section className="py-32 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
+            <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
               VAMOS NEGOCIAR
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
@@ -190,7 +190,7 @@ const Estabelecimentos = () => {
             
             <div className="flex flex-col items-center space-y-8">
               <a
-                href="https://wa.me/5511999999999?text=Olá! Tenho interesse em ser parceiro da GMvision instalando painéis LED no meu estabelecimento. Gostaria de saber mais sobre valores e modelos de parceria."
+                href="https://wa.me/5511936208864?text=Olá! Tenho interesse em ser parceiro da GMvision instalando painéis LED no meu estabelecimento. Gostaria de saber mais sobre valores e modelos de parceria."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -234,7 +234,7 @@ const Estabelecimentos = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
                 REQUISITOS
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
@@ -280,7 +280,7 @@ const Estabelecimentos = () => {
                     Nossa equipe técnica faz uma visita gratuita para avaliar seu espaço e definir 
                     as melhores localizações para os painéis.
                   </p>
-                  <Button className="bg-gmv-blue text-white hover:bg-gmv-blue/90">
+                  <Button className="bg-gmv-blue text-white hover:bg-gmv-blue/90 rounded-full px-6 py-3 font-medium">
                     Agendar Visita
                   </Button>
                 </CardContent>
@@ -295,7 +295,7 @@ const Estabelecimentos = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-8">
+              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
                 VAMOS COMEÇAR
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
@@ -402,7 +402,7 @@ const Estabelecimentos = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90 py-4 text-lg font-medium"
+                    className="w-full bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90 rounded-full py-4 text-lg font-medium"
                     size="lg"
                   >
                     <Monitor className="w-5 h-5 mr-2" />

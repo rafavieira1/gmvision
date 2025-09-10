@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CtaSection = () => {
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative py-24 md:py-32 lg:py-48 overflow-hidden">
       {/* Imagem de fundo da seção */}
       <div 
         className="absolute inset-0"
@@ -18,7 +18,7 @@ const CtaSection = () => {
       <div className="absolute inset-0 bg-black/50"></div>
       
       {/* Conteúdo */}
-      <div className="relative container mx-auto px-4 h-full flex items-center justify-center">
+      <div className="relative container mx-auto px-4 flex items-center justify-center">
         <div className="max-w-6xl mx-auto">
           <div className="text-center px-8">
             <div className="max-w-2xl mx-auto">
@@ -31,7 +31,7 @@ const CtaSection = () => {
               </p>
               
               <Link to="/anunciantes">
-                <button className="inline-flex items-center px-6 py-3 border border-gmv-lime text-gmv-blue bg-gmv-lime rounded-full hover:bg-gmv-lime/90 transition-colors duration-200">
+                <button className="inline-flex items-center px-6 py-3 border border-gmv-lime text-gmv-blue !bg-gmv-lime rounded-full hover:bg-gmv-lime/90 transition-colors duration-200 font-medium">
                   <span className="text-sm font-medium">Comece Agora</span>
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </button>

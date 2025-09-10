@@ -141,7 +141,7 @@ const AboutSection = () => {
               <div className={`transition-all duration-300 ${
                 isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
               }`}>
-                <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
+                <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
                   {currentContent.label}
                 </div>
                 

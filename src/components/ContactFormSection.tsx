@@ -131,7 +131,7 @@ const ContactFormSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Conteúdo à esquerda */}
             <AnimatedContainer className="">
-              <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
+              <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
                 FALE CONOSCO
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
@@ -150,14 +150,14 @@ const ContactFormSection = () => {
                     <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                       <Phone className="w-3 h-3 text-gmv-gray" />
                     </div>
-                    <span>(11) 9999-0000</span>
+                    <span>(11) 93620-8864</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                       <Mail className="w-3 h-3 text-gmv-gray" />
                     </div>
-                    <a href="mailto:contato@gmvision.com.br" className="hover:text-gmv-lime transition-colors">
-                      contato@gmvision.com.br
+                    <a href="mailto:adm@gmvisionco.com" className="hover:text-gmv-lime transition-colors">
+                      adm@gmvisionco.com
                     </a>
                   </div>
                   <div className="flex items-center space-x-3">

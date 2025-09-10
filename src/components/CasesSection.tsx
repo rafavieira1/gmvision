@@ -71,7 +71,7 @@ const CasesSection = () => {
   <div className="py-0 pb-0 relative z-30" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
+            <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
               CASOS DE SUCESSO
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">

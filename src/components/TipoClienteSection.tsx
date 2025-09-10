@@ -2,7 +2,7 @@ import { ArrowRight, Users, Building, TrendingUp, Zap, Target, MapPin, Check } f
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import heroImage from "@/assets/hero-led-business.jpg";
 import clinicImage from "@/assets/led-panel-clinic.jpg";
 
@@ -70,13 +70,16 @@ function PlatformCard({
 
           {/* Button */}
           <Link to={link} className="mt-auto">
-            <Button 
-              variant="outline" 
-              className="w-full h-11 border-2 border-gmv-blue bg-gmv-blue text-white hover:bg-gmv-blue/90 hover:text-white transition-all duration-200 font-medium"
+            <LiquidButton 
+              variant="default"
+              size="lg"
+              className="w-full text-gmv-blue font-medium [&>div:first-child]:shadow-[0_0_6px_rgba(0,0,0,0.03),0_2px_6px_rgba(0,0,0,0.08),inset_3px_3px_0.5px_-3px_rgba(5,72,127,0.9),inset_-3px_-3px_0.5px_-3px_rgba(5,72,127,0.85),inset_1px_1px_1px_-0.5px_rgba(5,72,127,0.6),inset_-1px_-1px_1px_-0.5px_rgba(5,72,127,0.6),inset_0_0_6px_6px_rgba(5,72,127,0.12),inset_0_0_2px_2px_rgba(5,72,127,0.06),0_0_12px_rgba(255,255,255,0.15)]"
             >
-              <span className="text-sm font-medium">{linkText}</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+              <div className="flex items-center">
+                <span className="text-sm font-medium">{linkText}</span>
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </LiquidButton>
           </Link>
         </CardContent>
       </Card>
@@ -112,7 +115,7 @@ const TipoClienteSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-16 text-center"
           >
-            <div className="text-base font-apparel text-gmv-lime uppercase tracking-wider mb-4">
+            <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
               DIFERENTES PÚBLICOS
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">

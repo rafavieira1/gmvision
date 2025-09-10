@@ -86,6 +86,7 @@ export default {
 				montserrat: ['Montserrat', 'sans-serif'],
 				fontspring: ['Fontspring Apparel Display', 'sans-serif'],
 				apparel: ['Apparel Regular', 'serif'],
+				'noto-jp': ['Noto Sans JP', 'sans-serif'],
 			},
 			fontSize: {
 				'display': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],

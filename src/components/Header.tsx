@@ -23,6 +23,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll para o topo quando a rota muda
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
   const navLinks = [
     { href: "#sobre", label: "Sobre", isSection: true },
     { href: "#cases", label: "Casos", isSection: true },
@@ -50,6 +55,28 @@ const Header = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      // Se já estamos na home, volta para o topo
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // Se não estamos na home, o Link já cuida da navegação para "/"
+  };
+
+  const handleAnunciantesClick = () => {
+    // Pequeno delay para garantir que a navegação aconteça primeiro
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
+  const handleEstabelecimentosClick = () => {
+    // Pequeno delay para garantir que a navegação aconteça primeiro
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isHomePage 
@@ -60,7 +87,7 @@ const Header = () => {
     }`}>
       <div className="container mx-auto pl-4 pr-0 h-20 flex items-center relative">
         {/* Logo à esquerda */}
-        <Link to="/" className="flex items-center group">
+        <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
           <img src={logo} alt="GMvision" className="w-24 h-24 object-contain" />
         </Link>
 
@@ -86,7 +113,7 @@ const Header = () => {
 
         {/* Botões de ação à direita */}
         <div className="hidden md:flex items-center space-x-3 ml-auto -mr-40">
-          <Link to="/anunciantes">
+          <Link to="/anunciantes" onClick={handleAnunciantesClick}>
             <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
               isHomePage || isSubPage 
                 ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
@@ -95,7 +122,7 @@ const Header = () => {
               Quero Anunciar
             </button>
           </Link>
-          <Link to="/estabelecimentos">
+          <Link to="/estabelecimentos" onClick={handleEstabelecimentosClick}>
             <button className={`px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
               isHomePage || isSubPage
                 ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
@@ -147,7 +174,7 @@ const Header = () => {
             <div className={`pt-4 space-y-3 ${
               isHomePage || isSubPage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
             }`}>
-              <Link to="/anunciantes">
+              <Link to="/anunciantes" onClick={() => { handleAnunciantesClick(); setIsMenuOpen(false); }}>
                 <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
                   isHomePage || isSubPage 
                     ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
@@ -156,7 +183,7 @@ const Header = () => {
                   Quero Anunciar
                 </button>
               </Link>
-              <Link to="/estabelecimentos">
+              <Link to="/estabelecimentos" onClick={() => { handleEstabelecimentosClick(); setIsMenuOpen(false); }}>
                 <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-colors duration-200 ${
                   isHomePage || isSubPage
                     ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
