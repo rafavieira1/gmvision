@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, ArrowDown, Monitor, Users, Zap, Settings, CheckCircle, MapPin, MessageCircle, TrendingUp } from "lucide-react";
+import { ArrowRight, ArrowDown, Monitor, Users, Building2, Settings, CheckCircle, MapPin, MessageCircle, TrendingUp } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -53,19 +53,14 @@ const Estabelecimentos = () => {
       icon: Users
     },
     {
-      title: "Energia Elétrica", 
+      title: "Infraestrutura", 
       description: "Tomada 110V/220V próxima",
-      icon: Zap
+      icon: Building2
     },
     {
       title: "Internet Wi-Fi",
       description: "Conexão estável mínima 10Mbps",
       icon: Settings
-    },
-    {
-      title: "Espaço na Parede",
-      description: "65cm x 40cm livres",
-      icon: Monitor
     }
   ];
 
@@ -111,7 +106,7 @@ const Estabelecimentos = () => {
           {/* Subtítulo */}
           <p className="text-xl md:text-2xl lg:text-3xl text-gmv-gray leading-relaxed max-w-4xl mx-auto mb-20 px-4">
             Transforme seu espaço em um ponto de mídia rentável.<br />
-            Gere renda extra com displays LED modernos e gratuitos.
+            Gere renda extra com displays modernos e gratuitos.
           </p>
           
           {/* Botão Liquid Glass */}
@@ -211,17 +206,17 @@ const Estabelecimentos = () => {
                 <div className="flex flex-col items-center">
                   <TrendingUp className="w-8 h-8 text-gmv-lime mb-2" />
                   <span className="text-gmv-gray">Revenue Share</span>
-                  <span className="text-sm text-gmv-gray/70">20% a 40% da receita</span>
+                  <span className="text-sm text-gmv-gray/70"></span>
                 </div>
                 <div className="flex flex-col items-center">
                   <Monitor className="w-8 h-8 text-gmv-lime mb-2" />
                   <span className="text-gmv-gray">Aluguel Fixo</span>
-                  <span className="text-sm text-gmv-gray/70">Valor mensal garantido</span>
+                  <span className="text-sm text-gmv-gray/70"></span>
                 </div>
                 <div className="flex flex-col items-center">
                   <CheckCircle className="w-8 h-8 text-gmv-lime mb-2" />
                   <span className="text-gmv-gray">Modelo Híbrido</span>
-                  <span className="text-sm text-gmv-gray/70">Fixo + Performance</span>
+                  <span className="text-sm text-gmv-gray/70"></span>
                 </div>
               </div>
             </div>
@@ -244,7 +239,7 @@ const Estabelecimentos = () => {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="grid md:grid-cols-3 gap-8 mb-16 justify-center">
               {requirements.map((req, index) => (
                 <div key={index} className="text-center">
                   <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gmv-blue flex items-center justify-center">
@@ -253,9 +248,6 @@ const Estabelecimentos = () => {
                   <h3 className="text-xl font-semibold text-gmv-blue mb-4">
                     {req.title}
                   </h3>
-                  <p className="text-gmv-gray leading-relaxed">
-                    {req.description}
-                  </p>
                 </div>
               ))}
             </div>

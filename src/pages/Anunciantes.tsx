@@ -55,7 +55,7 @@ const Anunciantes = () => {
     {
       icon: Calendar,
       title: "Horários de Exibição", 
-      items: ["Os anúncios seguem o horário de funcionamento do estabelecimento", "Ciclos de 15-60 segundos", "Personalização por local", "Agendamento flexível"]
+      items: ["Os anúncios seguem o horário de funcionamento do estabelecimento", "Ciclos de 10-30 segundos", "Personalização por local", "Agendamento flexível"]
     },
     {
       icon: MessageCircle,

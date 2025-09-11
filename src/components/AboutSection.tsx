@@ -85,7 +85,7 @@ const AboutSection = () => {
 
         </>
       ),
-      description: "A GMvision revoluciona o marketing OOH criando uma rede de networking que conecta anunciantes e estabelecimentos através de displays inteligentes. Oferecemos renda extra para parceiros, modernização de ambientes e publicidade segmentada para anunciantes, construindo um ecossistema de prosperidade compartilhada.",
+      description: "A GMvision revoluciona o marketing DOOH criando uma rede de networking que conecta anunciantes e estabelecimentos através de displays inteligentes. Oferecemos renda extra para parceiros, modernização de ambientes e publicidade segmentada para anunciantes, construindo um ecossistema de prosperidade compartilhada.",
       buttonText: "Ver nossa história"
     },
     history: {
