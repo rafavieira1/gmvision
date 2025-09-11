@@ -82,19 +82,19 @@ function PlatformCard({
 
 const TipoClienteSection = () => {
   const anunciantesFeatures = [
-    "Visibilidade Segmentada",
-    "Alcance Local Direcionado", 
-    "Custo-Benefício Otimizado",
-    "Consultoria Estratégica",
-    "Aprovação do Estabelecimento"
+    "Visibilidade segmentada",
+    "Alcance local direcionado", 
+    "Custo-benefício otimizado",
+    "Consultoria estratégica",
+    "Aprovação do estabelecimento"
   ];
 
   const estabelecimentosFeatures = [
-    "Renda Extra Garantida",
-    "Modernização do Ambiente",
-    "Instalação e Manutenção Gratuitas",
-    "Conteúdo Próprio nos Displays",
-    "Gestão Completa de Anunciantes"
+    "Renda extra garantida",
+    "Modernização do ambiente",
+    "Instalação e manutenção gratuitas",
+    "Conteúdo próprio nos displays",
+    "Gestão completa de anunciantes"
   ];
 
   return (

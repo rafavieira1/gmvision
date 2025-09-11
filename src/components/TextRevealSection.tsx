@@ -26,7 +26,7 @@ const TextRevealSection = () => {
     { text: "revoluciona", highlighted: false },
     { text: "o", highlighted: false },
     { text: "marketing", highlighted: true },
-    { text: "OOH", highlighted: true },
+    { text: "DOOH", highlighted: true },
     { text: "conectando", highlighted: false },
     { text: "sua", highlighted: false },
     { text: "marca", highlighted: true },

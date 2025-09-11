@@ -5,7 +5,7 @@ const NumbersSection = () => {
   const stats = [
     {
       value: 850,
-      suffix: "k",
+      suffix: "K",
       label: "pessoas impactadas",
       icon: Users
     },
@@ -44,10 +44,10 @@ const NumbersSection = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-4 gap-8 mb-12 max-w-6xl mx-auto">
+          <div className="flex justify-center items-center gap-32 mb-12 max-w-6xl mx-auto">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-medium font-noto-jp text-gmv-lime mb-2 leading-none">
+              <div key={index} className="flex flex-col justify-center items-center text-center min-w-0 flex-1">
+                <div className="text-4xl md:text-5xl lg:text-8xl font-medium font-noto-jp text-gmv-lime mb-2 leading-none whitespace-nowrap">
                   {stat.prefix && <span>{stat.prefix}</span>}
                   <NumberTicker 
                     value={stat.value} 
@@ -55,7 +55,7 @@ const NumbersSection = () => {
                   />
                   {stat.suffix && <span>{stat.suffix}</span>}
                 </div>
-                <div className="text-gmv-gray text-sm md:text-base font-normal">
+                <div className="text-gmv-gray text-sm md:text-base font-normal whitespace-nowrap">
                   {stat.label}
                 </div>
               </div>
