@@ -1,13 +1,11 @@
-import { ArrowRight } from "lucide-react";
-
 const TextHorizonSection = () => {
   return (
-  <section className="py-32" style={{backgroundColor: '#f7f7f7'}}>
+  <section className="py-48" style={{backgroundColor: '#f7f7f7'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Texto GMvision com imagens em uma linha */}
           <div className="relative mb-16 text-center">
-            <h2 className="text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[14rem] font-black leading-none select-none tracking-tight" style={{ fontFamily: 'Pavelt, sans-serif' }}>
+            <h2 className="text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[14rem] font-black leading-none select-none tracking-tight mb-4" style={{ fontFamily: 'Pavelt, sans-serif' }}>
               <span 
                 className="inline-block bg-clip-text text-transparent bg-cover bg-center bg-no-repeat"
                 style={{ 
@@ -19,24 +17,20 @@ const TextHorizonSection = () => {
                 GMvision
               </span>
             </h2>
-          </div>
-
-          {/* Botão estilo da imagem - com seta para a direita e imagem cobrindo todo o botão */}
-          <div className="flex justify-start">
-            <div 
-              className="relative flex items-center justify-end w-40 h-12 rounded-full bg-cover bg-center shadow-lg border border-gray-200 group cursor-pointer transition-all duration-300 hover:scale-105 overflow-hidden pr-4"
-              style={{
-                backgroundImage: `url(/chat.png)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            >
-              {/* Overlay escuro para destacar a seta */}
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-300"></div>
-              
-              {/* Seta para a direita alinhada à direita */}
-              <ArrowRight className="w-6 h-6 text-white relative z-10" />
-            </div>
+            
+            {/* Subtítulo com mesmo efeito */}
+            <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium leading-tight select-none tracking-wide" style={{ fontFamily: 'Pavelt, sans-serif' }}>
+              <span 
+                className="inline-block bg-clip-text text-transparent bg-cover bg-center bg-no-repeat"
+                style={{ 
+                  backgroundImage: `url(/chat.png)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                O Futuro da sua marca mais iluminado.
+              </span>
+            </p>
           </div>
         </div>
       </div>

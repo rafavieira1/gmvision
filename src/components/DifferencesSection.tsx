@@ -24,13 +24,13 @@ const DifferencesSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
-            <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#384145' }}>
-              NOSSOS VALORES
+            <div className="text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
+              NOSSOS DIFERENCIAIS
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Construindo pontes
               <br />
-              <span className="font-normal font-garamond">para o sucesso</span>
+              para o sucesso
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -53,10 +53,16 @@ const DifferencesSection = () => {
             
             {/* Botão CTA centralizado */}
             <div className="flex justify-center">
-              <button className="inline-flex items-center px-6 py-3 bg-gmv-lime border border-gmv-lime text-gmv-blue rounded-full hover:bg-gmv-lime/90 hover:border-gmv-lime/90 transition-all duration-300 hover:scale-105 font-medium shadow-lg">
-                <span className="text-sm font-medium">Solicitar Proposta</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </button>
+              <a
+                href="https://wa.me/5511936208864?text=Olá! Gostaria de solicitar uma proposta para divulgar minha marca através da rede de displays LED da GMvision."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="inline-flex items-center px-6 py-3 bg-gmv-lime border border-gmv-lime text-gmv-blue rounded-full hover:bg-gmv-lime/90 hover:border-gmv-lime/90 transition-all duration-300 hover:scale-105 font-medium shadow-lg">
+                  <span className="text-sm font-medium">Solicitar Proposta</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </button>
+              </a>
             </div>
           </div>
         </div>

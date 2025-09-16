@@ -124,13 +124,13 @@ const Anunciantes = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+              <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 PROCESSO SIMPLES
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Como
                 <br />
-                <span className="font-normal font-garamond">funciona</span>
+                funciona
               </h2>
             </div>
 
@@ -163,13 +163,13 @@ const Anunciantes = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+              <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 ESPECIFICAÇÕES
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Formatos e
                 <br />
-                <span className="font-normal font-garamond">configurações</span>
+                configurações
               </h2>
             </div>
 
@@ -203,13 +203,13 @@ const Anunciantes = () => {
   <section className="py-32" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+            <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
               FALE CONOSCO
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Vamos conversar
               <br />
-              <span className="font-normal font-garamond">sobre valores</span>
+              sobre valores
             </h2>
             <p className="text-xl text-gmv-gray max-w-2xl mx-auto mb-12">
               Cada projeto é único. Vamos conversar no WhatsApp para criar uma proposta personalizada para sua marca.
@@ -258,13 +258,13 @@ const Anunciantes = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+              <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 VAMOS COMEÇAR
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Solicite sua
                 <br />
-                <span className="font-normal font-garamond">proposta</span>
+                proposta
               </h2>
               <p className="text-xl text-gmv-gray max-w-2xl mx-auto">
                 Preencha o formulário e receba uma proposta personalizada em até 24 horas

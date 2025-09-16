@@ -131,13 +131,13 @@ const ContactFormSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Conteúdo à esquerda */}
             <AnimatedContainer className="">
-              <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+              <div className="text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 FALE CONOSCO
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
                 Vamos conversar
                 <br />
-                <span className="font-normal font-garamond">sobre resultados</span>
+                sobre resultados
               </h2>
 
               {/* Informações de Contato */}

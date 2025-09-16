@@ -249,3 +249,34 @@ All colors MUST be HSL.
     }
   }
 }
+
+/* Estilos para o Mapa Interativo do Brasil */
+#svg-map path { 
+  fill: #9ca3af; /* Cinza para todos os estados */
+  transition: fill 0.3s ease;
+}
+
+#svg-map text { 
+  fill: #fff; 
+  font: 12px Arial, sans-serif; 
+  font-weight: bold;
+}
+
+#svg-map a { 
+  text-decoration: none;
+}
+
+/* Estado de São Paulo com cliente - azul */
+#svg-map a[href="#saopaulo"] path {
+  fill: #0094d9 !important;
+}
+
+/* Hover apenas para estados com clientes (azul claro) */
+#svg-map a[href="#saopaulo"]:hover path {
+  fill: #003399 !important; /* Azul escuro no hover */
+  cursor: pointer;
+}
+
+#svg-map .circle { 
+  fill: #66ccff;
+}

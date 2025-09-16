@@ -23,7 +23,7 @@ const CtaSection = () => {
           <div className="text-center px-8">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-halenoir text-gmv-white leading-tight mb-6 drop-shadow-lg">
-                O Futuro da sua marca mais <span className="font-garamond">iluminado</span>
+                O Futuro da sua marca mais iluminado
               </h2>
               
               <p className="text-lg text-gmv-white/90 mb-8 leading-relaxed max-w-xl mx-auto drop-shadow-md">
