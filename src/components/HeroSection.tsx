@@ -1,5 +1,5 @@
-import heroImage from "@/assets/degrade.png";
-import completoImage from "@/assets/completo.png";
+import heroImage from "/degrade.png";
+import completoImage from "/completo.png";
 
 const HeroSection = () => {
   return (

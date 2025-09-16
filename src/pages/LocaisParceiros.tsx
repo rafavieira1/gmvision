@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
-import heroImage from "@/assets/invert.png";
+import heroImage from "/invert.png";
 
 const LocaisParceiros = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,13 +14,11 @@ const LocaisParceiros = () => {
     id: 1,
     nome: "Fábrica de Monstros",
     tipo: "Academia",
-    endereco: "Rua das Flores, 123 - Vila Madalena, São Paulo",
-    fluxo: "500+ pessoas/dia",
-    horario: "05h às 23h",
-    avaliacao: 4.9,
+    endereco: "Estr. Mun. Bela Vista, 1332 - Alphaville, Santana de Parnaíba - SP",
+    horario: "Dias úteis: 6:00 as 23:00\nFinais de semana e feriados: 08:00 as 16:00",
     imagem: "/academiafdm.jpeg",
     descricao: "Nossa primeira parceria de sucesso! A Fábrica de Monstros foi pioneira em confiar na GMvision para modernizar seu ambiente e gerar renda extra através de nossos displays LED inteligentes.",
-    paineis: "3 painéis LED instalados",
+    paineis: "2 displays instalados",
     localizacao: "Recepção, área de musculação e vestiários"
   };
 
@@ -125,14 +123,14 @@ const LocaisParceiros = () => {
                           <Clock className="w-6 h-6 text-gmv-lime mt-1 flex-shrink-0" />
                           <div>
                             <p className="font-medium text-gmv-blue mb-1">Funcionamento</p>
-                            <span className="text-gmv-gray">{cliente.horario}</span>
+                            <span className="text-gmv-gray whitespace-pre-line">{cliente.horario}</span>
                           </div>
                         </div>
                         
                         <div className="flex items-start space-x-3">
                           <MapPin className="w-6 h-6 text-gmv-lime mt-1 flex-shrink-0" />
                           <div>
-                            <p className="font-medium text-gmv-blue mb-1">Instalação</p>
+                            <p className="font-medium text-gmv-blue mb-1">Dispositivos</p>
                             <span className="text-gmv-gray">{cliente.paineis}</span>
                           </div>
                         </div>
@@ -167,9 +165,27 @@ const LocaisParceiros = () => {
             </div>
 
             {/* Container do Mapa */}
-            <div className="flex flex-col lg:flex-row items-start gap-12">
+            <div className="flex justify-center">
               {/* Mapa SVG */}
-              <div className="flex-1 flex justify-center">
+              <div className="flex justify-center relative">
+                {/* Card de Legenda sobreposto */}
+                <div className="absolute top-0 -right-72 z-10">
+                  <div className="bg-white rounded-2xl shadow-lg p-6 border border-gmv-lime/20 w-64">
+                    <h3 className="text-xl font-halenoir text-gmv-blue mb-4">Legenda</h3>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-4 h-4 rounded-full" style={{backgroundColor: '#0094d9'}}></div>
+                        <span className="text-gmv-gray text-sm">Estados com clientes</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-4 h-4 rounded-full" style={{backgroundColor: '#9ca3af'}}></div>
+                        <span className="text-gmv-gray text-sm">Estados sem clientes</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="relative">
                   <div>
                     <svg version="1.1" id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="450px" height="460px" viewBox="0 0 450 460" enableBackground="new 0 0 450 460" xmlSpace="preserve">
@@ -485,42 +501,6 @@ const LocaisParceiros = () => {
                         </a>
                       </g>
                     </svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* Legenda */}
-              <div className="lg:w-80">
-                <div className="bg-white rounded-2xl shadow-lg p-8 border border-gmv-lime/20">
-                  <h3 className="text-2xl font-halenoir text-gmv-blue mb-6">Legenda</h3>
-                  
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-4 h-4 rounded-full" style={{backgroundColor: '#0094d9'}}></div>
-                      <span className="text-gmv-gray">Estados com clientes</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-4 h-4 rounded-full" style={{backgroundColor: '#9ca3af'}}></div>
-                      <span className="text-gmv-gray">Estados sem clientes</span>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-gmv-gray/20 pt-6">
-                    <h4 className="text-lg font-halenoir text-gmv-blue mb-4">Estatísticas</h4>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-gmv-gray">São Paulo:</span>
-                        <span className="font-medium text-gmv-blue">1 cliente</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gmv-gray">Total de clientes:</span>
-                        <span className="font-medium text-gmv-blue">1</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gmv-gray">Estados atendidos:</span>
-                        <span className="font-medium text-gmv-blue">1 de 27</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

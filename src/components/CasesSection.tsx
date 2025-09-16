@@ -1,154 +1,187 @@
-import { useEffect, useState } from "react";
-import { Dumbbell, Heart, Building, Users } from "lucide-react";
-import gymImage from "@/assets/led-panel-gym.jpg";
-import clinicImage from "@/assets/led-panel-clinic.jpg";
-import elevatorImage from "@/assets/led-panel-elevator.jpg";
-import heroImage from "@/assets/hero-led-business.jpg";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { Dumbbell, Heart, Building, Users, LucideIcon } from "lucide-react";
+import gymImage from "/led-panel-gym.jpg";
+import clinicImage from "/led-panel-clinic.jpg";
+import elevatorImage from "/led-panel-elevator.jpg";
+import heroImage from "/hero-led-business.jpg";
 
-// Adicionar estilos CSS customizados para animações
-const customStyles = `
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 30px, 0);
+// Constants
+const SCROLL_THROTTLE_DELAY = 16; // ~60fps
+const ANIMATION_DURATION = {
+  fade: 1000,
+  fadeDelayed: 1200,
+  image: 2000,
+  feature: 700,
+  transition: 700
+};
+
+const ANIMATION_DELAYS = {
+  category: 200,
+  title: 300,
+  description: 500,
+  features: 700,
+  featureItem: 100,
+  image: 300
+};
+
+// Types
+interface EstablishmentType {
+  id: string;
+  number: string;
+  category: string;
+  title: string;
+  description: string;
+  features: string[];
+  image: string;
+  icon: LucideIcon;
+  metrics: string;
+}
+
+interface AnimationStyle {
+  animation: string;
+}
+
+// CSS Styles organized by animation type
+const CSS_ANIMATIONS = {
+  fadeInUp: `
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
     }
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
+  `,
+  fadeInRight: `
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translate3d(30px, 0, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
     }
-  }
-  
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translate3d(30px, 0, 0);
+  `,
+  fadeInLeft: `
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translate3d(-30px, 0, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
     }
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
+  `,
+  imageTransition: `
+    @keyframes imageTransition {
+      0% {
+        opacity: 0;
+        transform: scale(1.1) rotate(0.5deg);
+        filter: blur(4px) brightness(0.8);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(1.05) rotate(0deg);
+        filter: blur(2px) brightness(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.02) rotate(0deg);
+        filter: blur(0px) brightness(1.1);
+      }
     }
-  }
-  
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translate3d(-30px, 0, 0);
-    }
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  
-  @keyframes imageTransition {
-    0% {
-      opacity: 0;
-      transform: scale(1.1) rotate(0.5deg);
-      filter: blur(4px) brightness(0.8);
-    }
-    50% {
-      opacity: 0.5;
-      transform: scale(1.05) rotate(0deg);
-      filter: blur(2px) brightness(0.9);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1.02) rotate(0deg);
-      filter: blur(0px) brightness(1.1);
-    }
-  }
+  `
+};
+
+const CUSTOM_STYLES = `
+  ${Object.values(CSS_ANIMATIONS).join('\n')}
   
   .image-smooth-transition {
-    animation: imageTransition 2000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: imageTransition ${ANIMATION_DURATION.image}ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 `;
 
-const CasesSection = () => {
-  const [activeSection, setActiveSection] = useState(0);
+// Animation helper functions
+const createAnimationStyle = (
+  animationType: keyof typeof CSS_ANIMATIONS,
+  duration: number = ANIMATION_DURATION.fade,
+  delay: number = 0
+): AnimationStyle => ({
+  animation: `${animationType} ${duration}ms cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms both`
+});
 
-  // Injetar estilos CSS customizados
+// Establishments data
+const ESTABLISHMENTS_DATA: EstablishmentType[] = [
+  {
+    id: "academias",
+    number: "01",
+    category: "FITNESS & WELLNESS",
+    title: "Academias e Centros de Treinamento",
+    description: "Alcance o público fitness com campanhas direcionadas de suplementos, equipamentos e motivação durante os treinos. Alto tempo de exposição com audiência engajada.",
+    features: [
+      "Campanhas de suplementos e nutrição esportiva",
+      "Promoções de equipamentos fitness",
+      "Conteúdo motivacional personalizado",
+      "Horários de pico com alta audiência"
+    ],
+    image: gymImage,
+    icon: Dumbbell,
+    metrics: "500+ pessoas/dia"
+  },
+  {
+    id: "clinicas", 
+    number: "02",
+    category: "SAÚDE & BEM-ESTAR",
+    title: "Clínicas e Consultórios Médicos",
+    description: "Comunique campanhas de prevenção e produtos de saúde para um público receptivo em salas de espera. Ambiente ideal para conscientização e educação em saúde.",
+    features: [
+      "Campanhas de prevenção e conscientização",
+      "Promoção de produtos farmacêuticos",
+      "Informações sobre tratamentos e exames",
+      "Público altamente receptivo"
+    ],
+    image: clinicImage,
+    icon: Heart,
+    metrics: "200+ pacientes/dia"
+  }
+];
+
+const CasesSection = () => {
+  const [activeSection, setActiveSection] = useState<number>(0);
+  const scrollThrottleRef = useRef<boolean>(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Inject CSS styles - optimized to run only once
   useEffect(() => {
     const styleElement = document.createElement('style');
-    styleElement.textContent = customStyles;
+    styleElement.textContent = CUSTOM_STYLES;
+    styleElement.setAttribute('data-component', 'CasesSection');
     document.head.appendChild(styleElement);
     
     return () => {
-      document.head.removeChild(styleElement);
+      const existingStyle = document.querySelector('style[data-component="CasesSection"]');
+      if (existingStyle) {
+        document.head.removeChild(existingStyle);
+      }
     };
   }, []);
 
-  const establishments = [
-    {
-      id: "academias",
-      number: "01",
-      category: "FITNESS & WELLNESS",
-      title: "Academias e Centros de Treinamento",
-      description: "Alcance o público fitness com campanhas direcionadas de suplementos, equipamentos e motivação durante os treinos. Alto tempo de exposição com audiência engajada.",
-      features: [
-        "Campanhas de suplementos e nutrição esportiva",
-        "Promoções de equipamentos fitness",
-        "Conteúdo motivacional personalizado",
-        "Horários de pico com alta audiência"
-      ],
-      image: gymImage,
-      icon: Dumbbell,
-      metrics: "500+ pessoas/dia"
-    },
-    {
-      id: "clinicas", 
-      number: "02",
-      category: "SAÚDE & BEM-ESTAR",
-      title: "Clínicas e Consultórios Médicos",
-      description: "Comunique campanhas de prevenção e produtos de saúde para um público receptivo em salas de espera. Ambiente ideal para conscientização e educação em saúde.",
-      features: [
-        "Campanhas de prevenção e conscientização",
-        "Promoção de produtos farmacêuticos",
-        "Informações sobre tratamentos e exames",
-        "Público altamente receptivo"
-      ],
-      image: clinicImage,
-      icon: Heart,
-      metrics: "200+ pacientes/dia"
-    },
-    {
-      id: "condominios",
-      number: "03", 
-      category: "RESIDENCIAL & COMERCIAL",
-      title: "Condomínios e Edifícios",
-      description: "Publicidade local direcionada para moradores em elevadores, lobbies e áreas comuns. Gere receita adicional para o condomínio com campanhas relevantes.",
-      features: [
-        "Publicidade local e serviços da região",
-        "Comunicados importantes do condomínio",
-        "Geração de receita passiva",
-        "Segmentação por perfil dos moradores"
-      ],
-      image: elevatorImage,
-      icon: Building,
-      metrics: "300+ moradores"
-    },
-    {
-      id: "empresas",
-      number: "04",
-      category: "CORPORATIVO & B2B", 
-      title: "Empresas e Escritórios",
-      description: "Comunicação estratégica para colaboradores em recepções, refeitórios e salas de reunião. Ideal para campanhas B2B e comunicação corporativa eficiente.",
-      features: [
-        "Comunicação interna estratégica",
-        "Campanhas de RH e benefícios",
-        "Publicidade B2B direcionada",
-        "Alto alcance entre colaboradores"
-      ],
-      image: heroImage,
-      icon: Users,
-      metrics: "1000+ funcionários"
-    }
-  ];
-
-  useEffect(() => {
-    const handleScroll = () => {
+  // Optimized scroll handler with better performance
+  const handleScroll = useCallback(() => {
+    if (scrollThrottleRef.current) return;
+    
+    scrollThrottleRef.current = true;
+    requestAnimationFrame(() => {
       const scrolled = window.scrollY;
       const windowHeight = window.innerHeight;
-      const sectionElement = document.getElementById('cases');
+      const sectionElement = sectionRef.current || document.getElementById('cases');
       
       if (sectionElement) {
         const sectionTop = sectionElement.offsetTop;
@@ -158,62 +191,59 @@ const CasesSection = () => {
         
         if (sectionProgress >= 0 && sectionProgress <= 1) {
           const newActiveSection = Math.min(
-            Math.floor(sectionProgress * establishments.length), 
-            establishments.length - 1
+            Math.floor(sectionProgress * ESTABLISHMENTS_DATA.length), 
+            ESTABLISHMENTS_DATA.length - 1
           );
-          if (newActiveSection !== activeSection) {
-            setActiveSection(newActiveSection);
-          }
+          
+          setActiveSection(prev => prev !== newActiveSection ? newActiveSection : prev);
         }
       }
-    };
+      
+      scrollThrottleRef.current = false;
+    });
+  }, []);
 
-    // Throttle scroll events for better performance
-    let ticking = false;
-    const throttledHandleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
-    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', throttledHandleScroll);
-  }, [activeSection]);
-
-  const currentEstablishment = establishments[activeSection];
+  const currentEstablishment = ESTABLISHMENTS_DATA[activeSection];
 
   return (
-    <section id="cases" className="min-h-[400vh] relative">
+    <section 
+      id="cases" 
+      ref={sectionRef} 
+      className="min-h-[200vh] relative"
+      aria-label="Casos de uso de painéis LED"
+    >
       {/* Seção fixa com conteúdo que muda */}
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden" style={{backgroundColor: '#f7f7f7'}}>
+      <div 
+        className="sticky top-0 h-screen flex items-start lg:items-center justify-center overflow-hidden pt-8 lg:pt-0" 
+        style={{backgroundColor: '#f7f7f7'}}
+        role="main"
+      >
         {/* Conteúdo principal */}
-        <div className="relative z-10 container mx-auto px-4">
+        <div className="relative z-10 container mx-auto px-4 lg:px-4 mt-16 lg:mt-0">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               
               {/* Lado esquerdo - Conteúdo */}
-              <div className="text-gmv-blue space-y-8 transform transition-all duration-1000 ease-out">
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4 transform transition-all duration-1200 ease-out delay-100">
+              <div className="text-gmv-blue space-y-4 lg:space-y-8 transform transition-all duration-1000 ease-out order-1 lg:order-1">
+                <div className="space-y-2 lg:space-y-4">
+                  <div className="flex items-center space-x-3 lg:space-x-4 transform transition-all duration-1200 ease-out delay-100">
                     <span 
                       key={`number-${currentEstablishment.number}`}
-                      className="text-6xl font-bold text-gmv-blue opacity-60 transition-all duration-1000 ease-out transform"
-                      style={{
-                        animation: 'fadeInUp 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
-                      }}
+                      className="text-4xl lg:text-6xl font-bold text-gmv-blue opacity-60 transition-all duration-1000 ease-out transform"
+                      style={createAnimationStyle('fadeInUp', ANIMATION_DURATION.fade)}
+                      aria-label={`Caso número ${currentEstablishment.number}`}
                     >
                       {currentEstablishment.number}
                     </span>
                     <span 
                       key={`category-${currentEstablishment.category}`}
-                      className="text-sm font-medium text-gmv-lime uppercase tracking-wider transition-all duration-1000 ease-out delay-200 transform"
-                      style={{
-                        animation: 'fadeInRight 1000ms cubic-bezier(0.4, 0, 0.2, 1) 200ms both'
-                      }}
+                      className="text-xs lg:text-sm font-medium text-gmv-lime uppercase tracking-wider transition-all duration-1000 ease-out delay-200 transform"
+                      style={createAnimationStyle('fadeInRight', ANIMATION_DURATION.fade, ANIMATION_DELAYS.category)}
                     >
                       {currentEstablishment.category}
                     </span>
@@ -221,10 +251,8 @@ const CasesSection = () => {
                   
                   <h2 
                     key={`title-${currentEstablishment.id}`}
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gmv-blue transition-all duration-1200 ease-out delay-300 transform"
-                    style={{
-                      animation: 'fadeInUp 1200ms cubic-bezier(0.4, 0, 0.2, 1) 300ms both'
-                    }}
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gmv-blue transition-all duration-1200 ease-out delay-300 transform"
+                    style={createAnimationStyle('fadeInUp', ANIMATION_DURATION.fadeDelayed, ANIMATION_DELAYS.title)}
                   >
                     {currentEstablishment.title}
                   </h2>
@@ -232,10 +260,8 @@ const CasesSection = () => {
 
                 <p 
                   key={`description-${currentEstablishment.id}`}
-                  className="text-xl text-gmv-gray leading-relaxed max-w-2xl transition-all duration-1000 ease-out delay-500 transform"
-                  style={{
-                    animation: 'fadeInUp 1000ms cubic-bezier(0.4, 0, 0.2, 1) 500ms both'
-                  }}
+                  className="text-base lg:text-xl text-gmv-gray leading-relaxed max-w-2xl transition-all duration-1000 ease-out delay-500 transform"
+                  style={createAnimationStyle('fadeInUp', ANIMATION_DURATION.fade, ANIMATION_DELAYS.description)}
                 >
                   {currentEstablishment.description}
                 </p>
@@ -243,55 +269,75 @@ const CasesSection = () => {
                 {/* Features */}
                 <div 
                   key={`features-${currentEstablishment.id}`}
-                  className="space-y-3 transition-all duration-1000 ease-out delay-700"
-                  style={{
-                    animation: 'fadeInUp 1000ms cubic-bezier(0.4, 0, 0.2, 1) 700ms both'
-                  }}
+                  className="space-y-2 lg:space-y-3 transition-all duration-1000 ease-out delay-700"
+                  style={createAnimationStyle('fadeInUp', ANIMATION_DURATION.fade, ANIMATION_DELAYS.features)}
+                  role="list"
+                  aria-label="Características do estabelecimento"
                 >
                   {currentEstablishment.features.map((feature, index) => (
                     <div 
                       key={`${currentEstablishment.id}-feature-${index}`}
                       className="flex items-start space-x-3 transform transition-all duration-700 ease-out"
-                      style={{
-                        animation: `fadeInLeft 700ms cubic-bezier(0.4, 0, 0.2, 1) ${800 + index * 100}ms both`
-                      }}
+                      style={createAnimationStyle('fadeInLeft', ANIMATION_DURATION.feature, ANIMATION_DELAYS.features + ANIMATION_DELAYS.featureItem + (index * ANIMATION_DELAYS.featureItem))}
+                      role="listitem"
                     >
-                      <div className="w-2 h-2 rounded-full bg-gmv-lime mt-2 flex-shrink-0 transform transition-all duration-500 hover:scale-150"></div>
-                      <span className="text-gmv-gray">{feature}</span>
+                      <div 
+                        className="w-2 h-2 rounded-full bg-gmv-lime mt-2 flex-shrink-0 transform transition-all duration-500 hover:scale-150" 
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm lg:text-base text-gmv-gray">{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Lado direito - Visual/Imagem destacada */}
-              <div className="relative transform transition-all duration-1000 ease-out delay-300">
+              <div className="relative transform transition-all duration-1000 ease-out delay-300 order-2 lg:order-2">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: '9/16', height: '500px' }}>
+                  <div className="relative w-full overflow-hidden h-[280px] lg:h-[500px]" style={{ aspectRatio: '9/16' }}>
                     <img 
                       key={`main-image-${currentEstablishment.id}`}
                       src={currentEstablishment.image}
-                      alt={currentEstablishment.title}
+                      alt={`Exemplo de painel LED em ${currentEstablishment.title.toLowerCase()}`}
                       className="absolute inset-0 w-full h-full object-cover image-smooth-transition"
                     />
                     {/* Overlay sutil */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent transition-all duration-2000 ease-out"></div>
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent transition-all duration-2000 ease-out" 
+                      aria-hidden="true"
+                    />
                   </div>
                 </div>
 
-                {/* Indicador de progresso */}
-                <div className="absolute -left-4 top-1/2 transform -translate-y-1/2">
-                  <div className="space-y-4">
-                    {establishments.map((_, index) => (
+                {/* Indicador de progresso - ajustado para mobile */}
+                <div 
+                  className="absolute -left-2 lg:-left-4 top-1/2 transform -translate-y-1/2"
+                  role="tablist"
+                  aria-label="Indicadores de progresso dos casos"
+                >
+                  <div className="space-y-3 lg:space-y-4">
+                    {ESTABLISHMENTS_DATA.map((establishment, index) => (
                       <div 
-                        key={index}
-                        className={`w-1 rounded-full transition-all duration-700 ease-out transform ${
+                        key={`progress-${establishment.id}`}
+                        className={`w-1 rounded-full transition-all duration-700 ease-out transform cursor-pointer ${
                           index === activeSection 
-                            ? 'bg-gmv-lime shadow-lg shadow-gmv-lime/50 h-20 scale-110' 
-                            : 'bg-gmv-gray/30 h-16 hover:bg-gmv-gray/50'
+                            ? 'bg-gmv-lime shadow-lg shadow-gmv-lime/50 h-12 lg:h-20 scale-110' 
+                            : 'bg-gmv-gray/30 h-10 lg:h-16 hover:bg-gmv-gray/50'
                         }`}
                         style={{
                           transitionDelay: `${index * 100}ms`,
-                          transition: 'all 700ms cubic-bezier(0.4, 0, 0.2, 1)'
+                          transition: `all ${ANIMATION_DURATION.transition}ms cubic-bezier(0.4, 0, 0.2, 1)`
+                        }}
+                        role="tab"
+                        tabIndex={0}
+                        aria-selected={index === activeSection}
+                        aria-label={`Caso ${establishment.number}: ${establishment.category}`}
+                        onClick={() => setActiveSection(index)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setActiveSection(index);
+                          }
                         }}
                       />
                     ))}

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import logoContact from "/logocontact.png";
+import emailjs from '@emailjs/browser';
 
 interface FormData {
   name: string;
@@ -69,14 +71,36 @@ const ContactFormSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simular envio do formulário
     try {
-      // Aqui você pode integrar com um serviço de email como EmailJS, Formspree, etc.
-      console.log('Form data:', formData);
+      // Configurações do EmailJS usando variáveis de ambiente
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      // Verificar se as configurações estão definidas
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('Configurações do EmailJS não encontradas. Verifique o arquivo .env.local');
+        alert('Serviço de email não configurado. Entre em contato diretamente pelo email: adm@gmvisionco.com');
+        return;
+      }
+
+      // Preparar dados para o template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        city: formData.city,
+        segment: formData.segment,
+        message: formData.message,
+        to_email: 'adm@gmvisionco.com',
+        reply_to: formData.email
+      };
+
+      // Enviar email usando EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
       
-      // Simulação de delay de envio
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      console.log('Email enviado com sucesso!');
       setIsSubmitted(true);
       setFormData({
         name: '',
@@ -89,6 +113,7 @@ const ContactFormSection = () => {
       });
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
+      alert('Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente pelo email: adm@gmvisionco.com');
     } finally {
       setIsSubmitting(false);
     }
@@ -96,24 +121,24 @@ const ContactFormSection = () => {
 
   if (isSubmitted) {
     return (
-  <section id="contato" className="py-32" style={{backgroundColor: '#f7f7f7'}}>
+  <section id="contato" className="py-16 lg:py-32" style={{backgroundColor: '#f7f7f7'}}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <AnimatedContainer>
-              <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-gmv-lime flex items-center justify-center">
-                <Send className="w-10 h-10 text-gmv-blue" />
+              <div className="w-16 lg:w-20 h-16 lg:h-20 mx-auto mb-6 lg:mb-8 rounded-full bg-gmv-lime flex items-center justify-center">
+                <Send className="w-8 lg:w-10 h-8 lg:h-10 text-gmv-blue" />
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8 lg:mb-10">
                 Mensagem 
                 <br />
                 <span className="font-normal">Enviada!</span>
               </h2>
-              <p className="text-gmv-gray leading-relaxed text-lg mb-10 max-w-2xl mx-auto">
+              <p className="text-gmv-gray leading-relaxed text-base lg:text-lg mb-8 lg:mb-10 max-w-2xl mx-auto">
                 Obrigado pelo seu interesse! Nossa equipe entrará em contato em breve para apresentar as melhores soluções para seu negócio.
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="inline-flex items-center px-8 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center px-6 lg:px-8 py-2 lg:py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105"
               >
                 Enviar Outra Mensagem
               </button>
@@ -125,38 +150,38 @@ const ContactFormSection = () => {
   }
 
   return (
-  <section id="contato" className="py-32" style={{backgroundColor: '#f7f7f7'}}>
+  <section id="contato" className="py-16 lg:py-32" style={{backgroundColor: '#f7f7f7'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Conteúdo à esquerda */}
             <AnimatedContainer className="">
-              <div className="text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
+              <div className="text-sm lg:text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 FALE CONOSCO
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8 lg:mb-10">
                 Vamos conversar
                 <br />
-                sobre resultados
+                sobre resultados!
               </h2>
 
               {/* Informações de Contato */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-medium text-gmv-blue">
+              <div className="space-y-4 lg:space-y-6">
+                <h3 className="text-lg lg:text-xl font-medium text-gmv-blue">
                   Informações de Contato
                 </h3>
-                <div className="space-y-4 text-gmv-gray">
+                <div className="space-y-3 lg:space-y-4 text-gmv-gray">
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                       <Phone className="w-3 h-3 text-gmv-gray" />
                     </div>
-                    <span>(11) 93620-8864</span>
+                    <span className="text-sm lg:text-base">(11) 93620-8864</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                       <Mail className="w-3 h-3 text-gmv-gray" />
                     </div>
-                    <a href="mailto:adm@gmvisionco.com" className="hover:text-gmv-lime transition-colors">
+                    <a href="mailto:adm@gmvisionco.com" className="hover:text-gmv-lime transition-colors text-sm lg:text-base">
                       adm@gmvisionco.com
                     </a>
                   </div>
@@ -164,15 +189,24 @@ const ContactFormSection = () => {
                     <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                       <MapPin className="w-3 h-3 text-gmv-gray" />
                     </div>
-                    <span>São Paulo, SP</span>
+                    <span className="text-sm lg:text-base">São Paulo, SP</span>
                   </div>
                 </div>
+              </div>
+              
+              {/* Logo de contato */}
+              <div className="mt-8 lg:mt-12 flex justify-center lg:justify-start">
+                <img 
+                  src={logoContact} 
+                  alt="GMvision Contact Logo" 
+                  className="h-16 lg:h-56 w-auto object-contain opacity-80"
+                />
               </div>
             </AnimatedContainer>
 
             {/* Formulário à direita */}
             <AnimatedContainer delay={0.2} className="relative">
-              <div className="bg-white rounded-3xl p-8 md:p-12 border border-gmv-gray/10 shadow-sm">
+              <div className="bg-white rounded-3xl p-6 lg:p-8 xl:p-12 border border-gmv-gray/10 shadow-sm">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 gap-6">
                     <div className="grid w-full items-center gap-1.5">

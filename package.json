@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.10.0",
     "@paper-design/shaders-react": "^0.0.47",
     "@radix-ui/react-accordion": "^1.2.12",
