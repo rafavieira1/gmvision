@@ -39,7 +39,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
         }}
       />
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
     </div>
   );
 };
@@ -75,25 +75,21 @@ const AboutSection = () => {
 
   const content = {
     about: {
-      label: "QUEM SOMOS",
+  label: <span style={{ color: '#384145', fontWeight: 'normal' }}>QUEM SOMOS</span>,
       title: (
         <>
-          Conectando marcas
+          Conecte marcas e estabelecimentos
           <br />
-          <span className="font-normal font-garamond">e estabelecimentos</span>
-          <br />
-
         </>
       ),
       description: "A GMvision revoluciona o marketing DOOH criando uma rede de networking que conecta anunciantes e estabelecimentos através de displays inteligentes. Oferecemos renda extra para parceiros, modernização de ambientes e publicidade segmentada para anunciantes, construindo um ecossistema de prosperidade compartilhada.",
       buttonText: "Ver nossa história"
     },
     history: {
-      label: "NOSSA HISTÓRIA",
+      label: <span style={{ color: '#000', fontWeight: 'normal', fontStyle: 'italic' }}>NOSSA HISTÓRIA</span>,
       title: (
         <>
-          Iluminando o futuro
-          <span className="font-normal font-garamond"> dos negócios</span>
+          Iluminando o futuro dos negócios
         </>
       ),
       description: "Nascemos da vontade de revolucionar o marketing através das mídias DOOH. Nossa visão é criar uma nova forma de fazer publicidade que seja inteligente, estratégica e conecte empresas, pessoas e histórias. Construímos uma rede onde cada display instalado gera renda extra para estabelecimentos e oferece publicidade segmentada para anunciantes.",
@@ -141,7 +137,7 @@ const AboutSection = () => {
               <div className={`transition-all duration-300 ${
                 isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
               }`}>
-                <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+                <div className="text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                   {currentContent.label}
                 </div>
                 

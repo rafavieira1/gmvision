@@ -133,13 +133,13 @@ const Estabelecimentos = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+              <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 PROCESSO SIMPLES
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Como se tornar
                 <br />
-                <span className="font-normal font-garamond">nosso parceiro</span>
+                nosso parceiro
               </h2>
             </div>
 
@@ -171,13 +171,13 @@ const Estabelecimentos = () => {
       <section className="py-32 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+            <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
               VAMOS NEGOCIAR
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Fale conosco sobre
               <br />
-              <span className="font-normal font-garamond">valores</span>
+              valores
             </h2>
             <p className="text-xl text-gmv-gray max-w-2xl mx-auto mb-12">
               Cada estabelecimento é único. Vamos conversar no WhatsApp para definir o melhor modelo de parceria para você.
@@ -229,13 +229,13 @@ const Estabelecimentos = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+              <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 REQUISITOS
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 O que você
                 <br />
-                <span className="font-normal font-garamond">precisa ter</span>
+                precisa ter
               </h2>
             </div>
 
@@ -287,13 +287,13 @@ const Estabelecimentos = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <div className="text-base font-apparel uppercase tracking-wider mb-8" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+              <div className="text-base mb-8 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
                 VAMOS COMEÇAR
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8">
                 Registre seu
                 <br />
-                <span className="font-normal font-garamond">interesse</span>
+                interesse
               </h2>
               <p className="text-xl text-gmv-gray max-w-2xl mx-auto">
                 Preencha o formulário e agende uma avaliação gratuita do seu estabelecimento

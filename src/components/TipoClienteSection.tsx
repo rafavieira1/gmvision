@@ -108,13 +108,13 @@ const TipoClienteSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-16 text-center"
           >
-            <div className="text-base font-apparel uppercase tracking-wider mb-4" style={{ color: '#b8e600', WebkitTextStroke: '1px rgba(186, 233, 94, 0.74)' }}>
+            <div className="text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
               PROSPERIDADE COMPARTILHADA
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
               Conectamos negócios
               <br />
-              <span className="font-normal font-garamond">e criamos valor</span>
+              e criamos valor
             </h2>
           </motion.div>
 

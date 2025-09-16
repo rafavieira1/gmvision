@@ -9,7 +9,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import logo from "@/assets/logobranca.png";
+import logo from "@/assets/logocompletobranco.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,10 +65,10 @@ const Header = () => {
           : "bg-transparent border-b border-transparent"
         : "backdrop-blur-lg bg-black/60 border-b border-white/20"
     }`}>
-      <div className="container mx-auto pl-4 pr-0 h-20 flex items-center relative">
+      <div className="container mx-auto px-4 h-24 flex items-center relative">
         {/* Logo à esquerda */}
         <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
-          <img src={logo} alt="GMvision" className="w-24 h-24 object-contain" />
+          <img src={logo} alt="GMvision" className="w-32 h-32 object-contain" />
         </Link>
 
         {/* Navigation Centralizada */}
@@ -145,9 +145,9 @@ const Header = () => {
         </div>
 
         {/* Botões de ação à direita */}
-        <div className="hidden md:flex items-center space-x-3 ml-auto -mr-40">
+        <div className="hidden md:flex items-center space-x-2 lg:space-x-3 ml-auto pr-4">
           <Link to="/anunciantes" onClick={handleAnunciantesClick}>
-            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
+            <button className={`px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
               isHomePage || isSubPage 
                 ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
                 : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
@@ -156,7 +156,7 @@ const Header = () => {
             </button>
           </Link>
           <Link to="/estabelecimentos" onClick={handleEstabelecimentosClick}>
-            <button className={`px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
+            <button className={`px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
               isHomePage || isSubPage
                 ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                 : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
@@ -177,7 +177,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className={`md:hidden absolute top-20 left-0 right-0 ${
+        <div className={`md:hidden absolute top-24 left-0 right-0 ${
           isHomePage 
             ? isScrolled
               ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"

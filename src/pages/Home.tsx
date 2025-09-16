@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import TextRevealSection from "@/components/TextRevealSection";
-import NumbersSection from "@/components/NumbersSection";
+// import NumbersSection from "@/components/NumbersSection";
 import TipoClienteSection from "@/components/TipoClienteSection";
 import DifferencesSection from "@/components/DifferencesSection";
 import TextHorizonSection from "@/components/TextHorizonSection";
@@ -19,7 +19,7 @@ const Home = () => {
       <HeroSection />
       <TextRevealSection />
       <AboutSection />
-      <NumbersSection />
+  {/* <NumbersSection /> */}
       <DifferencesSection />
       <TextHorizonSection />
       <CasesSection />
