@@ -9,7 +9,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import logo from "@/assets/logocompletobranco.png";
+import logo from "/logocompletobranco.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,10 +65,10 @@ const Header = () => {
           : "bg-transparent border-b border-transparent"
         : "backdrop-blur-lg bg-black/60 border-b border-white/20"
     }`}>
-      <div className="container mx-auto px-4 h-24 flex items-center relative">
+      <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center relative">
         {/* Logo à esquerda */}
         <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
-          <img src={logo} alt="GMvision" className="w-32 h-32 object-contain" />
+          <img src={logo} alt="GMvision" className="w-24 lg:w-32 h-24 lg:h-32 object-contain" />
         </Link>
 
         {/* Navigation Centralizada */}
@@ -80,7 +80,7 @@ const Header = () => {
                   to="/" 
                   onClick={handleLogoClick}
                   className={cn(
-                    "px-4 py-2 text-base font-normal transition-colors duration-200",
+                    "px-4 py-2 text-lg font-normal transition-colors duration-200",
                     isHomePage || isSubPage
                       ? "text-white/90 hover:text-white"
                       : "text-gmv-gray hover:text-gmv-blue"
@@ -95,7 +95,7 @@ const Header = () => {
                   to="/anunciantes" 
                   onClick={handleAnunciantesClick}
                   className={cn(
-                    "px-4 py-2 text-base font-normal transition-colors duration-200",
+                    "px-4 py-2 text-lg font-normal transition-colors duration-200",
                     isHomePage || isSubPage
                       ? "text-white/90 hover:text-white"
                       : "text-gmv-gray hover:text-gmv-blue"
@@ -108,7 +108,7 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
                   className={cn(
-                    "px-4 py-2 text-base font-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent h-auto",
+                    "px-4 py-2 text-lg font-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent h-auto",
                     isHomePage || isSubPage
                       ? "text-white/90 hover:text-white"
                       : "text-gmv-gray hover:text-gmv-blue"
@@ -145,9 +145,9 @@ const Header = () => {
         </div>
 
         {/* Botões de ação à direita */}
-        <div className="hidden md:flex items-center space-x-2 lg:space-x-3 ml-auto pr-4">
+        <div className="hidden md:flex items-center space-x-2 lg:space-x-3 ml-auto pr-2 lg:pr-4">
           <Link to="/anunciantes" onClick={handleAnunciantesClick}>
-            <button className={`px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
+            <button className={`px-2 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
               isHomePage || isSubPage 
                 ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
                 : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
@@ -156,7 +156,7 @@ const Header = () => {
             </button>
           </Link>
           <Link to="/estabelecimentos" onClick={handleEstabelecimentosClick}>
-            <button className={`px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
+            <button className={`px-2 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
               isHomePage || isSubPage
                 ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                 : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
@@ -168,7 +168,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className={cn("md:hidden p-2", isHomePage || isSubPage ? "text-white" : "text-gmv-blue")}
+          className={cn("md:hidden p-2 ml-auto", isHomePage || isSubPage ? "text-white" : "text-gmv-blue")}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -177,7 +177,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className={`md:hidden absolute top-24 left-0 right-0 ${
+        <div className={`md:hidden absolute top-20 lg:top-24 left-0 right-0 ${
           isHomePage 
             ? isScrolled
               ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
@@ -186,12 +186,12 @@ const Header = () => {
               ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
               : "bg-gmv-white backdrop-blur-lg border-b border-gmv-gray/20"
         }`}>
-          <div className="container mx-auto px-4 py-6 space-y-4">
+          <div className="container mx-auto px-4 py-4 lg:py-6 space-y-3 lg:space-y-4">
             <Link
               to="/"
               onClick={() => { handleLogoClick(); setIsMenuOpen(false); }}
               className={cn(
-                "block w-full text-left text-base font-normal transition-colors duration-200",
+                "block w-full text-left text-lg font-normal transition-colors duration-200",
                 isHomePage || isSubPage
                   ? "text-white/90 hover:text-white"
                   : "text-gmv-gray hover:text-gmv-blue"
@@ -204,7 +204,7 @@ const Header = () => {
               to="/anunciantes"
               onClick={() => { handleAnunciantesClick(); setIsMenuOpen(false); }}
               className={cn(
-                "block w-full text-left text-base font-normal transition-colors duration-200",
+                "block w-full text-left text-lg font-normal transition-colors duration-200",
                 isHomePage || isSubPage
                   ? "text-white/90 hover:text-white"
                   : "text-gmv-gray hover:text-gmv-blue"
@@ -213,16 +213,16 @@ const Header = () => {
               Anunciantes
             </Link>
             
-            <div className="space-y-2">
+            <div className="space-y-1.5 lg:space-y-2">
               <div className={cn(
-                "text-base font-normal",
+                "text-base lg:text-lg font-normal",
                 isHomePage || isSubPage
                   ? "text-white/90"
                   : "text-gmv-gray"
               )}>
                 Parceiros
               </div>
-              <div className="pl-4 space-y-2">
+              <div className="pl-3 lg:pl-4 space-y-1.5 lg:space-y-2">
                 <Link
                   to="/estabelecimentos"
                   onClick={() => { handleEstabelecimentosClick(); setIsMenuOpen(false); }}
@@ -250,11 +250,11 @@ const Header = () => {
               </div>
             </div>
             
-            <div className={`pt-4 space-y-3 ${
+            <div className={`pt-3 lg:pt-4 space-y-4 lg:space-y-3 ${
               isHomePage || isSubPage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
             }`}>
               <Link to="/anunciantes" onClick={() => { handleAnunciantesClick(); setIsMenuOpen(false); }}>
-                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
+                <button className={`w-full px-4 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
                   isHomePage || isSubPage 
                     ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
                     : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
@@ -263,7 +263,7 @@ const Header = () => {
                 </button>
               </Link>
               <Link to="/estabelecimentos" onClick={() => { handleEstabelecimentosClick(); setIsMenuOpen(false); }}>
-                <button className={`w-full px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
+                <button className={`w-full px-4 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
                   isHomePage || isSubPage
                     ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
                     : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"

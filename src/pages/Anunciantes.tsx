@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import heroImage from "@/assets/invert.png";
+import heroImage from "/invert.png";
 
 const Anunciantes = () => {
   const [formData, setFormData] = useState({
@@ -55,7 +55,7 @@ const Anunciantes = () => {
     {
       icon: Calendar,
       title: "Horários de Exibição", 
-      items: ["Os anúncios seguem o horário de funcionamento do estabelecimento", "Ciclos de 10-30 segundos", "Personalização por local", "Agendamento flexível"]
+      items: ["Os anúncios seguem o horário de funcionamento do estabelecimento", "Ciclos de 10-15 segundos", "Personalização por local", "Agendamento flexível"]
     },
     {
       icon: MessageCircle,

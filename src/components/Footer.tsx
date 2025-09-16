@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import footerLogo from "@/assets/footer.png";
+import footerLogo from "/footer.png";
 
 interface FooterLink {
   title: string;

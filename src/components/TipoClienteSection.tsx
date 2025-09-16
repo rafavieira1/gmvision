@@ -2,8 +2,8 @@ import { ArrowRight, Users, Building, TrendingUp, Zap, Target, MapPin, Check } f
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import heroImage from "@/assets/hero-led-business.jpg";
-import clinicImage from "@/assets/led-panel-clinic.jpg";
+import heroImage from "/hero-led-business.jpg";
+import clinicImage from "/led-panel-clinic.jpg";
 
 interface PlatformCardProps {
   title: string;
@@ -38,7 +38,7 @@ function PlatformCard({
     >
       <Card className={`overflow-hidden rounded-2xl ${bgColor} shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full border-0`}>
         {/* Image at top */}
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-36 lg:h-48 overflow-hidden">
           <img 
             src={image} 
             alt={imageAlt}
@@ -46,10 +46,10 @@ function PlatformCard({
           />
         </div>
 
-        <CardContent className="p-6 flex-1 flex flex-col">
+        <CardContent className="p-4 lg:p-6 flex-1 flex flex-col">
           {/* Title and Description */}
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gmv-blue mb-2 uppercase tracking-wide">
+          <div className="text-center mb-4 lg:mb-6">
+            <h3 className="text-lg lg:text-xl font-bold text-gmv-blue mb-2 uppercase tracking-wide">
               {title}
             </h3>
             <p className="text-gmv-gray text-sm leading-relaxed">
@@ -58,7 +58,7 @@ function PlatformCard({
           </div>
 
           {/* Features List */}
-          <div className="space-y-2 mb-6 flex-1">
+          <div className="space-y-2 mb-4 lg:mb-6 flex-1">
             {features.map((feature, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <Check className="h-4 w-4 text-green-400 flex-shrink-0" />
@@ -69,9 +69,9 @@ function PlatformCard({
 
           {/* Button */}
           <Link to={link} className="mt-auto">
-            <button className="inline-flex items-center px-6 py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105 w-full justify-center">
-              <span className="text-sm font-medium">{linkText}</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
+            <button className="inline-flex items-center px-4 lg:px-6 py-2 lg:py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105 w-full justify-center">
+              <span className="text-xs lg:text-sm font-medium">{linkText}</span>
+              <ArrowRight className="w-3 lg:w-4 h-3 lg:h-4 ml-2" />
             </button>
           </Link>
         </CardContent>
@@ -98,7 +98,7 @@ const TipoClienteSection = () => {
   ];
 
   return (
-    <section className="py-24" style={{backgroundColor: '#f7f7f7'}}>
+    <section className="py-16 lg:py-24" style={{backgroundColor: '#f7f7f7'}}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div 
@@ -106,12 +106,12 @@ const TipoClienteSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mb-16 text-center"
+            className="mb-12 lg:mb-16 text-center"
           >
-            <div className="text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
+            <div className="text-sm lg:text-base mb-4 font-halenoir italic" style={{ color: '#000', textTransform: 'uppercase', WebkitTextStroke: '0' }}>
               PROSPERIDADE COMPARTILHADA
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8 lg:mb-10">
               Conectamos negócios
               <br />
               e criamos valor
@@ -123,7 +123,7 @@ const TipoClienteSection = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto"
           >
             {/* Card para Anunciantes */}
             <PlatformCard

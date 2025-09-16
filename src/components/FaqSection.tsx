@@ -37,40 +37,40 @@ const FaqSection = () => {
   };
 
   return (
-    <section id="faq" className="py-32 md:py-40 lg:py-48 bg-gray-50">
+    <section id="faq" className="py-16 md:py-24 lg:py-32 xl:py-40 2xl:py-48 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             {/* FAQ Title */}
             <div>
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-light text-gmv-blue leading-none">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gmv-blue leading-none">
                 FAQ
               </h2>
             </div>
 
             {/* FAQ Items */}
-            <div className="space-y-6">
+            <div className="space-y-4 lg:space-y-6">
               {faqItems.map((item) => (
-                <div key={item.id} className="border-b border-gray-200 pb-6">
+                <div key={item.id} className="border-b border-gray-200 pb-4 lg:pb-6">
                   <button
                     onClick={() => toggleItem(item.id)}
                     className="w-full flex items-start justify-between text-left group"
                   >
-                    <span className="text-lg font-medium text-gmv-blue pr-4 group-hover:text-gmv-lime transition-colors duration-200">
+                    <span className="text-base lg:text-lg font-medium text-gmv-blue pr-4 group-hover:text-gmv-lime transition-colors duration-200">
                       {item.question}
                     </span>
                     <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
                       {openItem === item.id ? (
-                        <Minus className="w-5 h-5 text-gmv-gray" />
+                        <Minus className="w-4 lg:w-5 h-4 lg:h-5 text-gmv-gray" />
                       ) : (
-                        <Plus className="w-5 h-5 text-gmv-gray" />
+                        <Plus className="w-4 lg:w-5 h-4 lg:h-5 text-gmv-gray" />
                       )}
                     </div>
                   </button>
                   
                   {openItem === item.id && (
-                    <div className="mt-4 pr-10">
-                      <p className="text-gmv-gray leading-relaxed">
+                    <div className="mt-3 lg:mt-4 pr-8 lg:pr-10">
+                      <p className="text-sm lg:text-base text-gmv-gray leading-relaxed">
                         {item.answer}
                       </p>
                     </div>
@@ -81,14 +81,14 @@ const FaqSection = () => {
           </div>
 
           {/* Partners/Clients - Animated Horizontal Scroll */}
-          <div className="mt-20 pt-12 border-t border-gray-200">
+          <div className="mt-12 lg:mt-20 pt-8 lg:pt-12 border-t border-gray-200">
             <div className="overflow-hidden relative">
               <div className="flex animate-scroll-left whitespace-nowrap">
                 {/* First set of partners */}
                 {partners.map((partner, index) => (
                   <div 
                     key={`first-${index}`} 
-                    className="text-gmv-gray/60 font-medium text-lg tracking-wider mx-8 flex-shrink-0"
+                    className="text-gmv-gray/60 font-medium text-base lg:text-lg tracking-wider mx-4 lg:mx-8 flex-shrink-0"
                   >
                     {partner}
                   </div>
@@ -97,7 +97,7 @@ const FaqSection = () => {
                 {partners.map((partner, index) => (
                   <div 
                     key={`second-${index}`} 
-                    className="text-gmv-gray/60 font-medium text-lg tracking-wider mx-8 flex-shrink-0"
+                    className="text-gmv-gray/60 font-medium text-base lg:text-lg tracking-wider mx-4 lg:mx-8 flex-shrink-0"
                   >
                     {partner}
                   </div>
