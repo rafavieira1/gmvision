@@ -43,3 +43,9 @@ npm run build
 ```
 
 Os arquivos de produção serão gerados na pasta `dist/`.
+
+git add .
+
+git commit -m "sua mensagem de commit"
+
+git push upstream feature/updates:marssa

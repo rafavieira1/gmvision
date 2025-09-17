@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { Send, User, Mail, Phone, MessageSquare, Building, MapPin } from "lucide-react";
 import { motion, useReducedMotion } from 'motion/react';
 import type { ComponentProps, ReactNode } from 'react';
@@ -9,6 +9,31 @@ import { Textarea } from "@/components/ui/textarea";
 import logoContact from "/logocontact.png";
 import emailjs from '@emailjs/browser';
 
+// Constants
+const ANIMATION_DURATION = 0.8;
+const ANIMATION_DELAY = 0.1;
+const CONTACT_EMAIL = 'adm@gmvisionco.com';
+
+const INITIAL_FORM_DATA = {
+  name: '',
+  email: '',
+  phone: '',
+  company: '',
+  city: '',
+  segment: '',
+  message: ''
+} as const;
+
+const FORM_FIELDS = [
+  { name: 'name', label: 'Nome Completo', icon: User, type: 'text', required: true },
+  { name: 'email', label: 'E-mail Corporativo', icon: Mail, type: 'email', required: true },
+  { name: 'phone', label: 'Telefone', icon: Phone, type: 'tel', required: true },
+  { name: 'company', label: 'Empresa', icon: Building, type: 'text', required: true },
+  { name: 'city', label: 'Cidade', icon: MapPin, type: 'text', required: true },
+  { name: 'segment', label: 'Segmento', icon: Building, type: 'text', required: false }
+] as const;
+
+// Types
 interface FormData {
   name: string;
   email: string;
@@ -25,7 +50,28 @@ type ViewAnimationProps = {
   children: ReactNode;
 };
 
-function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationProps) {
+type FormFieldName = keyof FormData;
+
+interface EmailJSConfig {
+  serviceId: string;
+  templateId: string;
+  publicKey: string;
+}
+
+interface TemplateParams extends Record<string, unknown> {
+  from_name: string;
+  from_email: string;
+  phone: string;
+  company: string;
+  city: string;
+  segment: string;
+  message: string;
+  to_email: string;
+  reply_to: string;
+}
+
+// Optimized AnimatedContainer component
+const AnimatedContainer = ({ className, delay = ANIMATION_DELAY, children }: ViewAnimationProps) => {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
@@ -37,116 +83,128 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
       initial={{ filter: 'blur(4px)', translateY: 20, opacity: 0 }}
       whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.8 }}
+      transition={{ delay, duration: ANIMATION_DURATION }}
       className={className}
     >
       {children}
     </motion.div>
   );
-}
+};
+
+// Utility functions
+const getEmailJSConfig = (): EmailJSConfig | null => {
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  if (!serviceId || !templateId || !publicKey) {
+    console.error('Configurações do EmailJS não encontradas. Verifique o arquivo .env.local');
+    return null;
+  }
+
+  return { serviceId, templateId, publicKey };
+};
+
+const createTemplateParams = (formData: FormData): TemplateParams => ({
+  from_name: formData.name,
+  from_email: formData.email,
+  phone: formData.phone,
+  company: formData.company,
+  city: formData.city,
+  segment: formData.segment,
+  message: formData.message,
+  to_email: CONTACT_EMAIL,
+  reply_to: formData.email
+});
 
 const ContactFormSection = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    city: '',
-    segment: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const resetForm = useCallback(() => {
+    setFormData(INITIAL_FORM_DATA);
+  }, []);
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Configurações do EmailJS usando variáveis de ambiente
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      // Verificar se as configurações estão definidas
-      if (!serviceId || !templateId || !publicKey) {
-        console.error('Configurações do EmailJS não encontradas. Verifique o arquivo .env.local');
-        alert('Serviço de email não configurado. Entre em contato diretamente pelo email: adm@gmvisionco.com');
+      const config = getEmailJSConfig();
+      
+      if (!config) {
+        alert(`Serviço de email não configurado. Entre em contato diretamente pelo email: ${CONTACT_EMAIL}`);
         return;
       }
 
-      // Preparar dados para o template
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        company: formData.company,
-        city: formData.city,
-        segment: formData.segment,
-        message: formData.message,
-        to_email: 'adm@gmvisionco.com',
-        reply_to: formData.email
-      };
-
-      // Enviar email usando EmailJS
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      const templateParams = createTemplateParams(formData);
+      
+      await emailjs.send(config.serviceId, config.templateId, templateParams, config.publicKey);
       
       console.log('Email enviado com sucesso!');
       setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        city: '',
-        segment: '',
-        message: ''
-      });
+      resetForm();
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
-      alert('Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente pelo email: adm@gmvisionco.com');
+      alert(`Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente pelo email: ${CONTACT_EMAIL}`);
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [formData, resetForm]);
+
+  const handleNewMessage = useCallback(() => {
+    setIsSubmitted(false);
+  }, []);
+
+  // Memoized success screen
+  const successScreen = useMemo(() => (
+    <section 
+      id="contato" 
+      className="py-16 lg:py-32" 
+      style={{backgroundColor: '#f7f7f7'}}
+      aria-live="polite"
+    >
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <AnimatedContainer>
+            <div 
+              className="w-16 lg:w-20 h-16 lg:h-20 mx-auto mb-6 lg:mb-8 rounded-full bg-gmv-lime flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <Send className="w-8 lg:w-10 h-8 lg:h-10 text-gmv-blue" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8 lg:mb-10">
+              Mensagem 
+              <br />
+              <span className="font-normal">Enviada!</span>
+            </h2>
+            <p className="text-gmv-gray leading-relaxed text-base lg:text-lg mb-8 lg:mb-10 max-w-2xl mx-auto">
+              Obrigado pelo seu interesse! Nossa equipe entrará em contato em breve para apresentar as melhores soluções para seu negócio.
+            </p>
+            <button 
+              onClick={handleNewMessage}
+              className="inline-flex items-center px-6 lg:px-8 py-2 lg:py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gmv-blue focus:ring-opacity-50"
+              aria-label="Enviar uma nova mensagem"
+            >
+              Enviar Outra Mensagem
+            </button>
+          </AnimatedContainer>
+        </div>
+      </div>
+    </section>
+  ), [handleNewMessage]);
 
   if (isSubmitted) {
-    return (
-  <section id="contato" className="py-16 lg:py-32" style={{backgroundColor: '#f7f7f7'}}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <AnimatedContainer>
-              <div className="w-16 lg:w-20 h-16 lg:h-20 mx-auto mb-6 lg:mb-8 rounded-full bg-gmv-lime flex items-center justify-center">
-                <Send className="w-8 lg:w-10 h-8 lg:h-10 text-gmv-blue" />
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light font-halenoir text-gmv-blue leading-tight mb-8 lg:mb-10">
-                Mensagem 
-                <br />
-                <span className="font-normal">Enviada!</span>
-              </h2>
-              <p className="text-gmv-gray leading-relaxed text-base lg:text-lg mb-8 lg:mb-10 max-w-2xl mx-auto">
-                Obrigado pelo seu interesse! Nossa equipe entrará em contato em breve para apresentar as melhores soluções para seu negócio.
-              </p>
-              <button 
-                onClick={() => setIsSubmitted(false)}
-                className="inline-flex items-center px-6 lg:px-8 py-2 lg:py-3 border border-gmv-blue text-gmv-blue rounded-full hover:bg-gmv-blue hover:text-white transition-all duration-300 hover:scale-105"
-              >
-                Enviar Outra Mensagem
-              </button>
-            </AnimatedContainer>
-          </div>
-        </div>
-      </section>
-    );
+    return successScreen;
   }
 
   return (
