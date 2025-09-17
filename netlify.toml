@@ -17,6 +17,13 @@
   bundle = true
   minify = true
 
+# Configuração do secrets scanning
+[secrets]
+  # Ignorar arquivos de build que podem conter variáveis de ambiente do frontend
+  SECRETS_SCAN_OMIT_PATHS = ["dist/**", "*.js.map", "*.css.map"]
+  # Permitir essas chaves específicas do EmailJS no frontend
+  SECRETS_SCAN_OMIT_KEYS = ["VITE_EMAILJS_PUBLIC_KEY", "VITE_EMAILJS_SERVICE_ID", "VITE_EMAILJS_TEMPLATE_ID"]
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

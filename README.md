@@ -20,7 +20,11 @@ cd led-shine-connect
 # Passo 3: Instale as dependências necessárias
 npm i
 
-# Passo 4: Execute o servidor de desenvolvimento
+# Passo 4: Configure as variáveis de ambiente
+cp .env.example .env.local
+# Edite o arquivo .env.local com suas configurações do EmailJS
+
+# Passo 5: Execute o servidor de desenvolvimento
 npm run dev
 ```
 
@@ -33,6 +37,24 @@ Este projeto foi construído com:
 - React
 - shadcn-ui
 - Tailwind CSS
+
+## Variáveis de Ambiente
+
+Este projeto usa EmailJS para o formulário de contato. Você precisa configurar as seguintes variáveis de ambiente:
+
+1. Copie o arquivo `.env.example` para `.env.local`:
+```sh
+cp .env.example .env.local
+```
+
+2. Obtenha suas credenciais no [EmailJS](https://www.emailjs.com/) e preencha:
+```
+VITE_EMAILJS_SERVICE_ID=seu_service_id
+VITE_EMAILJS_TEMPLATE_ID=seu_template_id  
+VITE_EMAILJS_PUBLIC_KEY=sua_public_key
+```
+
+**Nota**: Essas variáveis com prefixo `VITE_` são incluídas no bundle frontend e são visíveis no código do cliente. Isso é normal para configurações do EmailJS, que são públicas por design.
 
 ## Como fazer deploy
 
