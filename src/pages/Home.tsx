@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -12,24 +13,26 @@ import FaqSection from "@/components/FaqSection";
 import CtaSection from "@/components/CtaSection";
 import ContactFormSection from "@/components/ContactFormSection";
 
-const Home = () => {
+const Home = memo(() => {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen relative" role="main" aria-label="Página inicial da GMvision">
       <Header />
       <HeroSection />
       <TextRevealSection />
       <AboutSection />
-  {/* <NumbersSection /> */}
+      {/* <NumbersSection /> */}
       <DifferencesSection />
       <TextHorizonSection />
       <CasesSection />
       <TipoClienteSection />
       <FaqSection />
-    <CtaSection />
-    <ContactFormSection />
+      <CtaSection />
+      <ContactFormSection />
       <Footer />
-    </div>
+    </main>
   );
-};
+});
+
+Home.displayName = 'Home';
 
 export default Home;

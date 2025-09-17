@@ -1,13 +1,16 @@
+/* ===== FONTES EXTERNAS ===== */
 /* Google Font - Montserrat SemiBold Italic */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap');
 
 /* Google Font - Noto Sans Japanese Medium */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
 
+/* ===== TAILWIND CSS ===== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ===== FONTES CUSTOMIZADAS ===== */
 /* Custom Font - Pavelt */
 @font-face {
   font-family: 'Pavelt';
@@ -44,12 +47,13 @@
   font-display: swap;
 }
 
+/* ===== DESIGN SYSTEM VARIABLES ===== */
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+All colors MUST be HSL. */
 
 @layer base {
   :root {
+    /* ===== CORE COLORS ===== */
     --background: 0 0% 97%; /* GMvision White */
     --foreground: 210 95% 26%; /* GMvision Blue */
 
@@ -80,7 +84,7 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    /* LED Tech Design System */
+    /* ===== LED TECH DESIGN SYSTEM ===== */
     --tech-blue: 210 95% 26%; /* #05487f - GMvision Blue */
     --tech-cyan: 188 95% 68%;
     --tech-purple: 258 90% 66%;
@@ -90,20 +94,21 @@ All colors MUST be HSL.
     --tech-lime: 75 100% 45%; /* #b8e600 - GMvision Lime */
     --tech-white: 0 0% 97%; /* #f7f7f7 - GMvision White */
 
-    /* Gradients */
+    /* ===== GRADIENTS ===== */
     --gradient-primary: linear-gradient(135deg, hsl(var(--tech-blue)), hsl(var(--tech-lime)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--tech-gray)), hsl(var(--tech-blue)));
     --gradient-dark: linear-gradient(135deg, hsl(var(--tech-dark)), hsl(var(--tech-dark-lighter)));
 
-    /* Effects */
+    /* ===== EFFECTS ===== */
     --glow-blue: 0 0 30px hsl(var(--tech-blue) / 0.3);
     --glow-cyan: 0 0 30px hsl(var(--tech-cyan) / 0.3);
     --shadow-tech: 0 10px 40px hsl(var(--tech-blue) / 0.2);
 
-    /* Transitions */
+    /* ===== TRANSITIONS ===== */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+    /* ===== SIDEBAR ===== */
     --sidebar-background: 220 15% 7%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 207 89% 54%;
@@ -112,8 +117,13 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217 19% 20%;
     --sidebar-ring: 207 89% 54%;
+
+    /* ===== ANIMATIONS ===== */
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
   }
 
+  /* ===== LIGHT THEME OVERRIDE ===== */
   .light {
     --background: 0 0% 100%;
     --foreground: 220 15% 7%;
@@ -143,27 +153,27 @@ All colors MUST be HSL.
     --input: 214.3 31.8% 91.4%;
     --ring: 207 89% 54%;
   }
-  .theme {
-    --animate-accordion-down: accordion-down 0.2s ease-out;
-    --animate-accordion-up: accordion-up 0.2s ease-out;
-  }
 }
 
+/* ===== BASE STYLES ===== */
 @layer base {
   * {
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
-  }
-
   html {
     scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    position: relative; /* Garante que scroll offset seja calculado corretamente */
+  }
 }
 
+/* ===== UTILITY CLASSES ===== */
 @layer utilities {
+  /* Gradient Utilities */
   .gradient-primary {
     background: var(--gradient-primary);
   }
@@ -176,6 +186,7 @@ All colors MUST be HSL.
     background: var(--gradient-dark);
   }
 
+  /* Glow Effects */
   .glow-blue {
     box-shadow: var(--glow-blue);
   }
@@ -184,10 +195,12 @@ All colors MUST be HSL.
     box-shadow: var(--glow-cyan);
   }
 
+  /* Shadow Effects */
   .shadow-tech {
     box-shadow: var(--shadow-tech);
   }
 
+  /* Transitions */
   .transition-smooth {
     transition: var(--transition-smooth);
   }
@@ -196,6 +209,7 @@ All colors MUST be HSL.
     transition: var(--transition-bounce);
   }
 
+  /* Text Gradients */
   .text-gradient-primary {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -204,37 +218,37 @@ All colors MUST be HSL.
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
+/* ===== KEYFRAME ANIMATIONS ===== */
 @theme inline {
   @keyframes accordion-down {
-  from {
-    height: 0;
+    from {
+      height: 0;
     }
-  to {
-    height: var(--radix-accordion-content-height);
+    to {
+      height: var(--radix-accordion-content-height);
     }
   }
+  
   @keyframes accordion-up {
-  from {
-    height: var(--radix-accordion-content-height);
+    from {
+      height: var(--radix-accordion-content-height);
     }
-  to {
-    height: 0;
+    to {
+      height: 0;
     }
   }
 }
 
-/* Estilos para o Mapa Interativo do Brasil */
+/* ===== MAPA INTERATIVO DO BRASIL ===== */
+/* Estilos específicos para o componente de mapa */
+#svg-map {
+  /* Container do mapa */
+  width: 100%;
+  height: auto;
+}
+
 #svg-map path { 
-  fill: #9ca3af; /* Cinza para todos os estados */
+  fill: #9ca3af; /* Cinza padrão para todos os estados */
   transition: fill 0.3s ease;
 }
 
@@ -242,23 +256,32 @@ All colors MUST be HSL.
   fill: #fff; 
   font: 12px Arial, sans-serif; 
   font-weight: bold;
+  pointer-events: none; /* Evita interferência nos eventos de hover */
 }
 
 #svg-map a { 
   text-decoration: none;
+  cursor: pointer;
 }
 
-/* Estado de São Paulo com cliente - azul */
+/* Estado de São Paulo com cliente ativo - azul */
 #svg-map a[href="#saopaulo"] path {
   fill: #0094d9 !important;
 }
 
-/* Hover apenas para estados com clientes (azul claro) */
+/* Hover para estados com clientes (azul escuro) */
 #svg-map a[href="#saopaulo"]:hover path {
-  fill: #003399 !important; /* Azul escuro no hover */
+  fill: #003399 !important;
   cursor: pointer;
 }
 
+/* Círculos decorativos no mapa */
 #svg-map .circle { 
   fill: #66ccff;
+  transition: fill 0.3s ease;
+}
+
+/* Hover para círculos */
+#svg-map .circle:hover {
+  fill: #3399ff;
 }

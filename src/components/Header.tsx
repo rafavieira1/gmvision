@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
@@ -11,132 +11,291 @@ import {
 } from "@/components/ui/navigation-menu";
 import logo from "/logocompletobranco.png";
 
+// Types
+interface NavigationItem {
+  title: string;
+  href: string;
+  description: string;
+}
+
+interface ButtonStyle {
+  primary: string;
+  secondary: string;
+}
+
+// Constants
+const NAVIGATION_ITEMS: NavigationItem[] = [
+  {
+    title: "Quero ser um parceiro",
+    href: "/estabelecimentos",
+    description: "Transforme seu espaço em um ponto de mídia rentável",
+  },
+  {
+    title: "Locais de parceiros",
+    href: "/locais-parceiros",
+    description: "Conheça onde seus anúncios podem ser exibidos",
+  },
+];
+
+const BUTTON_STYLES: Record<string, ButtonStyle> = {
+  light: {
+    primary: "border border-white text-white hover:bg-white hover:text-gmv-blue",
+    secondary: "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90",
+  },
+  dark: {
+    primary: "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white",
+    secondary: "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90",
+  },
+};
+
+const SCROLL_OPTIONS: ScrollToOptions = { top: 0, behavior: 'smooth' };
+
+// Helper functions
+const scrollToTop = (): void => {
+  window.scrollTo(SCROLL_OPTIONS);
+};
+
+const delayedScrollToTop = (): void => {
+  setTimeout(scrollToTop, 100);
+};
+
+// Components
+interface ActionButtonProps {
+  to: string;
+  onClick: () => void;
+  variant: 'primary' | 'secondary';
+  className?: string;
+  children: React.ReactNode;
+  theme: 'light' | 'dark';
+}
+
+const ActionButton = ({ to, onClick, variant, className = '', children, theme }: ActionButtonProps) => (
+  <Link to={to} onClick={onClick}>
+    <button 
+      className={cn(
+        "px-2 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap",
+        BUTTON_STYLES[theme][variant],
+        className
+      )}
+      aria-label={`Ir para ${to}`}
+    >
+      {children}
+    </button>
+  </Link>
+);
+
+interface MobileActionButtonProps extends ActionButtonProps {
+  onMenuClose: () => void;
+}
+
+const MobileActionButton = ({ onMenuClose, onClick, ...props }: MobileActionButtonProps) => (
+  <ActionButton
+    {...props}
+    onClick={() => {
+      onClick();
+      onMenuClose();
+    }}
+    className="w-full block"
+  />
+);
+
+interface NavigationLinkProps {
+  to: string;
+  onClick: () => void;
+  children: React.ReactNode;
+  className?: string;
+  theme: 'light' | 'dark';
+}
+
+const NavigationLink = ({ to, onClick, children, className = '', theme }: NavigationLinkProps) => (
+  <Link 
+    to={to} 
+    onClick={onClick}
+    className={cn(
+      "px-4 py-2 text-lg md:text-lg font-normal transition-colors duration-200",
+      theme === 'light'
+        ? "text-white/90 hover:text-white"
+        : "text-gmv-gray hover:text-gmv-blue",
+      className
+    )}
+    aria-label={`Ir para ${to}`}
+  >
+    {children}
+  </Link>
+);
+
+interface DropdownItemProps {
+  item: NavigationItem;
+  onClick: () => void;
+}
+
+const DropdownItem = ({ item, onClick }: DropdownItemProps) => (
+  <Link
+    to={item.href}
+    onClick={onClick}
+    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-50 focus:bg-gray-50"
+    aria-label={item.title}
+  >
+    <div className="text-sm font-medium leading-none text-gmv-blue">
+      {item.title}
+    </div>
+    <p className="line-clamp-2 text-sm leading-snug text-gmv-gray mt-1">
+      {item.description}
+    </p>
+  </Link>
+);
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   
   const isHomePage = location.pathname === "/";
-  const isSubPage = location.pathname === "/anunciantes" || location.pathname === "/estabelecimentos" || location.pathname === "/locais-parceiros";
+  const isSubPage = useMemo(() => 
+    ["/anunciantes", "/estabelecimentos", "/locais-parceiros"].includes(location.pathname),
+    [location.pathname]
+  );
+  
+  const theme = useMemo(() => 
+    (isHomePage || isSubPage) ? 'light' : 'dark',
+    [isHomePage, isSubPage]
+  );
 
-  // Detecta o scroll da página
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  // Event handlers
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 0);
   }, []);
 
-  // Scroll para o topo quando a rota muda
+  const handleLogoClick = useCallback(() => {
+    if (isHomePage) {
+      scrollToTop();
+    }
+  }, [isHomePage]);
+
+  const handleMenuToggle = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
+
+  const handleMenuClose = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
+
+  const handleNavigationClick = useCallback((callback?: () => void) => {
+    return () => {
+      if (callback) callback();
+      delayedScrollToTop();
+    };
+  }, []);
+
+  // Effects
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+  useEffect(() => {
+    scrollToTop();
   }, [location.pathname]);
 
-  const handleLogoClick = () => {
-    if (location.pathname === '/') {
-      // Se já estamos na home, volta para o topo
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    // Se não estamos na home, o Link já cuida da navegação para "/"
-  };
-
-  const handleAnunciantesClick = () => {
-    // Pequeno delay para garantir que a navegação aconteça primeiro
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
-  };
-
-  const handleEstabelecimentosClick = () => {
-    // Pequeno delay para garantir que a navegação aconteça primeiro
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
-  };
-
-  return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isHomePage 
-        ? isScrolled 
+  // Computed styles
+  const headerStyles = useMemo(() => {
+    const base = "fixed top-0 left-0 right-0 z-50 transition-all duration-300";
+    
+    if (isHomePage) {
+      return cn(base, 
+        isScrolled 
           ? "backdrop-blur-lg bg-black/60 border-b border-white/20" 
           : "bg-transparent border-b border-transparent"
-        : "backdrop-blur-lg bg-black/60 border-b border-white/20"
-    }`}>
+      );
+    }
+    
+    return cn(base, "backdrop-blur-lg bg-black/60 border-b border-white/20");
+  }, [isHomePage, isScrolled]);
+
+  const mobileMenuStyles = useMemo(() => {
+    const base = "md:hidden absolute top-20 lg:top-24 left-0 right-0";
+    
+    if (isHomePage) {
+      return cn(base,
+        isScrolled
+          ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
+          : "bg-black/50 backdrop-blur-md border-b border-white/10"
+      );
+    }
+    
+    if (isSubPage) {
+      return cn(base, "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20");
+    }
+    
+    return cn(base, "bg-gmv-white backdrop-blur-lg border-b border-gmv-gray/20");
+  }, [isHomePage, isSubPage, isScrolled]);
+
+  return (
+    <header className={headerStyles} role="banner">
       <div className="container mx-auto px-4 h-20 lg:h-24 flex items-center relative">
-        {/* Logo à esquerda */}
-        <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
-          <img src={logo} alt="GMvision" className="w-24 lg:w-32 h-24 lg:h-32 object-contain" />
+        {/* Logo */}
+        <Link 
+          to="/" 
+          className="flex items-center group" 
+          onClick={handleLogoClick}
+          aria-label="GMvision - Ir para página inicial"
+        >
+          <img 
+            src={logo} 
+            alt="GMvision Logo" 
+            className="w-24 lg:w-32 h-24 lg:h-32 object-contain" 
+          />
         </Link>
 
-        {/* Navigation Centralizada */}
+        {/* Desktop Navigation */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <NavigationMenu className="hidden md:block">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link 
-                  to="/" 
+                <NavigationLink
+                  to="/"
                   onClick={handleLogoClick}
-                  className={cn(
-                    "px-4 py-2 text-lg font-normal transition-colors duration-200",
-                    isHomePage || isSubPage
-                      ? "text-white/90 hover:text-white"
-                      : "text-gmv-gray hover:text-gmv-blue"
-                  )}
+                  theme={theme}
                 >
                   Início
-                </Link>
+                </NavigationLink>
               </NavigationMenuItem>
               
               <NavigationMenuItem>
-                <Link 
-                  to="/anunciantes" 
-                  onClick={handleAnunciantesClick}
-                  className={cn(
-                    "px-4 py-2 text-lg font-normal transition-colors duration-200",
-                    isHomePage || isSubPage
-                      ? "text-white/90 hover:text-white"
-                      : "text-gmv-gray hover:text-gmv-blue"
-                  )}
+                <NavigationLink
+                  to="/anunciantes"
+                  onClick={handleNavigationClick()}
+                  theme={theme}
                 >
                   Anunciantes
-                </Link>
+                </NavigationLink>
               </NavigationMenuItem>
               
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
                   className={cn(
                     "px-4 py-2 text-lg font-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent h-auto",
-                    isHomePage || isSubPage
+                    theme === 'light'
                       ? "text-white/90 hover:text-white"
                       : "text-gmv-gray hover:text-gmv-blue"
                   )}
+                  aria-label="Menu de parceiros"
                 >
                   Parceiros
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[400px] gap-3 p-4 bg-white rounded-lg shadow-lg">
-                    <Link
-                      to="/estabelecimentos"
-                      onClick={handleEstabelecimentosClick}
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-50"
-                    >
-                      <div className="text-sm font-medium leading-none text-gmv-blue">Quero ser um parceiro</div>
-                      <p className="line-clamp-2 text-sm leading-snug text-gmv-gray mt-1">
-                        Transforme seu espaço em um ponto de mídia rentável
-                      </p>
-                    </Link>
-                    <Link
-                      to="/locais-parceiros"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-50"
-                    >
-                      <div className="text-sm font-medium leading-none text-gmv-blue">Locais de parceiros</div>
-                      <p className="line-clamp-2 text-sm leading-snug text-gmv-gray mt-1">
-                        Conheça onde seus anúncios podem ser exibidos
-                      </p>
-                    </Link>
+                  <div 
+                    className="grid w-[400px] gap-3 p-4 bg-white rounded-lg shadow-lg"
+                    role="menu"
+                    aria-label="Opções para parceiros"
+                  >
+                    {NAVIGATION_ITEMS.map((item) => (
+                      <DropdownItem
+                        key={item.href}
+                        item={item}
+                        onClick={handleNavigationClick()}
+                      />
+                    ))}
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -144,32 +303,35 @@ const Header = () => {
           </NavigationMenu>
         </div>
 
-        {/* Botões de ação à direita */}
+        {/* Desktop Action Buttons */}
         <div className="hidden md:flex items-center space-x-2 lg:space-x-3 ml-auto pr-2 lg:pr-4">
-          <Link to="/anunciantes" onClick={handleAnunciantesClick}>
-            <button className={`px-2 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
-              isHomePage || isSubPage 
-                ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
-                : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
-            }`}>
-              Quero Anunciar
-            </button>
-          </Link>
-          <Link to="/estabelecimentos" onClick={handleEstabelecimentosClick}>
-            <button className={`px-2 md:px-3 lg:px-6 py-1.5 md:py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap ${
-              isHomePage || isSubPage
-                ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
-                : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
-            }`}>
-              Quero Instalar
-            </button>
-          </Link>
+          <ActionButton
+            to="/anunciantes"
+            onClick={handleNavigationClick()}
+            variant="primary"
+            theme={theme}
+          >
+            Quero Anunciar
+          </ActionButton>
+          <ActionButton
+            to="/estabelecimentos"
+            onClick={handleNavigationClick()}
+            variant="secondary"
+            theme={theme}
+          >
+            Quero Instalar
+          </ActionButton>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className={cn("md:hidden p-2 ml-auto", isHomePage || isSubPage ? "text-white" : "text-gmv-blue")}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className={cn(
+            "md:hidden p-2 ml-auto transition-colors",
+            theme === 'light' ? "text-white hover:text-white/80" : "text-gmv-blue hover:text-gmv-blue/80"
+          )}
+          onClick={handleMenuToggle}
+          aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -177,103 +339,94 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className={`md:hidden absolute top-20 lg:top-24 left-0 right-0 ${
-          isHomePage 
-            ? isScrolled
-              ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
-              : "bg-black/50 backdrop-blur-md border-b border-white/10"
-            : isSubPage
-              ? "bg-gmv-blue/95 backdrop-blur-lg border-b border-white/20"
-              : "bg-gmv-white backdrop-blur-lg border-b border-gmv-gray/20"
-        }`}>
-          <div className="container mx-auto px-4 py-4 lg:py-6 space-y-3 lg:space-y-4">
-            <Link
+        <nav 
+          className={mobileMenuStyles}
+          role="navigation"
+          aria-label="Menu de navegação mobile"
+        >
+          <div className="container mx-auto px-4 py-4 lg:py-6 space-y-4">
+            <NavigationLink
               to="/"
-              onClick={() => { handleLogoClick(); setIsMenuOpen(false); }}
-              className={cn(
-                "block w-full text-left text-lg font-normal transition-colors duration-200",
-                isHomePage || isSubPage
-                  ? "text-white/90 hover:text-white"
-                  : "text-gmv-gray hover:text-gmv-blue"
-              )}
+              onClick={() => {
+                handleLogoClick();
+                handleMenuClose();
+              }}
+              theme={theme}
+              className="block w-full text-left text-base px-0 py-3"
             >
               Início
-            </Link>
+            </NavigationLink>
             
-            <Link
+            <NavigationLink
               to="/anunciantes"
-              onClick={() => { handleAnunciantesClick(); setIsMenuOpen(false); }}
-              className={cn(
-                "block w-full text-left text-lg font-normal transition-colors duration-200",
-                isHomePage || isSubPage
-                  ? "text-white/90 hover:text-white"
-                  : "text-gmv-gray hover:text-gmv-blue"
-              )}
+              onClick={() => {
+                handleNavigationClick()();
+                handleMenuClose();
+              }}
+              theme={theme}
+              className="block w-full text-left text-base px-0 py-3"
             >
               Anunciantes
-            </Link>
+            </NavigationLink>
             
-            <div className="space-y-1.5 lg:space-y-2">
+            <div className="space-y-2">
               <div className={cn(
-                "text-base lg:text-lg font-normal",
-                isHomePage || isSubPage
-                  ? "text-white/90"
-                  : "text-gmv-gray"
+                "text-base font-normal px-0 py-3",
+                theme === 'light' ? "text-white/90" : "text-gmv-gray"
               )}>
                 Parceiros
               </div>
-              <div className="pl-3 lg:pl-4 space-y-1.5 lg:space-y-2">
-                <Link
-                  to="/estabelecimentos"
-                  onClick={() => { handleEstabelecimentosClick(); setIsMenuOpen(false); }}
-                  className={cn(
-                    "block text-sm transition-colors duration-200",
-                    isHomePage || isSubPage
-                      ? "text-white/70 hover:text-white"
-                      : "text-gmv-gray hover:text-gmv-blue"
-                  )}
-                >
-                  Quero ser um parceiro
-                </Link>
-                <Link
-                  to="/locais-parceiros"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={cn(
-                    "block text-sm transition-colors duration-200",
-                    isHomePage || isSubPage
-                      ? "text-white/70 hover:text-white"
-                      : "text-gmv-gray hover:text-gmv-blue"
-                  )}
-                >
-                  Locais de parceiros
-                </Link>
+              <div 
+                className="pl-4 space-y-2"
+                role="list"
+              >
+                {NAVIGATION_ITEMS.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => {
+                      handleNavigationClick()();
+                      handleMenuClose();
+                    }}
+                    className={cn(
+                      "block text-base transition-colors duration-200 py-2",
+                      theme === 'light'
+                        ? "text-white/70 hover:text-white"
+                        : "text-gmv-gray hover:text-gmv-blue"
+                    )}
+                    aria-label={item.title}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
               </div>
             </div>
             
-            <div className={`pt-3 lg:pt-4 space-y-4 lg:space-y-3 ${
-              isHomePage || isSubPage ? "border-t border-white/20" : "border-t border-gmv-gray/20"
-            }`}>
-              <Link to="/anunciantes" onClick={() => { handleAnunciantesClick(); setIsMenuOpen(false); }}>
-                <button className={`w-full px-4 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
-                  isHomePage || isSubPage 
-                    ? "border border-white text-white hover:bg-white hover:text-gmv-blue" 
-                    : "border border-gmv-blue text-gmv-blue hover:bg-gmv-blue hover:text-white"
-                }`}>
-                  Quero Anunciar
-                </button>
-              </Link>
-              <Link to="/estabelecimentos" onClick={() => { handleEstabelecimentosClick(); setIsMenuOpen(false); }}>
-                <button className={`w-full px-4 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
-                  isHomePage || isSubPage
-                    ? "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
-                    : "bg-gmv-lime text-gmv-blue hover:bg-gmv-lime/90"
-                }`}>
-                  Quero Instalar
-                </button>
-              </Link>
+            <div className={cn(
+              "pt-4 flex flex-col gap-4",
+              theme === 'light' ? "border-t border-white/20" : "border-t border-gmv-gray/20"
+            )}>
+              <MobileActionButton
+                to="/anunciantes"
+                onClick={handleNavigationClick()}
+                onMenuClose={handleMenuClose}
+                variant="primary"
+                theme={theme}
+              >
+                Quero Anunciar
+              </MobileActionButton>
+              <MobileActionButton
+                to="/estabelecimentos"
+                onClick={handleNavigationClick()}
+                onMenuClose={handleMenuClose}
+                variant="secondary"
+                theme={theme}
+              >
+                Quero Instalar
+              </MobileActionButton>
             </div>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
