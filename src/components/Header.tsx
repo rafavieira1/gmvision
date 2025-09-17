@@ -163,7 +163,10 @@ const Header = () => {
 
   // Event handlers
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 0);
+    // Use requestAnimationFrame to avoid forced reflow
+    requestAnimationFrame(() => {
+      setIsScrolled(window.scrollY > 0);
+    });
   }, []);
 
   const handleLogoClick = useCallback(() => {

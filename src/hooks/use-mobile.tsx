@@ -7,11 +7,17 @@ export function useIsMobile() {
 
   React.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    const onChange = (event: MediaQueryListEvent) => {
+      // Use matchMedia result instead of reading innerWidth to avoid reflow
+      setIsMobile(event.matches)
     }
+    
+    // Set initial value using matchMedia
+    setIsMobile(mql.matches)
+    
+    // Use the modern addEventListener API
     mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    
     return () => mql.removeEventListener("change", onChange)
   }, [])
 

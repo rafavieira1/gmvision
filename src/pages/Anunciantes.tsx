@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "/invert.png";
+import heroImage from "/invert.avif";
 
 // TypeScript interfaces
 interface ProcessStep {

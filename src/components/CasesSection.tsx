@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { Dumbbell, Heart, Building, Users, LucideIcon } from "lucide-react";
-import gymImage from "/led-panel-gym.jpg";
-import clinicImage from "/led-panel-clinic.jpg";
-import elevatorImage from "/led-panel-elevator.jpg";
-import heroImage from "/hero-led-business.jpg";
+import gymImage from "/led-panel-gym.avif";
+import clinicImage from "/led-panel-clinic.avif";
+import elevatorImage from "/led-panel-elevator.avif";
+import heroImage from "/hero-led-business.avif";
 
 // Constants
 const SCROLL_THROTTLE_DELAY = 16; // ~60fps
@@ -105,6 +105,16 @@ const CUSTOM_STYLES = `
   
   .image-smooth-transition {
     animation: imageTransition ${ANIMATION_DURATION.image}ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    will-change: transform, opacity, filter;
+  }
+  
+  /* Optimize animations for better performance */
+  .animated-element {
+    will-change: transform, opacity;
+  }
+  
+  .animated-element.animation-complete {
+    will-change: auto;
   }
 `;
 
@@ -157,6 +167,18 @@ const CasesSection = () => {
   const [activeSection, setActiveSection] = useState<number>(0);
   const scrollThrottleRef = useRef<boolean>(false);
   const sectionRef = useRef<HTMLElement | null>(null);
+  const dimensionsRef = useRef<{ sectionTop: number; sectionHeight: number } | null>(null);
+
+  // Cache dimensions to avoid repeated layout calculations
+  const cacheDimensions = useCallback(() => {
+    const sectionElement = sectionRef.current || document.getElementById('cases');
+    if (sectionElement && !dimensionsRef.current) {
+      dimensionsRef.current = {
+        sectionTop: sectionElement.offsetTop,
+        sectionHeight: sectionElement.offsetHeight
+      };
+    }
+  }, []);
 
   // Inject CSS styles - optimized to run only once
   useEffect(() => {
@@ -173,19 +195,36 @@ const CasesSection = () => {
     };
   }, []);
 
-  // Optimized scroll handler with better performance
+  // Cache dimensions on mount and resize
+  useEffect(() => {
+    cacheDimensions();
+    
+    const handleResize = () => {
+      dimensionsRef.current = null; // Reset cache on resize
+      cacheDimensions();
+    };
+    
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, [cacheDimensions]);
+
+  // Optimized scroll handler with cached dimensions
   const handleScroll = useCallback(() => {
     if (scrollThrottleRef.current) return;
     
     scrollThrottleRef.current = true;
     requestAnimationFrame(() => {
+      // Use cached scroll values to avoid multiple reads
       const scrolled = window.scrollY;
       const windowHeight = window.innerHeight;
-      const sectionElement = sectionRef.current || document.getElementById('cases');
       
-      if (sectionElement) {
-        const sectionTop = sectionElement.offsetTop;
-        const sectionHeight = sectionElement.offsetHeight;
+      // Use cached dimensions or fallback to calculation
+      if (!dimensionsRef.current) {
+        cacheDimensions();
+      }
+      
+      if (dimensionsRef.current) {
+        const { sectionTop, sectionHeight } = dimensionsRef.current;
         const relativeScroll = scrolled - sectionTop + windowHeight / 2;
         const sectionProgress = relativeScroll / sectionHeight;
         
@@ -201,7 +240,7 @@ const CasesSection = () => {
       
       scrollThrottleRef.current = false;
     });
-  }, []);
+  }, [cacheDimensions]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -229,8 +268,8 @@ const CasesSection = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               
               {/* Lado esquerdo - Conteúdo */}
-              <div className="text-gmv-blue space-y-4 lg:space-y-8 transform transition-all duration-1000 ease-out order-1 lg:order-1">
-                <div className="space-y-2 lg:space-y-4">
+              <div className="text-gmv-blue space-y-6 lg:space-y-8 transform transition-all duration-1000 ease-out order-1 lg:order-1">
+                <div className="space-y-3 lg:space-y-4">
                   <div className="flex items-center space-x-3 lg:space-x-4 transform transition-all duration-1200 ease-out delay-100">
                     <span 
                       key={`number-${currentEstablishment.number}`}
@@ -242,7 +281,7 @@ const CasesSection = () => {
                     </span>
                     <span 
                       key={`category-${currentEstablishment.category}`}
-                      className="text-xs lg:text-sm font-medium text-gmv-lime uppercase tracking-wider transition-all duration-1000 ease-out delay-200 transform"
+                      className="text-xs lg:text-sm font-bold italic text-gmv-gray uppercase tracking-wider transition-all duration-1000 ease-out delay-200 transform"
                       style={createAnimationStyle('fadeInRight', ANIMATION_DURATION.fade, ANIMATION_DELAYS.category)}
                     >
                       {currentEstablishment.category}
@@ -269,7 +308,7 @@ const CasesSection = () => {
                 {/* Features */}
                 <div 
                   key={`features-${currentEstablishment.id}`}
-                  className="space-y-2 lg:space-y-3 transition-all duration-1000 ease-out delay-700"
+                  className="space-y-3 lg:space-y-3 transition-all duration-1000 ease-out delay-700"
                   style={createAnimationStyle('fadeInUp', ANIMATION_DURATION.fade, ANIMATION_DELAYS.features)}
                   role="list"
                   aria-label="Características do estabelecimento"

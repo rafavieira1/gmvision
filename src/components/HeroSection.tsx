@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react";
-import heroImage from "/degrade.png";
+import heroImage from "/degrade.avif";
 import completoImage from "/completo.png";
 
 // Types

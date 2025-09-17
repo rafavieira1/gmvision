@@ -10,7 +10,7 @@ interface BackgroundTextProps {
 const SECTION_CONTENT = {
   mainTitle: "GMvision",
   subtitle: "O Futuro da sua marca mais iluminado.",
-  backgroundImage: "/chat.png",
+  backgroundImage: "/chat.avif",
   backgroundColor: "#f7f7f7",
 } as const;
 

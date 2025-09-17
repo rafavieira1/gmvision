@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // Constants
 const CTA_DATA = {
-  backgroundImage: '/chat.png',
+  backgroundImage: '/chat.avif',
   title: 'O Futuro da sua marca mais iluminado',
   description: 'Conecte sua marca a estabelecimentos estratégicos através da nossa rede de displays LED inteligentes',
   buttonText: 'Comece Agora',

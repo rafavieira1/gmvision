@@ -23,7 +23,7 @@ const FAQ_DATA: FaqItem[] = [
   {
     id: 3,
     question: "Posso integrar outras ferramentas e sistemas com a GMvision?",
-    answer: "Absolutely! Oferecemos APIs robustas e integrações com principais plataformas de marketing, CRM e analytics. Também suportamos webhooks para sincronização em tempo real com seus sistemas existentes."
+    answer: "Com certeza! Oferecemos APIs robustas e integrações com principais plataformas de marketing, CRM e analytics. Também suportamos webhooks para sincronização em tempo real com seus sistemas existentes."
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const SECTION_STYLES = {
   container: "py-16 md:py-24 lg:py-32 xl:py-40 2xl:py-48 bg-gray-50",
   question: "text-base lg:text-lg font-medium text-gmv-blue pr-4 group-hover:text-gmv-lime transition-colors duration-200",
   answer: "text-sm lg:text-base text-gmv-gray leading-relaxed",
-  partner: "text-gmv-gray/60 font-medium text-base lg:text-lg tracking-wider mx-4 lg:mx-8 flex-shrink-0"
+  partner: "text-gmv-gray-accessible font-medium text-base lg:text-lg tracking-wider mx-4 lg:mx-8 flex-shrink-0"
 } as const;
 
 // Components
