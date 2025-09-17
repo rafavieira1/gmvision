@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { Dumbbell, Heart, Building, Users, LucideIcon } from "lucide-react";
-import gymImage from "/led-panel-gym.avif";
+import gymImage from "/academia.avif";
 import clinicImage from "/led-panel-clinic.avif";
 import elevatorImage from "/led-panel-elevator.avif";
 import heroImage from "/hero-led-business.avif";
@@ -253,16 +253,16 @@ const CasesSection = () => {
     <section 
       id="cases" 
       ref={sectionRef} 
-      className="min-h-[200vh] relative"
+      className="min-h-[200vh] lg:min-h-[200vh] relative"
       aria-label="Casos de uso de painéis LED"
     >
-      {/* Seção fixa com conteúdo que muda */}
+      {/* Desktop: Seção fixa com conteúdo que muda */}
       <div 
-        className="sticky top-0 h-screen flex items-start lg:items-center justify-center overflow-hidden pt-8 lg:pt-0" 
+        className="hidden lg:flex sticky top-0 h-screen items-start lg:items-center justify-center overflow-hidden pt-8 lg:pt-0" 
         style={{backgroundColor: '#f7f7f7'}}
         role="main"
       >
-        {/* Conteúdo principal */}
+        {/* Conteúdo principal - Desktop */}
         <div className="relative z-10 container mx-auto px-4 lg:px-4 mt-16 lg:mt-0">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -348,7 +348,7 @@ const CasesSection = () => {
                   </div>
                 </div>
 
-                {/* Indicador de progresso - ajustado para mobile */}
+                {/* Indicador de progresso - Desktop */}
                 <div 
                   className="absolute -left-2 lg:-left-4 top-1/2 transform -translate-y-1/2"
                   role="tablist"
@@ -386,6 +386,72 @@ const CasesSection = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile: Seções estáticas uma embaixo da outra */}
+      <div className="lg:hidden" style={{backgroundColor: '#f7f7f7'}}>
+        {ESTABLISHMENTS_DATA.map((establishment, index) => (
+          <div 
+            key={`mobile-${establishment.id}`}
+            className="py-12 px-4"
+          >
+            <div className="container mx-auto max-w-4xl">
+              <div className="space-y-8">
+                
+                {/* Cabeçalho */}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <span className="text-4xl font-bold text-gmv-blue opacity-60">
+                      {establishment.number}
+                    </span>
+                    <span className="text-xs font-bold italic text-gmv-gray uppercase tracking-wider">
+                      {establishment.category}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-2xl sm:text-3xl font-bold leading-tight text-gmv-blue">
+                    {establishment.title}
+                  </h2>
+                </div>
+
+                {/* Imagem */}
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="relative w-full h-[280px]">
+                    <img 
+                      src={establishment.image}
+                      alt={`Exemplo de painel LED em ${establishment.title.toLowerCase()}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                  </div>
+                </div>
+
+                {/* Descrição */}
+                <p className="text-base text-gmv-gray leading-relaxed">
+                  {establishment.description}
+                </p>
+
+                {/* Features */}
+                <div className="space-y-3">
+                  {establishment.features.map((feature, featureIndex) => (
+                    <div 
+                      key={`${establishment.id}-mobile-feature-${featureIndex}`}
+                      className="flex items-start space-x-3"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-gmv-lime mt-2 flex-shrink-0" />
+                      <span className="text-sm text-gmv-gray">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Divisor (exceto no último item) */}
+                {index < ESTABLISHMENTS_DATA.length - 1 && (
+                  <div className="border-b border-gmv-gray/20 pt-8" />
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

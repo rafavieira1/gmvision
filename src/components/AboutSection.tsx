@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { useState, useCallback } from "react";
 import clinicImage from "/led-panel-clinic.avif";
-import gymImage from "/led-panel-gym.avif";
+import gymImage from "/academia.avif";
 import elevatorImage from "/led-panel-elevator.avif";
 import heroImage from "/hero-led-business.avif";
 
