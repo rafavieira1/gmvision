@@ -87,14 +87,18 @@ export default {
     			],
     			garamond: [
     				'ITC Garamond',
+    				'Georgia', 
     				'serif'
     			],
     			neiko: [
     				'Neiko',
+    				'Inter',
     				'sans-serif'
     			],
     			halenoir: [
     				'Halenoir Compact',
+    				'Inter',
+    				'Arial',
     				'sans-serif'
     			],
     			montserrat: [
@@ -107,6 +111,7 @@ export default {
     			],
     			apparel: [
     				'Apparel Regular',
+    				'Georgia',
     				'serif'
     			],
     			'noto-jp': [
