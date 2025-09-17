@@ -91,7 +91,7 @@ const FaqItem = ({
 
 const PartnersScroll = () => (
   <div className="mt-12 lg:mt-20 pt-8 lg:pt-12 border-t border-gray-200">
-    <div className="overflow-hidden relative" aria-label="Parceiros da GMvision">
+    <div className="overflow-hidden relative">
       <div className="flex animate-scroll-left whitespace-nowrap">
         {/* First set of partners */}
         {PARTNERS_DATA.map((partner, index) => (

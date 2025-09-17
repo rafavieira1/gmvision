@@ -1,0 +1,27 @@
+# robots.txt para GMvision
+
+# Permitir acesso a todos os rastreadores
+User-agent: *
+Allow: /
+
+# Bloquear acesso a arquivos administrativos (se houver)
+Disallow: /admin/
+Disallow: /.env
+Disallow: /api/private/
+
+# Permitir especificamente recursos importantes
+Allow: /assets/
+Allow: /images/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.svg
+Allow: /*.webp
+
+# Sitemap
+Sitemap: https://gmvision.com.br/sitemap.xml
+
+# Crawl-delay para ser respeitoso com os servidores
+Crawl-delay: 1

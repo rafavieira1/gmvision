@@ -75,7 +75,7 @@ const WHATSAPP_MESSAGE = "Olá! Tenho interesse em ser parceiro da GMvision inst
 
 // Memoized Components
 const HeroSection = memo(() => (
-  <section className="relative h-screen overflow-hidden" aria-label="Seção principal para estabelecimentos">
+  <section className="relative h-screen overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
     <div 
       className="absolute inset-0 bg-cover bg-center"

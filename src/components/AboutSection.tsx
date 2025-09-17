@@ -71,8 +71,9 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
         }
       `}
       onMouseEnter={onMouseEnter}
-      role="button"
+      role="tab"
       tabIndex={0}
+      aria-selected={isActive}
       aria-label={`Ver detalhes do ${item.altText}`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
