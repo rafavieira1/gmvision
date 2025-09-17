@@ -186,8 +186,9 @@ const Footer = () => {
       role="contentinfo"
       aria-label="Rodapé do site"
     >
-      <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-        <AnimatedContainer className="space-y-4">
+      {/* Mobile version - simplified */}
+      <div className="block md:hidden w-full">
+        <AnimatedContainer className="space-y-6">
           <Link 
             to="/" 
             className="flex items-center"
@@ -201,41 +202,78 @@ const Footer = () => {
           </Link>
           
           {/* Contact information */}
-          <div 
-            className="space-y-3 text-sm text-gmv-gray mt-6"
-            role="list"
-            aria-label="Informações de contato"
-          >
+          <div className="space-y-3 text-sm text-gmv-gray">
             {CONTACT_ITEMS.map((item, index) => (
-              <div key={index} role="listitem">
-                <ContactItem item={item} />
+              <div key={index} className="flex items-center space-x-3">
+                <item.icon className="w-4 h-4 text-gmv-gray" />
+                <span>{item.value}</span>
               </div>
             ))}
           </div>
           
-          <p className="text-gmv-gray/70 text-sm mt-8">
+          <p className="text-gmv-gray text-sm leading-relaxed">
+            {CONTACT_INFO.description}
+          </p>
+          
+          <p className="text-gmv-gray/70 text-xs mt-6">
             {copyrightText}
           </p>
         </AnimatedContainer>
+      </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-5 xl:col-span-2 xl:mt-0">
-          {/* Descriptive text column */}
-          <AnimatedContainer delay={ANIMATION_BASE_DELAY}>
-            <div className="mb-10 md:mb-0 col-span-2 md:col-span-1">
-              <p className="text-gmv-gray text-sm leading-relaxed">
-                {CONTACT_INFO.description}
-              </p>
+      {/* Desktop version - full content */}
+      <div className="hidden md:block w-full">
+        <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
+          <AnimatedContainer className="space-y-4">
+            <Link 
+              to="/" 
+              className="flex items-center"
+              aria-label="Ir para página inicial da GMvision"
+            >
+              <img 
+                src={footerLogo} 
+                alt="Logo da GMvision" 
+                className="w-16 h-16 object-contain" 
+              />
+            </Link>
+            
+            {/* Contact information */}
+            <div 
+              className="space-y-3 text-sm text-gmv-gray mt-6"
+              role="list"
+              aria-label="Informações de contato"
+            >
+              {CONTACT_ITEMS.map((item, index) => (
+                <div key={index} role="listitem">
+                  <ContactItem item={item} />
+                </div>
+              ))}
             </div>
+            
+            <p className="text-gmv-gray/70 text-sm mt-8">
+              {copyrightText}
+            </p>
           </AnimatedContainer>
 
-          {/* Link sections */}
-          {FOOTER_LINKS.map((section, index) => (
-            <FooterSection 
-              key={section.label} 
-              section={section} 
-              delay={0.2 + index * 0.1}
-            />
-          ))}
+          <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-5 xl:col-span-2 xl:mt-0">
+            {/* Descriptive text column */}
+            <AnimatedContainer delay={ANIMATION_BASE_DELAY}>
+              <div className="mb-10 md:mb-0 col-span-2 md:col-span-1">
+                <p className="text-gmv-gray text-sm leading-relaxed">
+                  {CONTACT_INFO.description}
+                </p>
+              </div>
+            </AnimatedContainer>
+
+            {/* Link sections */}
+            {FOOTER_LINKS.map((section, index) => (
+              <FooterSection 
+                key={section.label} 
+                section={section} 
+                delay={0.2 + index * 0.1}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </footer>

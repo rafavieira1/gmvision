@@ -13,7 +13,7 @@ Carregadas via preload no HTML para melhor performance
 /* Custom Font - Pavelt */
 @font-face {
   font-family: 'Pavelt';
-  src: url('../public/Pavelt.otf') format('opentype');
+  src: url('/Pavelt.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -22,7 +22,7 @@ Carregadas via preload no HTML para melhor performance
 /* Custom Font - ITC Garamond */
 @font-face {
   font-family: 'ITC Garamond';
-  src: url('../public/itc-garamond-std.otf') format('opentype');
+  src: url('/itc-garamond-std.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -31,7 +31,7 @@ Carregadas via preload no HTML para melhor performance
 /* Custom Font - Halenoir Compact */
 @font-face {
   font-family: 'Halenoir Compact';
-  src: url('../public/HalenoirCompact-MediumObl.otf') format('opentype');
+  src: url('/HalenoirCompact-MediumObl.otf') format('opentype');
   font-weight: 500;
   font-style: oblique;
   font-display: swap;
@@ -40,7 +40,7 @@ Carregadas via preload no HTML para melhor performance
 /* Custom Font - Apparel Regular */
 @font-face {
   font-family: 'Apparel Regular';
-  src: url('../public/Apparel-regular.otf') format('opentype');
+  src: url('/Apparel-regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
