@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { useState, useCallback } from "react";
-import clinicImage from "/led-panel-clinic.jpg";
-import gymImage from "/led-panel-gym.jpg";
-import elevatorImage from "/led-panel-elevator.jpg";
-import heroImage from "/hero-led-business.jpg";
+import clinicImage from "/led-panel-clinic.avif";
+import gymImage from "/led-panel-gym.avif";
+import elevatorImage from "/led-panel-elevator.avif";
+import heroImage from "/hero-led-business.avif";
 
 // Constants
 const TRANSITION_DURATION = 300;

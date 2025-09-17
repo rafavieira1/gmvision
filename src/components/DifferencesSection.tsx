@@ -10,7 +10,7 @@ const WHATSAPP_DATA = {
 } as const;
 
 const SECTION_DATA = {
-  backgroundImage: 'url(/cortada.png)',
+  backgroundImage: 'url(/cortada.avif)',
   label: 'NOSSOS DIFERENCIAIS',
   title: {
     line1: 'Construindo pontes',

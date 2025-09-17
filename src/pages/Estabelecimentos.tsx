@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { Card, CardContent } from "@/components/ui/card";
-import heroImage from "/invert.png";
+import heroImage from "/invert.avif";
 
 // TypeScript Interfaces
 interface ProcessStep {

@@ -1,9 +1,8 @@
 /* ===== FONTES EXTERNAS ===== */
-/* Google Font - Montserrat SemiBold Italic */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap');
-
-/* Google Font - Noto Sans Japanese Medium */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+/* 
+Fontes Google removidas dos @import para evitar bloqueio de renderização
+Carregadas via preload no HTML para melhor performance
+*/
 
 /* ===== TAILWIND CSS ===== */
 @tailwind base;

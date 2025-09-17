@@ -124,7 +124,7 @@ const ContactItem = ({ item }: { item: ContactItem }) => (
 
 const FooterLink = ({ link }: { link: FooterLink }) => {
   const isInternal = link.href.startsWith('/') || link.href.startsWith('#');
-  const commonClasses = "hover:text-gmv-lime inline-flex items-center transition-all duration-300";
+  const commonClasses = "hover:text-gmv-lime-accessible inline-flex items-center transition-all duration-300";
   
   if (isInternal) {
     return (

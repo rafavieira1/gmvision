@@ -23,6 +23,8 @@ export default {
     				blue: '#05487f',
     				gray: '#384145',
     				lime: '#b8e600',
+    				'lime-accessible': '#7ba500', // Versão mais escura do lime para melhor contraste
+    				'gray-accessible': '#2d3436', // Versão mais escura do gray para melhor contraste
     				white: '#f7f7f7'
     			},
     			border: 'hsl(var(--border))',

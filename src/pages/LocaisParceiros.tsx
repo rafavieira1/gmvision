@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
-import heroImage from "/invert.png";
+import heroImage from "/invert.avif";
 
 const LocaisParceiros = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,7 +16,7 @@ const LocaisParceiros = () => {
     tipo: "Academia",
     endereco: "Estr. Mun. Bela Vista, 1332 - Alphaville, Santana de Parnaíba - SP",
     horario: "Dias úteis: 6:00 as 23:00\nFinais de semana e feriados: 08:00 as 16:00",
-    imagem: "/academiafdm.jpeg",
+    imagem: "/academiafdm.avif",
     descricao: "Nossa primeira parceria de sucesso! A Fábrica de Monstros foi pioneira em confiar na GMvision para modernizar seu ambiente e gerar renda extra através de nossos displays LED inteligentes.",
     paineis: "2 displays instalados",
     localizacao: "Recepção, área de musculação e vestiários"

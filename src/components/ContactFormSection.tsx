@@ -239,7 +239,7 @@ const ContactFormSection = () => {
                     <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                       <Mail className="w-3 h-3 text-gmv-gray" />
                     </div>
-                    <a href="mailto:adm@gmvisionco.com" className="hover:text-gmv-lime transition-colors text-sm lg:text-base">
+                    <a href="mailto:adm@gmvisionco.com" className="hover:text-gmv-lime-accessible transition-colors text-sm lg:text-base">
                       adm@gmvisionco.com
                     </a>
                   </div>
@@ -277,7 +277,7 @@ const ContactFormSection = () => {
                         onChange={handleInputChange}
                         placeholder="Seu nome completo"
                         required
-                        className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12"
+                        className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12 text-black"
                       />
                     </div>
 
@@ -292,7 +292,7 @@ const ContactFormSection = () => {
                           onChange={handleInputChange}
                           placeholder="seu@email.com"
                           required
-                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12"
+                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12 text-black"
                         />
                       </div>
                       <div className="grid w-full items-center gap-1.5">
@@ -305,7 +305,7 @@ const ContactFormSection = () => {
                           onChange={handleInputChange}
                           placeholder="(11) 99999-9999"
                           required
-                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12"
+                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12 text-black"
                         />
                       </div>
                     </div>
@@ -320,7 +320,7 @@ const ContactFormSection = () => {
                           value={formData.company}
                           onChange={handleInputChange}
                           placeholder="Nome da sua empresa"
-                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12"
+                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12 text-black"
                         />
                       </div>
                       <div className="grid w-full items-center gap-1.5">
@@ -332,7 +332,7 @@ const ContactFormSection = () => {
                           value={formData.city}
                           onChange={handleInputChange}
                           placeholder="Sua cidade"
-                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12"
+                          className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12 text-black"
                         />
                       </div>
                     </div>
@@ -346,7 +346,7 @@ const ContactFormSection = () => {
                         value={formData.segment}
                         onChange={handleInputChange}
                         placeholder="Ex: Academias, Clínicas, Elevadores, Condomínios, Restaurantes..."
-                        className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12"
+                        className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12 text-black"
                       />
                     </div>
 
@@ -359,7 +359,7 @@ const ContactFormSection = () => {
                         onChange={handleInputChange}
                         placeholder="Conte-nos sobre seu projeto ou dúvidas..."
                         required
-                        className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent min-h-[120px]"
+                        className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent min-h-[120px] text-black"
                       />
                     </div>
 
