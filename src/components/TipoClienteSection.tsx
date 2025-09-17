@@ -94,7 +94,7 @@ const ANIMATIONS = {
 
 // Components
 const FeatureItem = memo(({ feature, index }: FeatureItemProps) => (
-  <div className="flex items-center space-x-2">
+  <div className="flex items-center space-x-2" role="listitem">
     <Check 
       className="h-4 w-4 text-green-400 flex-shrink-0" 
       aria-hidden="true"
