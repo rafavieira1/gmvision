@@ -12,23 +12,13 @@ interface FaqItem {
 const FAQ_DATA: FaqItem[] = [
   {
     id: 1,
-    question: "Como funciona a instalação dos painéis LED?",
-    answer: "Nossa equipe técnica realiza toda a instalação sem custo para o estabelecimento. O processo inclui análise do local, instalação profissional e configuração completa do sistema. Todo o processo leva de 2 a 4 horas."
+    question: "Como funciona a instalação dos displays?",
+    answer: "Nossa equipe técnica realiza toda a instalação sem custo para o estabelecimento. O processo inclui análise do local, instalação profissional e configuração completa do sistema."
   },
   {
     id: 2,
-    question: "A GMvision é compatível com dispositivos móveis?",
-    answer: "Sim! Nossa plataforma é 100% responsiva e otimizada para dispositivos móveis. Você pode gerenciar suas campanhas, visualizar relatórios e fazer ajustes diretamente do seu smartphone ou tablet."
-  },
-  {
-    id: 3,
-    question: "Posso integrar outras ferramentas e sistemas com a GMvision?",
-    answer: "Com certeza! Oferecemos APIs robustas e integrações com principais plataformas de marketing, CRM e analytics. Também suportamos webhooks para sincronização em tempo real com seus sistemas existentes."
-  },
-  {
-    id: 4,
     question: "Que tipo de suporte está disponível se eu tiver problemas?",
-    answer: "Oferecemos suporte técnico completo 24/7 através de chat, email e telefone. Nossa equipe inclui especialistas em hardware, software e estratégia de marketing digital para garantir o sucesso das suas campanhas."
+    answer: "Oferecemos suporte técnico completo através de chat, email e telefone."
   }
 ];
 
