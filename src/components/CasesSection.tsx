@@ -165,6 +165,7 @@ const ESTABLISHMENTS_DATA: EstablishmentType[] = [
 
 const CasesSection = () => {
   const [activeSection, setActiveSection] = useState<number>(0);
+  const [sectionProgress, setSectionProgress] = useState<number>(0); // 0-100% progress within current section
   const scrollThrottleRef = useRef<boolean>(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const dimensionsRef = useRef<{ sectionTop: number; sectionHeight: number } | null>(null);
@@ -229,12 +230,35 @@ const CasesSection = () => {
         const sectionProgress = relativeScroll / sectionHeight;
         
         if (sectionProgress >= 0 && sectionProgress <= 1) {
-          const newActiveSection = Math.min(
-            Math.floor(sectionProgress * ESTABLISHMENTS_DATA.length), 
-            ESTABLISHMENTS_DATA.length - 1
-          );
+          // Calculate which section we're in and progress within that section
+          const totalSections = ESTABLISHMENTS_DATA.length;
+          const progressPerSection = 1 / totalSections;
           
-          setActiveSection(prev => prev !== newActiveSection ? newActiveSection : prev);
+          // Find current section based on overall progress
+          let currentSectionIndex = Math.floor(sectionProgress / progressPerSection);
+          
+          // Ensure we don't exceed the last section
+          currentSectionIndex = Math.min(currentSectionIndex, totalSections - 1);
+          
+          // Calculate progress within the current section (0-1)
+          const sectionStart = currentSectionIndex * progressPerSection;
+          const sectionEnd = (currentSectionIndex + 1) * progressPerSection;
+          const progressInCurrentSection = (sectionProgress - sectionStart) / (sectionEnd - sectionStart);
+          
+          // Convert to percentage (0-100) and clamp values
+          const progressPercentage = Math.min(Math.max(progressInCurrentSection * 100, 0), 100);
+          
+          // Update states only when necessary to avoid unnecessary re-renders
+          setActiveSection(prev => {
+            if (prev !== currentSectionIndex) {
+              setSectionProgress(0); // Reset progress when changing sections
+              return currentSectionIndex;
+            }
+            return prev;
+          });
+          
+          // Update progress for current section
+          setSectionProgress(progressPercentage);
         }
       }
       
@@ -355,31 +379,56 @@ const CasesSection = () => {
                   aria-label="Indicadores de progresso dos casos"
                 >
                   <div className="space-y-3 lg:space-y-4">
-                    {ESTABLISHMENTS_DATA.map((establishment, index) => (
-                      <div 
-                        key={`progress-${establishment.id}`}
-                        className={`w-1 rounded-full transition-all duration-700 ease-out transform cursor-pointer ${
-                          index === activeSection 
-                            ? 'bg-gmv-lime shadow-lg shadow-gmv-lime/50 h-12 lg:h-20 scale-110' 
-                            : 'bg-gmv-gray/30 h-10 lg:h-16 hover:bg-gmv-gray/50'
-                        }`}
-                        style={{
-                          transitionDelay: `${index * 100}ms`,
-                          transition: `all ${ANIMATION_DURATION.transition}ms cubic-bezier(0.4, 0, 0.2, 1)`
-                        }}
-                        role="tab"
-                        tabIndex={0}
-                        aria-selected={index === activeSection}
-                        aria-label={`Caso ${establishment.number}: ${establishment.category}`}
-                        onClick={() => setActiveSection(index)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            setActiveSection(index);
-                          }
-                        }}
-                      />
-                    ))}
+                    {ESTABLISHMENTS_DATA.map((establishment, index) => {
+                      const isActive = index === activeSection;
+                      const progressPercentage = isActive ? sectionProgress : 0;
+                      
+                      return (
+                        <div 
+                          key={`progress-${establishment.id}`}
+                          className={`w-1 rounded-full transition-all duration-700 ease-out transform cursor-pointer relative overflow-hidden ${
+                            isActive 
+                              ? 'shadow-lg shadow-gmv-gray/50 h-12 lg:h-20 scale-110' 
+                              : 'h-10 lg:h-16 hover:bg-gmv-gray/50'
+                          }`}
+                          style={{
+                            transitionDelay: `${index * 100}ms`,
+                            transition: `all ${ANIMATION_DURATION.transition}ms cubic-bezier(0.4, 0, 0.2, 1)`,
+                            backgroundColor: !isActive ? 'rgba(156, 163, 175, 0.3)' : 'transparent' // cinza para barras inativas
+                          }}
+                          role="tab"
+                          tabIndex={0}
+                          aria-selected={isActive}
+                          aria-label={`Caso ${establishment.number}: ${establishment.category}`}
+                          onClick={() => setActiveSection(index)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              setActiveSection(index);
+                            }
+                          }}
+                        >
+                          {isActive && (
+                            <>
+                              {/* Fundo cinza */}
+                              <div 
+                                className="absolute inset-0 bg-gmv-gray/30 rounded-full"
+                                aria-hidden="true"
+                              />
+                              {/* Preenchimento verde progressivo */}
+                              <div 
+                                className="absolute top-0 left-0 right-0 bg-gmv-lime rounded-full transition-all duration-300 ease-out"
+                                style={{
+                                  height: `${progressPercentage}%`,
+                                  transformOrigin: 'top'
+                                }}
+                                aria-hidden="true"
+                              />
+                            </>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

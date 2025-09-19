@@ -165,7 +165,7 @@ const LocaisParceiros = () => {
             </div>
 
             {/* Container do Mapa */}
-            <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start">
+            <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start relative">
               {/* Mapa SVG */}
               <div className="flex justify-center relative order-1">
                 <div className="relative">
@@ -488,7 +488,7 @@ const LocaisParceiros = () => {
               </div>
               
               {/* Card de Legenda - Mobile: below map, Desktop: absolute positioned */}
-              <div className="lg:absolute lg:top-0 lg:-right-72 lg:z-10 order-2 mt-6 lg:mt-0">
+              <div className="lg:absolute lg:top-0 lg:right-8 lg:z-10 order-2 mt-6 lg:mt-0">
                 <div className="bg-white rounded-2xl shadow-lg p-6 border border-gmv-lime/20 w-64 max-w-xs mx-auto lg:mx-0">
                   <h3 className="text-xl font-halenoir text-gmv-blue mb-4">Legenda</h3>
                   

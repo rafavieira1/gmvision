@@ -279,8 +279,8 @@ const Header = () => {
                   className={cn(
                     "px-4 py-2 text-lg font-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent h-auto",
                     theme === 'light'
-                      ? "text-white/90 hover:text-white"
-                      : "text-gmv-gray hover:text-gmv-blue"
+                      ? "text-white/90 hover:text-white data-[state=open]:text-white focus:text-white"
+                      : "text-gmv-gray hover:text-gmv-blue data-[state=open]:text-gmv-blue focus:text-gmv-blue"
                   )}
                   aria-label="Menu de parceiros"
                 >
