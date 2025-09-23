@@ -6,19 +6,58 @@ interface FaqItem {
   id: number;
   question: string;
   answer: string;
+  category: 'estabelecimentos' | 'anunciantes';
 }
 
 // Constants
 const FAQ_DATA: FaqItem[] = [
   {
     id: 1,
-    question: "Como funciona a instalação dos displays?",
-    answer: "Nossa equipe técnica realiza toda a instalação sem custo para o estabelecimento. O processo inclui análise do local, instalação profissional e configuração completa do sistema."
+    question: "O que meu estabelecimento ganha com essa parceria?",
+    answer: "Você ganha uma renda extra comissionada sobre os anúncios exibidos em sua tela e ainda moderniza o ambiente com displays de alta qualidade.",
+    category: "estabelecimentos"
   },
   {
     id: 2,
-    question: "Que tipo de suporte está disponível se eu tiver problemas?",
-    answer: "Oferecemos suporte técnico completo através de chat, email e telefone."
+    question: "Terei que pagar pela instalação ou manutenção dos displays?",
+    answer: "Não. A parceria não exige nenhum investimento inicial de sua parte. Nós somos os responsáveis pela instalação, manutenção e gerenciamento de todo o equipamento.",
+    category: "estabelecimentos"
+  },
+  {
+    id: 3,
+    question: "Posso vetar algum anúncio?",
+    answer: "Sim, você terá a possibilidade de aprovar os anunciantes, garantindo que o conteúdo esteja alinhado com a sua marca e público.",
+    category: "estabelecimentos"
+  },
+  {
+    id: 4,
+    question: "A tela pode ser usada para exibir conteúdo do meu próprio negócio?",
+    answer: "Sim, nossa plataforma permite que você também exiba seu conteúdo próprio, como promoções e informações sobre seus serviços.",
+    category: "estabelecimentos"
+  },
+  {
+    id: 5,
+    question: "Por que anunciar com vocês e não em mídias sociais?",
+    answer: "Enquanto as mídias sociais dependem de cliques, nós oferecemos visibilidade garantida para um público-alvo já segmentado. Seu anúncio é exibido em um local físico, exatamente onde seu cliente ideal já está.",
+    category: "anunciantes"
+  },
+  {
+    id: 6,
+    question: "O custo para anunciar é alto? É acessível para pequenos negócios?",
+    answer: "Nosso modelo de precificação foi pensado para oferecer um excelente custo-benefício, especialmente para negócios locais.",
+    category: "anunciantes"
+  },
+  {
+    id: 7,
+    question: "Como sei que meu anúncio está gerando resultados?",
+    answer: "Fornecemos relatórios de desempenho detalhados que mostram a frequência de exibição do seu anúncio, em alguns casos, até o perfil demográfico do público.",
+    category: "anunciantes"
+  },
+  {
+    id: 8,
+    question: "Vocês podem me ajudar a criar o anúncio?",
+    answer: "Sim! Embora o gerenciamento da plataforma seja simples, oferecemos um serviço opcional de criação de conteúdo para que seu anúncio seja visualmente atraente e impactante de acordo com a estratégia certa para o seu público-alvo.",
+    category: "anunciantes"
   }
 ];
 
@@ -115,6 +154,10 @@ const FaqSection = () => {
     setOpenItem(prevOpenItem => prevOpenItem === id ? null : id);
   }, []);
 
+  // Separate questions by category
+  const estabelecimentosQuestions = FAQ_DATA.filter(item => item.category === 'estabelecimentos');
+  const anunciantesQuestions = FAQ_DATA.filter(item => item.category === 'anunciantes');
+
   return (
     <section 
       id="faq" 
@@ -123,32 +166,61 @@ const FaqSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-            {/* FAQ Title */}
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 
+              id="faq-heading"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light font-halenoir text-gmv-blue leading-none mb-4"
+            >
+              FAQ
+            </h2>
+            <p className="text-xl text-gmv-gray">
+              Perguntas Frequentes
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            {/* Para Estabelecimentos Parceiros */}
             <div>
-              <h2 
-                id="faq-heading"
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gmv-blue leading-none"
+              <h3 className="text-2xl lg:text-3xl font-medium text-gmv-blue mb-6 lg:mb-8">
+                Para Estabelecimentos Parceiros
+              </h3>
+              <div 
+                className="space-y-4 lg:space-y-6"
+                role="list"
+                aria-label="Perguntas para estabelecimentos parceiros"
               >
-                FAQ
-              </h2>
+                {estabelecimentosQuestions.map((item) => (
+                  <div key={item.id} role="listitem">
+                    <FaqItem 
+                      item={item} 
+                      isOpen={openItem === item.id}
+                      onToggle={() => toggleItem(item.id)}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* FAQ Items */}
-            <div 
-              className="space-y-4 lg:space-y-6"
-              role="list"
-              aria-label="Perguntas frequentes"
-            >
-              {FAQ_DATA.map((item) => (
-                <div key={item.id} role="listitem">
-                  <FaqItem 
-                    item={item} 
-                    isOpen={openItem === item.id}
-                    onToggle={() => toggleItem(item.id)}
-                  />
-                </div>
-              ))}
+            {/* Para Anunciantes */}
+            <div>
+              <h3 className="text-2xl lg:text-3xl font-medium text-gmv-blue mb-6 lg:mb-8">
+                Para Anunciantes
+              </h3>
+              <div 
+                className="space-y-4 lg:space-y-6"
+                role="list"
+                aria-label="Perguntas para anunciantes"
+              >
+                {anunciantesQuestions.map((item) => (
+                  <div key={item.id} role="listitem">
+                    <FaqItem 
+                      item={item} 
+                      isOpen={openItem === item.id}
+                      onToggle={() => toggleItem(item.id)}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

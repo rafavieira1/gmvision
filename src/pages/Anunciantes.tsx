@@ -47,7 +47,7 @@ const SPECS: SpecItem[] = [
   {
     icon: Play,
     title: "Formatos Aceitos",
-    items: ["Vídeo MP4 até 30s", "Imagens JPG/PNG", "Resolução Full HD", "Tamanho máximo 10MB"]
+    items: ["Vídeo MP4 até 15s", "Imagens JPG/PNG", "Resolução Full HD", "Tamanho máximo 10MB"]
   },
   {
     icon: Calendar,

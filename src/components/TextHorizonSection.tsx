@@ -35,7 +35,7 @@ BackgroundText.displayName = 'BackgroundText';
 
 const MainTitle = memo(() => (
   <h2 
-    className="text-[2.5rem] sm:text-[3.5rem] md:text-[6rem] lg:text-[8rem] xl:text-[14rem] font-black leading-none select-none tracking-tight mb-4 text-center w-full"
+    className="text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[6.5rem] xl:text-[8rem] 2xl:text-[14rem] font-black leading-none select-none tracking-tight mb-4 text-center w-full"
     style={FONT_FAMILY}
   >
     <BackgroundText>
@@ -47,7 +47,7 @@ MainTitle.displayName = 'MainTitle';
 
 const Subtitle = memo(() => (
   <p 
-    className="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-medium leading-tight select-none tracking-wide text-center w-full"
+    className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-medium leading-tight select-none tracking-wide text-center w-full"
     style={FONT_FAMILY}
   >
     <BackgroundText>

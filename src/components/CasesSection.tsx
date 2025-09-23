@@ -160,6 +160,38 @@ const ESTABLISHMENTS_DATA: EstablishmentType[] = [
     image: clinicImage,
     icon: Heart,
     metrics: "200+ pacientes/dia"
+  },
+  {
+    id: "bares-restaurantes",
+    number: "03",
+    category: "GASTRONOMIA & LAZER",
+    title: "Bares, Restaurantes e Cafeterias",
+    description: "Alcance clientes durante momentos de descontração e alimentação. Ambiente ideal para promoções gastronômicas, delivery e entretenimento com alto tempo de permanência.",
+    features: [
+      "Promoções de delivery e aplicativos",
+      "Cardápios e ofertas especiais",
+      "Eventos e entretenimento local",
+      "Alto tempo de permanência dos clientes"
+    ],
+    image: heroImage,
+    icon: Building,
+    metrics: "300+ clientes/dia"
+  },
+  {
+    id: "barbearias-saloes",
+    number: "04",
+    category: "BELEZA & ESTÉTICA",
+    title: "Barbearias e Salões de Beleza",
+    description: "Comunique com clientes durante tratamentos de beleza e cuidados pessoais. Público engajado com tempo de permanência ideal para campanhas de produtos de beleza e bem-estar.",
+    features: [
+      "Produtos de beleza e cuidados pessoais",
+      "Promoções de tratamentos estéticos",
+      "Conteúdo sobre tendências e moda",
+      "Público focado em autocuidado"
+    ],
+    image: elevatorImage,
+    icon: Users,
+    metrics: "150+ clientes/dia"
   }
 ];
 
@@ -277,7 +309,7 @@ const CasesSection = () => {
     <section 
       id="cases" 
       ref={sectionRef} 
-      className="min-h-[200vh] lg:min-h-[200vh] relative"
+      className="min-h-[400vh] lg:min-h-[400vh] relative"
       aria-label="Casos de uso de painéis LED"
     >
       {/* Desktop: Seção fixa com conteúdo que muda */}
