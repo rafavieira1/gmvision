@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CTA_DATA = {
   backgroundImage: '/chat.avif',
   title: 'O Futuro da sua marca mais iluminado',
-  description: 'Conecte sua marca a estabelecimentos estratégicos através da nossa rede de displays LED inteligentes',
+  description: 'Conecte sua marca a estabelecimentos estratégicos através da nossa rede de displays digitais inteligentes',
   buttonText: 'Comece Agora',
   buttonLink: '/anunciantes'
 } as const;

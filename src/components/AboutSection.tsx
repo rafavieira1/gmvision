@@ -125,7 +125,7 @@ const ACCORDION_ITEMS: AccordionItemType[] = [
   {
     id: 1,
     imageUrl: clinicImage,
-    altText: "Painel LED instalado em clínica médica"
+    altText: "Display digital instalado em clínica médica"
   },
   {
     id: 2,
@@ -135,7 +135,7 @@ const ACCORDION_ITEMS: AccordionItemType[] = [
   {
     id: 3,
     imageUrl: elevatorImage,
-    altText: "Painel LED instalado em elevador"
+    altText: "Display digital instalado em barbearia"
   },
   {
     id: 4,

@@ -310,7 +310,7 @@ const CasesSection = () => {
       id="cases" 
       ref={sectionRef} 
       className="min-h-[400vh] lg:min-h-[400vh] relative"
-      aria-label="Casos de uso de painéis LED"
+      aria-label="Casos de uso de displays digitais"
     >
       {/* Desktop: Seção fixa com conteúdo que muda */}
       <div 
@@ -393,7 +393,7 @@ const CasesSection = () => {
                     <img 
                       key={`main-image-${currentEstablishment.id}`}
                       src={currentEstablishment.image}
-                      alt={`Exemplo de painel LED em ${currentEstablishment.title.toLowerCase()}`}
+                      alt={`Exemplo de display digital em ${currentEstablishment.title.toLowerCase()}`}
                       className="absolute inset-0 w-full h-full object-cover image-smooth-transition"
                     />
                     {/* Overlay sutil */}
@@ -500,7 +500,7 @@ const CasesSection = () => {
                   <div className="relative w-full h-[280px]">
                     <img 
                       src={establishment.image}
-                      alt={`Exemplo de painel LED em ${establishment.title.toLowerCase()}`}
+                      alt={`Exemplo de display digital em ${establishment.title.toLowerCase()}`}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />

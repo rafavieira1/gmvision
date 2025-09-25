@@ -1,21 +1,21 @@
-# GMvision - Painéis LED Inteligentes
+# GMvision - Displays Digitais Inteligentes
 
 ## Sobre o Projeto
 
-A **GMvision** é uma plataforma inovadora que conecta anunciantes e estabelecimentos através de painéis LED inteligentes, revolucionando a forma como a publicidade digital é exibida e gerenciada.
+A **GMvision** é uma plataforma inovadora que conecta anunciantes e estabelecimentos através de displays digitais inteligentes, revolucionando a forma como a publicidade digital é exibida e gerenciada.
 
 ### 🎯 O que é a GMvision?
 
 A GMvision oferece uma solução completa de mídia digital que permite:
 
-- **Para Anunciantes**: Criar e gerenciar campanhas publicitárias direcionadas em painéis LED estrategicamente posicionados
-- **Para Estabelecimentos**: Monetizar seus espaços através da instalação de painéis LED sem custo inicial
+- **Para Anunciantes**: Criar e gerenciar campanhas publicitárias direcionadas em displays digitais estrategicamente posicionados
+- **Para Estabelecimentos**: Monetizar seus espaços através da instalação de displays digitais sem custo inicial
 - **Para Locais Parceiros**: Expandir a rede de pontos de exibição em locais de alto fluxo
 
 ### ✨ Principais Funcionalidades
 
 #### 🏢 **Para Estabelecimentos**
-- Instalação gratuita de painéis LED profissionais
+- Instalação gratuita de displays digitais profissionais
 - Geração de renda passiva através da exibição de anúncios
 - Controle total sobre o conteúdo exibido
 - Suporte técnico completo e manutenção
@@ -27,7 +27,7 @@ A GMvision oferece uma solução completa de mídia digital que permite:
 - ROI mensurável e transparente
 
 #### 🎨 **Tecnologia Avançada**
-- Painéis LED de alta resolução e brilho
+- Displays digitais de alta resolução e brilho
 - Sistema de gerenciamento remoto em nuvem
 - Agendamento automático de conteúdo
 - Monitoramento 24/7 da rede
@@ -186,7 +186,7 @@ Este projeto está sob licença privada. Todos os direitos reservados à GMvisio
 
 ---
 
-**💡 GMvision** - Transformando espaços em oportunidades através da tecnologia LED inteligente.
+**💡 GMvision** - Transformando espaços em oportunidades através da tecnologia digital inteligente.
 
 git add .
 

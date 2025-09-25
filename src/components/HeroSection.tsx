@@ -26,7 +26,7 @@ const HERO_IMAGES = {
 
 const HERO_CONFIG = {
   logoMaxSize: "80%",
-  altText: "GMVision - Painéis LED Inteligentes",
+  altText: "GMVision - Displays Digitais Inteligentes",
   backgroundAlt: "Fundo degradê GMVision",
 } as const;
 

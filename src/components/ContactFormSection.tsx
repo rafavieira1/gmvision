@@ -345,7 +345,7 @@ const ContactFormSection = () => {
                         name="segment"
                         value={formData.segment}
                         onChange={handleInputChange}
-                        placeholder="Ex: Academias, Clínicas, Elevadores, Condomínios, Restaurantes..."
+                        placeholder="Ex: Academias, Clínicas, Bares, Restaurantes, Barbearias, Salões..."
                         className="bg-gray-50 border-gmv-gray/20 focus:ring-gmv-lime focus:border-transparent h-12 text-black"
                       />
                     </div>

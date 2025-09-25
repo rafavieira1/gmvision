@@ -63,7 +63,8 @@ const FOOTER_LINKS: FooterSection[] = [
     links: [
       { title: 'Academias e Fitness', href: '/#cases' },
       { title: 'Clínicas e Consultórios', href: '/#cases' },
-      { title: 'Elevadores', href: '/#cases' },
+      { title: 'Bares e Restaurantes', href: '/#cases' },
+      { title: 'Barbearias e Salões', href: '/#cases' },
     ],
   },
   {

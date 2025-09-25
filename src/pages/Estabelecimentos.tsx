@@ -35,7 +35,7 @@ const STEP_PROCESS: ProcessStep[] = [
   {
     number: "03",
     title: "Instalação Gratuita",
-    description: "Instalamos os painéis LED sem custo para você"
+    description: "Instalamos os displays digitais sem custo para você"
   },
   {
     number: "04",
@@ -71,7 +71,7 @@ const BENEFITS: string[] = [
   "Aprovação de cada anúncio"
 ];
 
-const WHATSAPP_MESSAGE = "Olá! Tenho interesse em ser parceiro da GMvision instalando painéis LED no meu estabelecimento. Gostaria de saber mais sobre valores e modelos de parceria.";
+const WHATSAPP_MESSAGE = "Olá! Tenho interesse em ser parceiro da GMvision instalando displays digitais no meu estabelecimento. Gostaria de saber mais sobre valores e modelos de parceria.";
 
 // Memoized Components
 const HeroSection = memo(() => (
@@ -268,7 +268,7 @@ const RequirementsSection = memo(() => (
                 as melhores localizações para os painéis.
               </p>
               <a
-                href={`https://wa.me/5511936208864?text=${encodeURIComponent('Olá! Gostaria de agendar uma visita técnica gratuita para avaliação do meu estabelecimento para instalação de painéis LED da GMvision.')}`}
+                href={`https://wa.me/5511936208864?text=${encodeURIComponent('Olá! Gostaria de agendar uma visita técnica gratuita para avaliação do meu estabelecimento para instalação de displays digitais da GMvision.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -531,7 +531,7 @@ const LocaisParceiros = () => {
               Entre em contato conosco e descubra como sua empresa pode gerar renda extra.
             </p>
             <a
-              href="https://wa.me/5511936208864?text=Olá! Gostaria de ser parceiro da GMvision e instalar painéis LED no meu estabelecimento, assim como a Fábrica de Monstros."
+              href="https://wa.me/5511936208864?text=Olá! Gostaria de ser parceiro da GMvision e instalar displays digitais no meu estabelecimento, assim como a Fábrica de Monstros."
               target="_blank"
               rel="noopener noreferrer"
             >

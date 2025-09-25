@@ -3,7 +3,7 @@ import { Lightbulb, Network, TrendingUp, ArrowRight, LucideIcon } from "lucide-r
 // Constants
 const WHATSAPP_DATA = {
   number: '5511936208864',
-  message: 'Olá! Gostaria de solicitar uma proposta para divulgar minha marca através da rede de displays LED da GMvision.',
+  message: 'Olá! Gostaria de solicitar uma proposta para divulgar minha marca através da rede de displays digitais da GMvision.',
   get url() {
     return `https://wa.me/${this.number}?text=${encodeURIComponent(this.message)}`;
   }
