@@ -12,12 +12,12 @@ const LocaisParceiros = () => {
   // Cliente único da empresa
   const cliente = {
     id: 1,
-    nome: "Fábrica de Monstros",
+    nome: "Fábrica Premium",
     tipo: "Academia",
     endereco: "Estr. Mun. Bela Vista, 1332 - Alphaville, Santana de Parnaíba - SP",
     horario: "Dias úteis: 6:00 as 23:00\nFinais de semana e feriados: 08:00 as 16:00",
     imagem: "/academiafdm.avif",
-    descricao: "Nossa primeira parceria de sucesso! A Fábrica de Monstros foi pioneira em confiar na GMvision para modernizar seu ambiente e gerar renda extra através de nossos displays LED inteligentes.",
+    descricao: "Nossa primeira parceria de sucesso! A Fábrica de Monstros foi pioneira em confiar na GMvision para modernizar seu ambiente e gerar renda extra através de nossos displays inteligentes.",
     paineis: "2 displays instalados",
     localizacao: "Recepção, área de musculação e vestiários"
   };

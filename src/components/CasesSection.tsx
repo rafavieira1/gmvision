@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { Dumbbell, Heart, Building, Users, LucideIcon } from "lucide-react";
 import gymImage from "/academia.avif";
-import clinicImage from "/led-panel-clinic.avif";
-import elevatorImage from "/led-panel-elevator.avif";
-import heroImage from "/hero-led-business.avif";
+import clinicImage from "/clinica.avif";
+import elevatorImage from "/salao.avif";
+import heroImage from "/bar.avif";
 
 // Constants
 const SCROLL_THROTTLE_DELAY = 16; // ~60fps
